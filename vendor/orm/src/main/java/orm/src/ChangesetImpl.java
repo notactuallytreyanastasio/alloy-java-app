@@ -26,495 +26,495 @@ final class ChangesetImpl implements Changeset {
     public boolean isValid() {
         return this._isValid;
     }
-    public Changeset cast(List<SafeIdentifier> allowedFields__355) {
-        Map<String, String> mb__357 = new LinkedHashMap<>();
-        Consumer<SafeIdentifier> fn__4731 = f__358 -> {
-            String t_4729;
-            String t_4726 = f__358.getSqlValue();
-            String val__359 = this._params.getOrDefault(t_4726, "");
-            if (!val__359.isEmpty()) {
-                t_4729 = f__358.getSqlValue();
-                mb__357.put(t_4729, val__359);
+    public Changeset cast(List<SafeIdentifier> allowedFields__364) {
+        Map<String, String> mb__366 = new LinkedHashMap<>();
+        Consumer<SafeIdentifier> fn__5014 = f__367 -> {
+            String t_5012;
+            String t_5009 = f__367.getSqlValue();
+            String val__368 = this._params.getOrDefault(t_5009, "");
+            if (!val__368.isEmpty()) {
+                t_5012 = f__367.getSqlValue();
+                mb__366.put(t_5012, val__368);
             }
         };
-        allowedFields__355.forEach(fn__4731);
-        return new ChangesetImpl(this._tableDef, this._params, Core.mappedToMap(mb__357), this._errors, this._isValid);
+        allowedFields__364.forEach(fn__5014);
+        return new ChangesetImpl(this._tableDef, this._params, Core.mappedToMap(mb__366), this._errors, this._isValid);
     }
-    public Changeset validateRequired(List<SafeIdentifier> fields__361) {
-        Changeset return__183;
-        List<ChangesetError> t_4724;
-        TableDef t_2816;
-        Map<String, String> t_2817;
-        Map<String, String> t_2818;
-        fn__362: {
+    public Changeset validateRequired(List<SafeIdentifier> fields__370) {
+        Changeset return__192;
+        List<ChangesetError> t_5007;
+        TableDef t_2977;
+        Map<String, String> t_2978;
+        Map<String, String> t_2979;
+        fn__371: {
             if (!this._isValid) {
-                return__183 = this;
-                break fn__362;
+                return__192 = this;
+                break fn__371;
             }
-            List<ChangesetError> eb__363 = new ArrayList<>(this._errors);
+            List<ChangesetError> eb__372 = new ArrayList<>(this._errors);
             class Local_1 {
-                boolean valid__364 = true;
+                boolean valid__373 = true;
             }
             final Local_1 local$1 = new Local_1();
-            Consumer<SafeIdentifier> fn__4720 = f__365 -> {
-                ChangesetError t_4718;
-                String t_4715 = f__365.getSqlValue();
-                if (!this._changes.containsKey(t_4715)) {
-                    t_4718 = new ChangesetError(f__365.getSqlValue(), "is required");
-                    Core.listAdd(eb__363, t_4718);
-                    local$1.valid__364 = false;
+            Consumer<SafeIdentifier> fn__5003 = f__374 -> {
+                ChangesetError t_5001;
+                String t_4998 = f__374.getSqlValue();
+                if (!this._changes.containsKey(t_4998)) {
+                    t_5001 = new ChangesetError(f__374.getSqlValue(), "is required");
+                    Core.listAdd(eb__372, t_5001);
+                    local$1.valid__373 = false;
                 }
             };
-            fields__361.forEach(fn__4720);
-            t_2816 = this._tableDef;
-            t_2817 = this._params;
-            t_2818 = this._changes;
-            t_4724 = List.copyOf(eb__363);
-            return__183 = new ChangesetImpl(t_2816, t_2817, t_2818, t_4724, local$1.valid__364);
+            fields__370.forEach(fn__5003);
+            t_2977 = this._tableDef;
+            t_2978 = this._params;
+            t_2979 = this._changes;
+            t_5007 = List.copyOf(eb__372);
+            return__192 = new ChangesetImpl(t_2977, t_2978, t_2979, t_5007, local$1.valid__373);
         }
-        return return__183;
+        return return__192;
     }
-    public Changeset validateLength(SafeIdentifier field__367, int min__368, int max__369) {
-        Changeset return__184;
-        String t_4702;
-        List<ChangesetError> t_4713;
-        boolean t_2799;
-        TableDef t_2805;
-        Map<String, String> t_2806;
-        Map<String, String> t_2807;
-        fn__370: {
+    public Changeset validateLength(SafeIdentifier field__376, int min__377, int max__378) {
+        Changeset return__193;
+        String t_4985;
+        List<ChangesetError> t_4996;
+        boolean t_2960;
+        TableDef t_2966;
+        Map<String, String> t_2967;
+        Map<String, String> t_2968;
+        fn__379: {
             if (!this._isValid) {
-                return__184 = this;
-                break fn__370;
+                return__193 = this;
+                break fn__379;
             }
-            t_4702 = field__367.getSqlValue();
-            String val__371 = this._changes.getOrDefault(t_4702, "");
-            int len__372 = Core.stringCountBetween(val__371, 0, val__371.length());
-            if (len__372 < min__368) {
-                t_2799 = true;
+            t_4985 = field__376.getSqlValue();
+            String val__380 = this._changes.getOrDefault(t_4985, "");
+            int len__381 = Core.stringCountBetween(val__380, 0, val__380.length());
+            if (len__381 < min__377) {
+                t_2960 = true;
             } else {
-                t_2799 = len__372 > max__369;
+                t_2960 = len__381 > max__378;
             }
-            if (t_2799) {
-                String msg__373 = "must be between " + Integer.toString(min__368) + " and " + Integer.toString(max__369) + " characters";
-                List<ChangesetError> eb__374 = new ArrayList<>(this._errors);
-                Core.listAdd(eb__374, new ChangesetError(field__367.getSqlValue(), msg__373));
-                t_2805 = this._tableDef;
-                t_2806 = this._params;
-                t_2807 = this._changes;
-                t_4713 = List.copyOf(eb__374);
-                return__184 = new ChangesetImpl(t_2805, t_2806, t_2807, t_4713, false);
-                break fn__370;
+            if (t_2960) {
+                String msg__382 = "must be between " + Integer.toString(min__377) + " and " + Integer.toString(max__378) + " characters";
+                List<ChangesetError> eb__383 = new ArrayList<>(this._errors);
+                Core.listAdd(eb__383, new ChangesetError(field__376.getSqlValue(), msg__382));
+                t_2966 = this._tableDef;
+                t_2967 = this._params;
+                t_2968 = this._changes;
+                t_4996 = List.copyOf(eb__383);
+                return__193 = new ChangesetImpl(t_2966, t_2967, t_2968, t_4996, false);
+                break fn__379;
             }
-            return__184 = this;
+            return__193 = this;
         }
-        return return__184;
+        return return__193;
     }
-    public Changeset validateInt(SafeIdentifier field__376) {
-        Changeset return__185;
-        String t_4693;
-        List<ChangesetError> t_4700;
-        TableDef t_2790;
-        Map<String, String> t_2791;
-        Map<String, String> t_2792;
-        fn__377: {
+    public Changeset validateInt(SafeIdentifier field__385) {
+        Changeset return__194;
+        String t_4976;
+        List<ChangesetError> t_4983;
+        TableDef t_2951;
+        Map<String, String> t_2952;
+        Map<String, String> t_2953;
+        fn__386: {
             if (!this._isValid) {
-                return__185 = this;
-                break fn__377;
+                return__194 = this;
+                break fn__386;
             }
-            t_4693 = field__376.getSqlValue();
-            String val__378 = this._changes.getOrDefault(t_4693, "");
-            if (val__378.isEmpty()) {
-                return__185 = this;
-                break fn__377;
+            t_4976 = field__385.getSqlValue();
+            String val__387 = this._changes.getOrDefault(t_4976, "");
+            if (val__387.isEmpty()) {
+                return__194 = this;
+                break fn__386;
             }
-            boolean parseOk__379;
-            boolean parseOk_4834;
+            boolean parseOk__388;
+            boolean parseOk_5121;
             try {
-                Core.stringToInt(val__378);
-                parseOk_4834 = true;
+                Core.stringToInt(val__387);
+                parseOk_5121 = true;
             } catch (RuntimeException ignored$1) {
-                parseOk_4834 = false;
+                parseOk_5121 = false;
             }
-            parseOk__379 = parseOk_4834;
-            if (!parseOk__379) {
-                List<ChangesetError> eb__380 = new ArrayList<>(this._errors);
-                Core.listAdd(eb__380, new ChangesetError(field__376.getSqlValue(), "must be an integer"));
-                t_2790 = this._tableDef;
-                t_2791 = this._params;
-                t_2792 = this._changes;
-                t_4700 = List.copyOf(eb__380);
-                return__185 = new ChangesetImpl(t_2790, t_2791, t_2792, t_4700, false);
-                break fn__377;
+            parseOk__388 = parseOk_5121;
+            if (!parseOk__388) {
+                List<ChangesetError> eb__389 = new ArrayList<>(this._errors);
+                Core.listAdd(eb__389, new ChangesetError(field__385.getSqlValue(), "must be an integer"));
+                t_2951 = this._tableDef;
+                t_2952 = this._params;
+                t_2953 = this._changes;
+                t_4983 = List.copyOf(eb__389);
+                return__194 = new ChangesetImpl(t_2951, t_2952, t_2953, t_4983, false);
+                break fn__386;
             }
-            return__185 = this;
+            return__194 = this;
         }
-        return return__185;
+        return return__194;
     }
-    public Changeset validateInt64(SafeIdentifier field__382) {
-        Changeset return__186;
-        String t_4684;
-        List<ChangesetError> t_4691;
-        TableDef t_2777;
-        Map<String, String> t_2778;
-        Map<String, String> t_2779;
-        fn__383: {
+    public Changeset validateInt64(SafeIdentifier field__391) {
+        Changeset return__195;
+        String t_4967;
+        List<ChangesetError> t_4974;
+        TableDef t_2938;
+        Map<String, String> t_2939;
+        Map<String, String> t_2940;
+        fn__392: {
             if (!this._isValid) {
-                return__186 = this;
-                break fn__383;
+                return__195 = this;
+                break fn__392;
             }
-            t_4684 = field__382.getSqlValue();
-            String val__384 = this._changes.getOrDefault(t_4684, "");
-            if (val__384.isEmpty()) {
-                return__186 = this;
-                break fn__383;
+            t_4967 = field__391.getSqlValue();
+            String val__393 = this._changes.getOrDefault(t_4967, "");
+            if (val__393.isEmpty()) {
+                return__195 = this;
+                break fn__392;
             }
-            boolean parseOk__385;
-            boolean parseOk_4836;
+            boolean parseOk__394;
+            boolean parseOk_5123;
             try {
-                Core.stringToInt64(val__384);
-                parseOk_4836 = true;
+                Core.stringToInt64(val__393);
+                parseOk_5123 = true;
             } catch (RuntimeException ignored$2) {
-                parseOk_4836 = false;
+                parseOk_5123 = false;
             }
-            parseOk__385 = parseOk_4836;
-            if (!parseOk__385) {
-                List<ChangesetError> eb__386 = new ArrayList<>(this._errors);
-                Core.listAdd(eb__386, new ChangesetError(field__382.getSqlValue(), "must be a 64-bit integer"));
-                t_2777 = this._tableDef;
-                t_2778 = this._params;
-                t_2779 = this._changes;
-                t_4691 = List.copyOf(eb__386);
-                return__186 = new ChangesetImpl(t_2777, t_2778, t_2779, t_4691, false);
-                break fn__383;
+            parseOk__394 = parseOk_5123;
+            if (!parseOk__394) {
+                List<ChangesetError> eb__395 = new ArrayList<>(this._errors);
+                Core.listAdd(eb__395, new ChangesetError(field__391.getSqlValue(), "must be a 64-bit integer"));
+                t_2938 = this._tableDef;
+                t_2939 = this._params;
+                t_2940 = this._changes;
+                t_4974 = List.copyOf(eb__395);
+                return__195 = new ChangesetImpl(t_2938, t_2939, t_2940, t_4974, false);
+                break fn__392;
             }
-            return__186 = this;
+            return__195 = this;
         }
-        return return__186;
+        return return__195;
     }
-    public Changeset validateFloat(SafeIdentifier field__388) {
-        Changeset return__187;
-        String t_4675;
-        List<ChangesetError> t_4682;
-        TableDef t_2764;
-        Map<String, String> t_2765;
-        Map<String, String> t_2766;
-        fn__389: {
+    public Changeset validateFloat(SafeIdentifier field__397) {
+        Changeset return__196;
+        String t_4958;
+        List<ChangesetError> t_4965;
+        TableDef t_2925;
+        Map<String, String> t_2926;
+        Map<String, String> t_2927;
+        fn__398: {
             if (!this._isValid) {
-                return__187 = this;
-                break fn__389;
+                return__196 = this;
+                break fn__398;
             }
-            t_4675 = field__388.getSqlValue();
-            String val__390 = this._changes.getOrDefault(t_4675, "");
-            if (val__390.isEmpty()) {
-                return__187 = this;
-                break fn__389;
+            t_4958 = field__397.getSqlValue();
+            String val__399 = this._changes.getOrDefault(t_4958, "");
+            if (val__399.isEmpty()) {
+                return__196 = this;
+                break fn__398;
             }
-            boolean parseOk__391;
-            boolean parseOk_4838;
+            boolean parseOk__400;
+            boolean parseOk_5125;
             try {
-                Core.stringToFloat64(val__390);
-                parseOk_4838 = true;
+                Core.stringToFloat64(val__399);
+                parseOk_5125 = true;
             } catch (RuntimeException ignored$3) {
-                parseOk_4838 = false;
+                parseOk_5125 = false;
             }
-            parseOk__391 = parseOk_4838;
-            if (!parseOk__391) {
-                List<ChangesetError> eb__392 = new ArrayList<>(this._errors);
-                Core.listAdd(eb__392, new ChangesetError(field__388.getSqlValue(), "must be a number"));
-                t_2764 = this._tableDef;
-                t_2765 = this._params;
-                t_2766 = this._changes;
-                t_4682 = List.copyOf(eb__392);
-                return__187 = new ChangesetImpl(t_2764, t_2765, t_2766, t_4682, false);
-                break fn__389;
+            parseOk__400 = parseOk_5125;
+            if (!parseOk__400) {
+                List<ChangesetError> eb__401 = new ArrayList<>(this._errors);
+                Core.listAdd(eb__401, new ChangesetError(field__397.getSqlValue(), "must be a number"));
+                t_2925 = this._tableDef;
+                t_2926 = this._params;
+                t_2927 = this._changes;
+                t_4965 = List.copyOf(eb__401);
+                return__196 = new ChangesetImpl(t_2925, t_2926, t_2927, t_4965, false);
+                break fn__398;
             }
-            return__187 = this;
+            return__196 = this;
         }
-        return return__187;
+        return return__196;
     }
-    public Changeset validateBool(SafeIdentifier field__394) {
-        Changeset return__188;
-        String t_4666;
-        List<ChangesetError> t_4673;
-        boolean t_2739;
-        boolean t_2740;
-        boolean t_2742;
-        boolean t_2743;
-        boolean t_2745;
-        TableDef t_2751;
-        Map<String, String> t_2752;
-        Map<String, String> t_2753;
-        fn__395: {
+    public Changeset validateBool(SafeIdentifier field__403) {
+        Changeset return__197;
+        String t_4949;
+        List<ChangesetError> t_4956;
+        boolean t_2900;
+        boolean t_2901;
+        boolean t_2903;
+        boolean t_2904;
+        boolean t_2906;
+        TableDef t_2912;
+        Map<String, String> t_2913;
+        Map<String, String> t_2914;
+        fn__404: {
             if (!this._isValid) {
-                return__188 = this;
-                break fn__395;
+                return__197 = this;
+                break fn__404;
             }
-            t_4666 = field__394.getSqlValue();
-            String val__396 = this._changes.getOrDefault(t_4666, "");
-            if (val__396.isEmpty()) {
-                return__188 = this;
-                break fn__395;
+            t_4949 = field__403.getSqlValue();
+            String val__405 = this._changes.getOrDefault(t_4949, "");
+            if (val__405.isEmpty()) {
+                return__197 = this;
+                break fn__404;
             }
-            boolean isTrue__397;
-            if (val__396.equals("true")) {
-                isTrue__397 = true;
+            boolean isTrue__406;
+            if (val__405.equals("true")) {
+                isTrue__406 = true;
             } else {
-                if (val__396.equals("1")) {
-                    t_2740 = true;
+                if (val__405.equals("1")) {
+                    t_2901 = true;
                 } else {
-                    if (val__396.equals("yes")) {
-                        t_2739 = true;
+                    if (val__405.equals("yes")) {
+                        t_2900 = true;
                     } else {
-                        t_2739 = val__396.equals("on");
+                        t_2900 = val__405.equals("on");
                     }
-                    t_2740 = t_2739;
+                    t_2901 = t_2900;
                 }
-                isTrue__397 = t_2740;
+                isTrue__406 = t_2901;
             }
-            boolean isFalse__398;
-            if (val__396.equals("false")) {
-                isFalse__398 = true;
+            boolean isFalse__407;
+            if (val__405.equals("false")) {
+                isFalse__407 = true;
             } else {
-                if (val__396.equals("0")) {
-                    t_2743 = true;
+                if (val__405.equals("0")) {
+                    t_2904 = true;
                 } else {
-                    if (val__396.equals("no")) {
-                        t_2742 = true;
+                    if (val__405.equals("no")) {
+                        t_2903 = true;
                     } else {
-                        t_2742 = val__396.equals("off");
+                        t_2903 = val__405.equals("off");
                     }
-                    t_2743 = t_2742;
+                    t_2904 = t_2903;
                 }
-                isFalse__398 = t_2743;
+                isFalse__407 = t_2904;
             }
-            if (!isTrue__397) {
-                t_2745 = !isFalse__398;
+            if (!isTrue__406) {
+                t_2906 = !isFalse__407;
             } else {
-                t_2745 = false;
+                t_2906 = false;
             }
-            if (t_2745) {
-                List<ChangesetError> eb__399 = new ArrayList<>(this._errors);
-                Core.listAdd(eb__399, new ChangesetError(field__394.getSqlValue(), "must be a boolean (true/false/1/0/yes/no/on/off)"));
-                t_2751 = this._tableDef;
-                t_2752 = this._params;
-                t_2753 = this._changes;
-                t_4673 = List.copyOf(eb__399);
-                return__188 = new ChangesetImpl(t_2751, t_2752, t_2753, t_4673, false);
-                break fn__395;
+            if (t_2906) {
+                List<ChangesetError> eb__408 = new ArrayList<>(this._errors);
+                Core.listAdd(eb__408, new ChangesetError(field__403.getSqlValue(), "must be a boolean (true/false/1/0/yes/no/on/off)"));
+                t_2912 = this._tableDef;
+                t_2913 = this._params;
+                t_2914 = this._changes;
+                t_4956 = List.copyOf(eb__408);
+                return__197 = new ChangesetImpl(t_2912, t_2913, t_2914, t_4956, false);
+                break fn__404;
             }
-            return__188 = this;
+            return__197 = this;
         }
-        return return__188;
+        return return__197;
     }
-    SqlBoolean parseBoolSqlPart(String val__401) {
-        SqlBoolean return__189;
-        boolean t_2728;
-        boolean t_2729;
-        boolean t_2730;
-        boolean t_2732;
-        boolean t_2733;
-        boolean t_2734;
-        fn__402: {
-            if (val__401.equals("true")) {
-                t_2730 = true;
+    SqlBoolean parseBoolSqlPart(String val__410) {
+        SqlBoolean return__198;
+        boolean t_2889;
+        boolean t_2890;
+        boolean t_2891;
+        boolean t_2893;
+        boolean t_2894;
+        boolean t_2895;
+        fn__411: {
+            if (val__410.equals("true")) {
+                t_2891 = true;
             } else {
-                if (val__401.equals("1")) {
-                    t_2729 = true;
+                if (val__410.equals("1")) {
+                    t_2890 = true;
                 } else {
-                    if (val__401.equals("yes")) {
-                        t_2728 = true;
+                    if (val__410.equals("yes")) {
+                        t_2889 = true;
                     } else {
-                        t_2728 = val__401.equals("on");
+                        t_2889 = val__410.equals("on");
                     }
-                    t_2729 = t_2728;
+                    t_2890 = t_2889;
                 }
-                t_2730 = t_2729;
+                t_2891 = t_2890;
             }
-            if (t_2730) {
-                return__189 = new SqlBoolean(true);
-                break fn__402;
+            if (t_2891) {
+                return__198 = new SqlBoolean(true);
+                break fn__411;
             }
-            if (val__401.equals("false")) {
-                t_2734 = true;
+            if (val__410.equals("false")) {
+                t_2895 = true;
             } else {
-                if (val__401.equals("0")) {
-                    t_2733 = true;
+                if (val__410.equals("0")) {
+                    t_2894 = true;
                 } else {
-                    if (val__401.equals("no")) {
-                        t_2732 = true;
+                    if (val__410.equals("no")) {
+                        t_2893 = true;
                     } else {
-                        t_2732 = val__401.equals("off");
+                        t_2893 = val__410.equals("off");
                     }
-                    t_2733 = t_2732;
+                    t_2894 = t_2893;
                 }
-                t_2734 = t_2733;
+                t_2895 = t_2894;
             }
-            if (t_2734) {
-                return__189 = new SqlBoolean(false);
-                break fn__402;
+            if (t_2895) {
+                return__198 = new SqlBoolean(false);
+                break fn__411;
             }
             throw Core.bubble();
         }
-        return return__189;
+        return return__198;
     }
-    SqlPart valueToSqlPart(FieldDef fieldDef__404, String val__405) {
-        SqlPart return__190;
-        int t_2715;
-        long t_2718;
-        double t_2721;
-        LocalDate t_2726;
-        fn__406: {
-            FieldType ft__407 = fieldDef__404.getFieldType();
-            if (ft__407 instanceof StringField) {
-                return__190 = new SqlString(val__405);
-                break fn__406;
+    SqlPart valueToSqlPart(FieldDef fieldDef__413, String val__414) {
+        SqlPart return__199;
+        int t_2876;
+        long t_2879;
+        double t_2882;
+        LocalDate t_2887;
+        fn__415: {
+            FieldType ft__416 = fieldDef__413.getFieldType();
+            if (ft__416 instanceof StringField) {
+                return__199 = new SqlString(val__414);
+                break fn__415;
             }
-            if (ft__407 instanceof IntField) {
-                t_2715 = Core.stringToInt(val__405);
-                return__190 = new SqlInt32(t_2715);
-                break fn__406;
+            if (ft__416 instanceof IntField) {
+                t_2876 = Core.stringToInt(val__414);
+                return__199 = new SqlInt32(t_2876);
+                break fn__415;
             }
-            if (ft__407 instanceof Int64Field) {
-                t_2718 = Core.stringToInt64(val__405);
-                return__190 = new SqlInt64(t_2718);
-                break fn__406;
+            if (ft__416 instanceof Int64Field) {
+                t_2879 = Core.stringToInt64(val__414);
+                return__199 = new SqlInt64(t_2879);
+                break fn__415;
             }
-            if (ft__407 instanceof FloatField) {
-                t_2721 = Core.stringToFloat64(val__405);
-                return__190 = new SqlFloat64(t_2721);
-                break fn__406;
+            if (ft__416 instanceof FloatField) {
+                t_2882 = Core.stringToFloat64(val__414);
+                return__199 = new SqlFloat64(t_2882);
+                break fn__415;
             }
-            if (ft__407 instanceof BoolField) {
-                return__190 = this.parseBoolSqlPart(val__405);
-                break fn__406;
+            if (ft__416 instanceof BoolField) {
+                return__199 = this.parseBoolSqlPart(val__414);
+                break fn__415;
             }
-            if (ft__407 instanceof DateField) {
-                t_2726 = LocalDate.parse(val__405);
-                return__190 = new SqlDate(t_2726);
-                break fn__406;
+            if (ft__416 instanceof DateField) {
+                t_2887 = LocalDate.parse(val__414);
+                return__199 = new SqlDate(t_2887);
+                break fn__415;
             }
             throw Core.bubble();
         }
-        return return__190;
+        return return__199;
     }
     public SqlFragment toInsertSql() {
-        int t_4615;
-        String t_4620;
-        boolean t_4621;
-        int t_4626;
-        String t_4628;
-        String t_4631;
-        int t_4646;
-        boolean t_2680;
-        FieldDef t_2688;
-        SqlPart t_2692;
+        int t_4897;
+        String t_4902;
+        boolean t_4903;
+        int t_4908;
+        String t_4910;
+        String t_4914;
+        int t_4929;
+        boolean t_2840;
+        FieldDef t_2848;
+        SqlPart t_2853;
         if (!this._isValid) {
             throw Core.bubble();
         }
-        int i__410 = 0;
+        int i__419 = 0;
         while (true) {
-            t_4615 = this._tableDef.getFields().size();
-            if (i__410 >= t_4615) {
+            t_4897 = this._tableDef.getFields().size();
+            if (i__419 >= t_4897) {
                 break;
             }
-            FieldDef f__411 = Core.listGet(this._tableDef.getFields(), i__410);
-            if (!f__411.isNullable()) {
-                t_4620 = f__411.getName().getSqlValue();
-                t_4621 = this._changes.containsKey(t_4620);
-                t_2680 = !t_4621;
+            FieldDef f__420 = Core.listGet(this._tableDef.getFields(), i__419);
+            if (!f__420.isNullable()) {
+                t_4902 = f__420.getName().getSqlValue();
+                t_4903 = this._changes.containsKey(t_4902);
+                t_2840 = !t_4903;
             } else {
-                t_2680 = false;
+                t_2840 = false;
             }
-            if (t_2680) {
+            if (t_2840) {
                 throw Core.bubble();
             }
-            i__410 = i__410 + 1;
+            i__419 = i__419 + 1;
         }
-        List<Entry<String, String>> pairs__412 = Core.mappedToList(this._changes);
-        if (pairs__412.size() == 0) {
+        List<Entry<String, String>> pairs__421 = Core.mappedToList(this._changes);
+        if (pairs__421.size() == 0) {
             throw Core.bubble();
         }
-        List<String> colNames__413 = new ArrayList<>();
-        List<SqlPart> valParts__414 = new ArrayList<>();
-        int i__415 = 0;
+        List<String> colNames__422 = new ArrayList<>();
+        List<SqlPart> valParts__423 = new ArrayList<>();
+        int i__424 = 0;
         while (true) {
-            t_4626 = pairs__412.size();
-            if (i__415 >= t_4626) {
+            t_4908 = pairs__421.size();
+            if (i__424 >= t_4908) {
                 break;
             }
-            Entry<String, String> pair__416 = Core.listGet(pairs__412, i__415);
-            t_4628 = pair__416.getKey();
-            t_2688 = this._tableDef.field(t_4628);
-            FieldDef fd__417 = t_2688;
-            Core.listAdd(colNames__413, pair__416.getKey());
-            t_4631 = pair__416.getValue();
-            t_2692 = this.valueToSqlPart(fd__417, t_4631);
-            Core.listAdd(valParts__414, t_2692);
-            i__415 = i__415 + 1;
+            Entry<String, String> pair__425 = Core.listGet(pairs__421, i__424);
+            t_4910 = pair__425.getKey();
+            t_2848 = this._tableDef.field(t_4910);
+            FieldDef fd__426 = t_2848;
+            Core.listAdd(colNames__422, fd__426.getName().getSqlValue());
+            t_4914 = pair__425.getValue();
+            t_2853 = this.valueToSqlPart(fd__426, t_4914);
+            Core.listAdd(valParts__423, t_2853);
+            i__424 = i__424 + 1;
         }
-        SqlBuilder b__418 = new SqlBuilder();
-        b__418.appendSafe("INSERT INTO ");
-        b__418.appendSafe(this._tableDef.getTableName().getSqlValue());
-        b__418.appendSafe(" (");
-        List<String> t_4639 = List.copyOf(colNames__413);
-        Function<String, String> fn__4613 = c__419 -> c__419;
-        b__418.appendSafe(Core.listJoinObj(t_4639, ", ", fn__4613));
-        b__418.appendSafe(") VALUES (");
-        b__418.appendPart(Core.listGet(valParts__414, 0));
-        int j__420 = 1;
+        SqlBuilder b__427 = new SqlBuilder();
+        b__427.appendSafe("INSERT INTO ");
+        b__427.appendSafe(this._tableDef.getTableName().getSqlValue());
+        b__427.appendSafe(" (");
+        List<String> t_4922 = List.copyOf(colNames__422);
+        Function<String, String> fn__4895 = c__428 -> c__428;
+        b__427.appendSafe(Core.listJoinObj(t_4922, ", ", fn__4895));
+        b__427.appendSafe(") VALUES (");
+        b__427.appendPart(Core.listGet(valParts__423, 0));
+        int j__429 = 1;
         while (true) {
-            t_4646 = valParts__414.size();
-            if (j__420 >= t_4646) {
+            t_4929 = valParts__423.size();
+            if (j__429 >= t_4929) {
                 break;
             }
-            b__418.appendSafe(", ");
-            b__418.appendPart(Core.listGet(valParts__414, j__420));
-            j__420 = j__420 + 1;
+            b__427.appendSafe(", ");
+            b__427.appendPart(Core.listGet(valParts__423, j__429));
+            j__429 = j__429 + 1;
         }
-        b__418.appendSafe(")");
-        return b__418.getAccumulated();
+        b__427.appendSafe(")");
+        return b__427.getAccumulated();
     }
-    public SqlFragment toUpdateSql(int id__422) {
-        int t_4601;
-        String t_4604;
-        String t_4608;
-        FieldDef t_2662;
-        SqlPart t_2667;
+    public SqlFragment toUpdateSql(int id__431) {
+        int t_4882;
+        String t_4885;
+        String t_4890;
+        FieldDef t_2821;
+        SqlPart t_2827;
         if (!this._isValid) {
             throw Core.bubble();
         }
-        List<Entry<String, String>> pairs__424 = Core.mappedToList(this._changes);
-        if (pairs__424.size() == 0) {
+        List<Entry<String, String>> pairs__433 = Core.mappedToList(this._changes);
+        if (pairs__433.size() == 0) {
             throw Core.bubble();
         }
-        SqlBuilder b__425 = new SqlBuilder();
-        b__425.appendSafe("UPDATE ");
-        b__425.appendSafe(this._tableDef.getTableName().getSqlValue());
-        b__425.appendSafe(" SET ");
-        int i__426 = 0;
+        SqlBuilder b__434 = new SqlBuilder();
+        b__434.appendSafe("UPDATE ");
+        b__434.appendSafe(this._tableDef.getTableName().getSqlValue());
+        b__434.appendSafe(" SET ");
+        int i__435 = 0;
         while (true) {
-            t_4601 = pairs__424.size();
-            if (i__426 >= t_4601) {
+            t_4882 = pairs__433.size();
+            if (i__435 >= t_4882) {
                 break;
             }
-            if (i__426 > 0) {
-                b__425.appendSafe(", ");
+            if (i__435 > 0) {
+                b__434.appendSafe(", ");
             }
-            Entry<String, String> pair__427 = Core.listGet(pairs__424, i__426);
-            t_4604 = pair__427.getKey();
-            t_2662 = this._tableDef.field(t_4604);
-            FieldDef fd__428 = t_2662;
-            b__425.appendSafe(pair__427.getKey());
-            b__425.appendSafe(" = ");
-            t_4608 = pair__427.getValue();
-            t_2667 = this.valueToSqlPart(fd__428, t_4608);
-            b__425.appendPart(t_2667);
-            i__426 = i__426 + 1;
+            Entry<String, String> pair__436 = Core.listGet(pairs__433, i__435);
+            t_4885 = pair__436.getKey();
+            t_2821 = this._tableDef.field(t_4885);
+            FieldDef fd__437 = t_2821;
+            b__434.appendSafe(fd__437.getName().getSqlValue());
+            b__434.appendSafe(" = ");
+            t_4890 = pair__436.getValue();
+            t_2827 = this.valueToSqlPart(fd__437, t_4890);
+            b__434.appendPart(t_2827);
+            i__435 = i__435 + 1;
         }
-        b__425.appendSafe(" WHERE id = ");
-        b__425.appendInt32(id__422);
-        return b__425.getAccumulated();
+        b__434.appendSafe(" WHERE id = ");
+        b__434.appendInt32(id__431);
+        return b__434.getAccumulated();
     }
     public static final class Builder {
         TableDef _tableDef;
@@ -567,11 +567,11 @@ final class ChangesetImpl implements Changeset {
             return new ChangesetImpl(_tableDef, _params, _changes, _errors, _isValid);
         }
     }
-    public ChangesetImpl(TableDef _tableDef__430, Map<String, String> _params__431, Map<String, String> _changes__432, List<ChangesetError> _errors__433, boolean _isValid__434) {
-        this._tableDef = _tableDef__430;
-        this._params = _params__431;
-        this._changes = _changes__432;
-        this._errors = _errors__433;
-        this._isValid = _isValid__434;
+    public ChangesetImpl(TableDef _tableDef__439, Map<String, String> _params__440, Map<String, String> _changes__441, List<ChangesetError> _errors__442, boolean _isValid__443) {
+        this._tableDef = _tableDef__439;
+        this._params = _params__440;
+        this._changes = _changes__441;
+        this._errors = _errors__442;
+        this._isValid = _isValid__443;
     }
 }

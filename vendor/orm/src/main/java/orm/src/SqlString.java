@@ -6,20 +6,20 @@ import java.util.function.IntConsumer;
  */
 public final class SqlString implements SqlPart {
     public final String value;
-    public void formatTo(StringBuilder builder__791) {
-        builder__791.append("'");
-        IntConsumer fn__4802 = c__793 -> {
-            if (c__793 == 39) {
-                builder__791.append("''");
+    public void formatTo(StringBuilder builder__802) {
+        builder__802.append("'");
+        IntConsumer fn__5089 = c__804 -> {
+            if (c__804 == 39) {
+                builder__802.append("''");
             } else {
-                Core.stringBuilderAppendCodePoint(builder__791, c__793);
+                Core.stringBuilderAppendCodePoint(builder__802, c__804);
             }
         };
-        Core.stringForEach(this.value, fn__4802);
-        builder__791.append("'");
+        Core.stringForEach(this.value, fn__5089);
+        builder__802.append("'");
     }
-    public SqlString(String value__795) {
-        this.value = value__795;
+    public SqlString(String value__806) {
+        this.value = value__806;
     }
     public String getValue() {
         return this.value;

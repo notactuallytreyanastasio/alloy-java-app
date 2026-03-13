@@ -4,24 +4,24 @@ import temper.core.Core;
 public final class TableDef {
     public final SafeIdentifier tableName;
     public final List<FieldDef> fields;
-    public FieldDef field(String name__649) {
-        FieldDef return__241;
-        fn__650: {
-            List<FieldDef> this__2984 = this.fields;
-            int n__2985 = this__2984.size();
-            int i__2986 = 0;
-            while (i__2986 < n__2985) {
-                FieldDef el__2987 = Core.listGet(this__2984, i__2986);
-                i__2986 = i__2986 + 1;
-                FieldDef f__651 = el__2987;
-                if (f__651.getName().getSqlValue().equals(name__649)) {
-                    return__241 = f__651;
-                    break fn__650;
+    public FieldDef field(String name__658) {
+        FieldDef return__250;
+        fn__659: {
+            List<FieldDef> this__3156 = this.fields;
+            int n__3157 = this__3156.size();
+            int i__3158 = 0;
+            while (i__3158 < n__3157) {
+                FieldDef el__3159 = Core.listGet(this__3156, i__3158);
+                i__3158 = i__3158 + 1;
+                FieldDef f__660 = el__3159;
+                if (f__660.getName().getSqlValue().equals(name__658)) {
+                    return__250 = f__660;
+                    break fn__659;
                 }
             }
             throw Core.bubble();
         }
-        return return__241;
+        return return__250;
     }
     public static final class Builder {
         SafeIdentifier tableName;
@@ -38,9 +38,9 @@ public final class TableDef {
             return new TableDef(tableName, fields);
         }
     }
-    public TableDef(SafeIdentifier tableName__653, List<FieldDef> fields__654) {
-        this.tableName = tableName__653;
-        this.fields = fields__654;
+    public TableDef(SafeIdentifier tableName__662, List<FieldDef> fields__663) {
+        this.tableName = tableName__662;
+        this.fields = fields__663;
     }
     public SafeIdentifier getTableName() {
         return this.tableName;
