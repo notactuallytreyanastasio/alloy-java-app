@@ -39,10 +39,10 @@ public final class JoinClause {
             return new JoinClause(joinType, table, onCondition);
         }
     }
-    public JoinClause(JoinType joinType__1145, SafeIdentifier table__1146, @Nullable SqlFragment onCondition__1147) {
-        this.joinType = joinType__1145;
-        this.table = table__1146;
-        this.onCondition = onCondition__1147;
+    public JoinClause(JoinType joinType__1218, SafeIdentifier table__1219, @Nullable SqlFragment onCondition__1220) {
+        this.joinType = joinType__1218;
+        this.table = table__1219;
+        this.onCondition = onCondition__1220;
     }
     public JoinType getJoinType() {
         return this.joinType;

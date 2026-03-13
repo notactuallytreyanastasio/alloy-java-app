@@ -1,8 +1,11 @@
 package orm.src;
+import temper.core.Nullable;
 public final class FieldDef {
     public final SafeIdentifier name;
     public final FieldType fieldType;
     public final boolean nullable;
+    public final @Nullable SqlPart defaultValue;
+    public final boolean virtual;
     public static final class Builder {
         SafeIdentifier name;
         public Builder name(SafeIdentifier name) {
@@ -21,11 +24,31 @@ public final class FieldDef {
             this.nullable = nullable;
             return this;
         }
+        @Nullable SqlPart defaultValue;
+        boolean defaultValue__set;
+        public Builder defaultValue(@Nullable SqlPart defaultValue) {
+            defaultValue__set = true;
+            this.defaultValue = defaultValue;
+            return this;
+        }
+        boolean virtual;
+        boolean virtual__set;
+        public Builder virtual(boolean virtual) {
+            virtual__set = true;
+            this.virtual = virtual;
+            return this;
+        }
         public FieldDef build() {
-            if (!nullable__set || name == null || fieldType == null) {
+            if (!nullable__set || !defaultValue__set || !virtual__set || name == null || fieldType == null) {
                 StringBuilder _message = new StringBuilder("Missing required fields:");
                 if (!nullable__set) {
                     _message.append(" nullable");
+                }
+                if (!defaultValue__set) {
+                    _message.append(" defaultValue");
+                }
+                if (!virtual__set) {
+                    _message.append(" virtual");
                 }
                 if (name == null) {
                     _message.append(" name");
@@ -35,13 +58,15 @@ public final class FieldDef {
                 }
                 throw new IllegalStateException(_message.toString());
             }
-            return new FieldDef(name, fieldType, nullable);
+            return new FieldDef(name, fieldType, nullable, defaultValue, virtual);
         }
     }
-    public FieldDef(SafeIdentifier name__1712, FieldType fieldType__1713, boolean nullable__1714) {
-        this.name = name__1712;
-        this.fieldType = fieldType__1713;
-        this.nullable = nullable__1714;
+    public FieldDef(SafeIdentifier name__1787, FieldType fieldType__1788, boolean nullable__1789, @Nullable SqlPart defaultValue__1790, boolean virtual__1791) {
+        this.name = name__1787;
+        this.fieldType = fieldType__1788;
+        this.nullable = nullable__1789;
+        this.defaultValue = defaultValue__1790;
+        this.virtual = virtual__1791;
     }
     public SafeIdentifier getName() {
         return this.name;
@@ -51,5 +76,11 @@ public final class FieldDef {
     }
     public boolean isNullable() {
         return this.nullable;
+    }
+    public @Nullable SqlPart getDefaultValue() {
+        return this.defaultValue;
+    }
+    public boolean isVirtual() {
+        return this.virtual;
     }
 }

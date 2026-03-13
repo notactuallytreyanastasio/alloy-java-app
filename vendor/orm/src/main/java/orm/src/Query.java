@@ -18,383 +18,383 @@ public final class Query {
     public final boolean isDistinct;
     public final List<SqlFragment> selectExprs;
     public final @Nullable LockMode lockMode;
-    public Query where(SqlFragment condition__1202) {
-        List<WhereClause> nb__1204 = new ArrayList<>(this.conditions);
-        Core.listAdd(nb__1204, new AndCondition(condition__1202));
-        return new Query(this.tableName, List.copyOf(nb__1204), this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
+    public Query where(SqlFragment condition__1275) {
+        List<WhereClause> nb__1277 = new ArrayList<>(this.conditions);
+        Core.listAdd(nb__1277, new AndCondition(condition__1275));
+        return new Query(this.tableName, List.copyOf(nb__1277), this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
     }
-    public Query orWhere(SqlFragment condition__1206) {
-        List<WhereClause> nb__1208 = new ArrayList<>(this.conditions);
-        Core.listAdd(nb__1208, new OrCondition(condition__1206));
-        return new Query(this.tableName, List.copyOf(nb__1208), this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
+    public Query orWhere(SqlFragment condition__1279) {
+        List<WhereClause> nb__1281 = new ArrayList<>(this.conditions);
+        Core.listAdd(nb__1281, new OrCondition(condition__1279));
+        return new Query(this.tableName, List.copyOf(nb__1281), this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
     }
-    public Query whereNull(SafeIdentifier field__1210) {
-        SqlBuilder b__1212 = new SqlBuilder();
-        b__1212.appendSafe(field__1210.getSqlValue());
-        b__1212.appendSafe(" IS NULL");
-        SqlFragment t_12997 = b__1212.getAccumulated();
-        return this.where(t_12997);
+    public Query whereNull(SafeIdentifier field__1283) {
+        SqlBuilder b__1285 = new SqlBuilder();
+        b__1285.appendSafe(field__1283.getSqlValue());
+        b__1285.appendSafe(" IS NULL");
+        SqlFragment t_14044 = b__1285.getAccumulated();
+        return this.where(t_14044);
     }
-    public Query whereNotNull(SafeIdentifier field__1214) {
-        SqlBuilder b__1216 = new SqlBuilder();
-        b__1216.appendSafe(field__1214.getSqlValue());
-        b__1216.appendSafe(" IS NOT NULL");
-        SqlFragment t_12991 = b__1216.getAccumulated();
-        return this.where(t_12991);
+    public Query whereNotNull(SafeIdentifier field__1287) {
+        SqlBuilder b__1289 = new SqlBuilder();
+        b__1289.appendSafe(field__1287.getSqlValue());
+        b__1289.appendSafe(" IS NOT NULL");
+        SqlFragment t_14038 = b__1289.getAccumulated();
+        return this.where(t_14038);
     }
-    public Query whereIn(SafeIdentifier field__1218, List<SqlPart> values__1219) {
-        Query return__495;
-        SqlFragment t_12972;
-        int t_12980;
-        SqlFragment t_12985;
-        fn__1220: {
-            if (values__1219.isEmpty()) {
-                SqlBuilder b__1221 = new SqlBuilder();
-                b__1221.appendSafe("1 = 0");
-                t_12972 = b__1221.getAccumulated();
-                return__495 = this.where(t_12972);
-                break fn__1220;
+    public Query whereIn(SafeIdentifier field__1291, List<SqlPart> values__1292) {
+        Query return__512;
+        SqlFragment t_14019;
+        int t_14027;
+        SqlFragment t_14032;
+        fn__1293: {
+            if (values__1292.isEmpty()) {
+                SqlBuilder b__1294 = new SqlBuilder();
+                b__1294.appendSafe("1 = 0");
+                t_14019 = b__1294.getAccumulated();
+                return__512 = this.where(t_14019);
+                break fn__1293;
             }
-            SqlBuilder b__1222 = new SqlBuilder();
-            b__1222.appendSafe(field__1218.getSqlValue());
-            b__1222.appendSafe(" IN (");
-            b__1222.appendPart(Core.listGet(values__1219, 0));
-            int i__1223 = 1;
+            SqlBuilder b__1295 = new SqlBuilder();
+            b__1295.appendSafe(field__1291.getSqlValue());
+            b__1295.appendSafe(" IN (");
+            b__1295.appendPart(Core.listGet(values__1292, 0));
+            int i__1296 = 1;
             while (true) {
-                t_12980 = values__1219.size();
-                if (i__1223 >= t_12980) {
+                t_14027 = values__1292.size();
+                if (i__1296 >= t_14027) {
                     break;
                 }
-                b__1222.appendSafe(", ");
-                b__1222.appendPart(Core.listGet(values__1219, i__1223));
-                i__1223 = i__1223 + 1;
+                b__1295.appendSafe(", ");
+                b__1295.appendPart(Core.listGet(values__1292, i__1296));
+                i__1296 = i__1296 + 1;
             }
-            b__1222.appendSafe(")");
-            t_12985 = b__1222.getAccumulated();
-            return__495 = this.where(t_12985);
+            b__1295.appendSafe(")");
+            t_14032 = b__1295.getAccumulated();
+            return__512 = this.where(t_14032);
         }
-        return return__495;
+        return return__512;
     }
-    public Query whereInSubquery(SafeIdentifier field__1225, Query sub__1226) {
-        SqlBuilder b__1228 = new SqlBuilder();
-        b__1228.appendSafe(field__1225.getSqlValue());
-        b__1228.appendSafe(" IN (");
-        b__1228.appendFragment(sub__1226.toSql());
-        b__1228.appendSafe(")");
-        SqlFragment t_12967 = b__1228.getAccumulated();
-        return this.where(t_12967);
+    public Query whereInSubquery(SafeIdentifier field__1298, Query sub__1299) {
+        SqlBuilder b__1301 = new SqlBuilder();
+        b__1301.appendSafe(field__1298.getSqlValue());
+        b__1301.appendSafe(" IN (");
+        b__1301.appendFragment(sub__1299.toSql());
+        b__1301.appendSafe(")");
+        SqlFragment t_14014 = b__1301.getAccumulated();
+        return this.where(t_14014);
     }
-    public Query whereNot(SqlFragment condition__1230) {
-        SqlBuilder b__1232 = new SqlBuilder();
-        b__1232.appendSafe("NOT (");
-        b__1232.appendFragment(condition__1230);
-        b__1232.appendSafe(")");
-        SqlFragment t_12958 = b__1232.getAccumulated();
-        return this.where(t_12958);
+    public Query whereNot(SqlFragment condition__1303) {
+        SqlBuilder b__1305 = new SqlBuilder();
+        b__1305.appendSafe("NOT (");
+        b__1305.appendFragment(condition__1303);
+        b__1305.appendSafe(")");
+        SqlFragment t_14005 = b__1305.getAccumulated();
+        return this.where(t_14005);
     }
-    public Query whereBetween(SafeIdentifier field__1234, SqlPart low__1235, SqlPart high__1236) {
-        SqlBuilder b__1238 = new SqlBuilder();
-        b__1238.appendSafe(field__1234.getSqlValue());
-        b__1238.appendSafe(" BETWEEN ");
-        b__1238.appendPart(low__1235);
-        b__1238.appendSafe(" AND ");
-        b__1238.appendPart(high__1236);
-        SqlFragment t_12952 = b__1238.getAccumulated();
-        return this.where(t_12952);
+    public Query whereBetween(SafeIdentifier field__1307, SqlPart low__1308, SqlPart high__1309) {
+        SqlBuilder b__1311 = new SqlBuilder();
+        b__1311.appendSafe(field__1307.getSqlValue());
+        b__1311.appendSafe(" BETWEEN ");
+        b__1311.appendPart(low__1308);
+        b__1311.appendSafe(" AND ");
+        b__1311.appendPart(high__1309);
+        SqlFragment t_13999 = b__1311.getAccumulated();
+        return this.where(t_13999);
     }
-    public Query whereLike(SafeIdentifier field__1240, String pattern__1241) {
-        SqlBuilder b__1243 = new SqlBuilder();
-        b__1243.appendSafe(field__1240.getSqlValue());
-        b__1243.appendSafe(" LIKE ");
-        b__1243.appendString(pattern__1241);
-        SqlFragment t_12943 = b__1243.getAccumulated();
-        return this.where(t_12943);
+    public Query whereLike(SafeIdentifier field__1313, String pattern__1314) {
+        SqlBuilder b__1316 = new SqlBuilder();
+        b__1316.appendSafe(field__1313.getSqlValue());
+        b__1316.appendSafe(" LIKE ");
+        b__1316.appendString(pattern__1314);
+        SqlFragment t_13990 = b__1316.getAccumulated();
+        return this.where(t_13990);
     }
-    public Query whereILike(SafeIdentifier field__1245, String pattern__1246) {
-        SqlBuilder b__1248 = new SqlBuilder();
-        b__1248.appendSafe(field__1245.getSqlValue());
-        b__1248.appendSafe(" ILIKE ");
-        b__1248.appendString(pattern__1246);
-        SqlFragment t_12936 = b__1248.getAccumulated();
-        return this.where(t_12936);
+    public Query whereILike(SafeIdentifier field__1318, String pattern__1319) {
+        SqlBuilder b__1321 = new SqlBuilder();
+        b__1321.appendSafe(field__1318.getSqlValue());
+        b__1321.appendSafe(" ILIKE ");
+        b__1321.appendString(pattern__1319);
+        SqlFragment t_13983 = b__1321.getAccumulated();
+        return this.where(t_13983);
     }
-    public Query select(List<SafeIdentifier> fields__1250) {
-        return new Query(this.tableName, this.conditions, fields__1250, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
+    public Query select(List<SafeIdentifier> fields__1323) {
+        return new Query(this.tableName, this.conditions, fields__1323, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
     }
-    public Query selectExpr(List<SqlFragment> exprs__1253) {
-        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, exprs__1253, this.lockMode);
+    public Query selectExpr(List<SqlFragment> exprs__1326) {
+        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, exprs__1326, this.lockMode);
     }
-    public Query orderBy(SafeIdentifier field__1256, boolean ascending__1257) {
-        List<OrderClause> nb__1259 = new ArrayList<>(this.orderClauses);
-        Core.listAdd(nb__1259, new OrderClause(field__1256, ascending__1257, null));
-        return new Query(this.tableName, this.conditions, this.selectedFields, List.copyOf(nb__1259), this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
+    public Query orderBy(SafeIdentifier field__1329, boolean ascending__1330) {
+        List<OrderClause> nb__1332 = new ArrayList<>(this.orderClauses);
+        Core.listAdd(nb__1332, new OrderClause(field__1329, ascending__1330, null));
+        return new Query(this.tableName, this.conditions, this.selectedFields, List.copyOf(nb__1332), this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
     }
-    public Query orderByNulls(SafeIdentifier field__1261, boolean ascending__1262, NullsPosition nulls__1263) {
-        List<OrderClause> nb__1265 = new ArrayList<>(this.orderClauses);
-        Core.listAdd(nb__1265, new OrderClause(field__1261, ascending__1262, nulls__1263));
-        return new Query(this.tableName, this.conditions, this.selectedFields, List.copyOf(nb__1265), this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
+    public Query orderByNulls(SafeIdentifier field__1334, boolean ascending__1335, NullsPosition nulls__1336) {
+        List<OrderClause> nb__1338 = new ArrayList<>(this.orderClauses);
+        Core.listAdd(nb__1338, new OrderClause(field__1334, ascending__1335, nulls__1336));
+        return new Query(this.tableName, this.conditions, this.selectedFields, List.copyOf(nb__1338), this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
     }
-    public Query limit(int n__1267) {
-        if (n__1267 < 0) {
+    public Query limit(int n__1340) {
+        if (n__1340 < 0) {
             throw Core.bubble();
         }
-        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, n__1267, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
+        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, n__1340, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
     }
-    public Query offset(int n__1270) {
-        if (n__1270 < 0) {
+    public Query offset(int n__1343) {
+        if (n__1343 < 0) {
             throw Core.bubble();
         }
-        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, n__1270, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
+        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, n__1343, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
     }
-    public Query join(JoinType joinType__1273, SafeIdentifier table__1274, SqlFragment onCondition__1275) {
-        List<JoinClause> nb__1277 = new ArrayList<>(this.joinClauses);
-        Core.listAdd(nb__1277, new JoinClause(joinType__1273, table__1274, onCondition__1275));
-        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, List.copyOf(nb__1277), this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
+    public Query join(JoinType joinType__1346, SafeIdentifier table__1347, SqlFragment onCondition__1348) {
+        List<JoinClause> nb__1350 = new ArrayList<>(this.joinClauses);
+        Core.listAdd(nb__1350, new JoinClause(joinType__1346, table__1347, onCondition__1348));
+        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, List.copyOf(nb__1350), this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
     }
-    public Query innerJoin(SafeIdentifier table__1279, SqlFragment onCondition__1280) {
-        InnerJoin t_12898 = new InnerJoin();
-        return this.join(t_12898, table__1279, onCondition__1280);
+    public Query innerJoin(SafeIdentifier table__1352, SqlFragment onCondition__1353) {
+        InnerJoin t_13945 = new InnerJoin();
+        return this.join(t_13945, table__1352, onCondition__1353);
     }
-    public Query leftJoin(SafeIdentifier table__1283, SqlFragment onCondition__1284) {
-        LeftJoin t_12896 = new LeftJoin();
-        return this.join(t_12896, table__1283, onCondition__1284);
+    public Query leftJoin(SafeIdentifier table__1356, SqlFragment onCondition__1357) {
+        LeftJoin t_13943 = new LeftJoin();
+        return this.join(t_13943, table__1356, onCondition__1357);
     }
-    public Query rightJoin(SafeIdentifier table__1287, SqlFragment onCondition__1288) {
-        RightJoin t_12894 = new RightJoin();
-        return this.join(t_12894, table__1287, onCondition__1288);
+    public Query rightJoin(SafeIdentifier table__1360, SqlFragment onCondition__1361) {
+        RightJoin t_13941 = new RightJoin();
+        return this.join(t_13941, table__1360, onCondition__1361);
     }
-    public Query fullJoin(SafeIdentifier table__1291, SqlFragment onCondition__1292) {
-        FullJoin t_12892 = new FullJoin();
-        return this.join(t_12892, table__1291, onCondition__1292);
+    public Query fullJoin(SafeIdentifier table__1364, SqlFragment onCondition__1365) {
+        FullJoin t_13939 = new FullJoin();
+        return this.join(t_13939, table__1364, onCondition__1365);
     }
-    public Query crossJoin(SafeIdentifier table__1295) {
-        List<JoinClause> nb__1297 = new ArrayList<>(this.joinClauses);
-        Core.listAdd(nb__1297, new JoinClause(new CrossJoin(), table__1295, null));
-        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, List.copyOf(nb__1297), this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
+    public Query crossJoin(SafeIdentifier table__1368) {
+        List<JoinClause> nb__1370 = new ArrayList<>(this.joinClauses);
+        Core.listAdd(nb__1370, new JoinClause(new CrossJoin(), table__1368, null));
+        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, List.copyOf(nb__1370), this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
     }
-    public Query groupBy(SafeIdentifier field__1299) {
-        List<SafeIdentifier> nb__1301 = new ArrayList<>(this.groupByFields);
-        Core.listAdd(nb__1301, field__1299);
-        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, List.copyOf(nb__1301), this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
+    public Query groupBy(SafeIdentifier field__1372) {
+        List<SafeIdentifier> nb__1374 = new ArrayList<>(this.groupByFields);
+        Core.listAdd(nb__1374, field__1372);
+        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, List.copyOf(nb__1374), this.havingConditions, this.isDistinct, this.selectExprs, this.lockMode);
     }
-    public Query having(SqlFragment condition__1303) {
-        List<WhereClause> nb__1305 = new ArrayList<>(this.havingConditions);
-        Core.listAdd(nb__1305, new AndCondition(condition__1303));
-        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, List.copyOf(nb__1305), this.isDistinct, this.selectExprs, this.lockMode);
+    public Query having(SqlFragment condition__1376) {
+        List<WhereClause> nb__1378 = new ArrayList<>(this.havingConditions);
+        Core.listAdd(nb__1378, new AndCondition(condition__1376));
+        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, List.copyOf(nb__1378), this.isDistinct, this.selectExprs, this.lockMode);
     }
-    public Query orHaving(SqlFragment condition__1307) {
-        List<WhereClause> nb__1309 = new ArrayList<>(this.havingConditions);
-        Core.listAdd(nb__1309, new OrCondition(condition__1307));
-        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, List.copyOf(nb__1309), this.isDistinct, this.selectExprs, this.lockMode);
+    public Query orHaving(SqlFragment condition__1380) {
+        List<WhereClause> nb__1382 = new ArrayList<>(this.havingConditions);
+        Core.listAdd(nb__1382, new OrCondition(condition__1380));
+        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, List.copyOf(nb__1382), this.isDistinct, this.selectExprs, this.lockMode);
     }
     public Query distinct() {
         return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, true, this.selectExprs, this.lockMode);
     }
-    public Query lock(LockMode mode__1313) {
-        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, mode__1313);
+    public Query lock(LockMode mode__1386) {
+        return new Query(this.tableName, this.conditions, this.selectedFields, this.orderClauses, this.limitVal, this.offsetVal, this.joinClauses, this.groupByFields, this.havingConditions, this.isDistinct, this.selectExprs, mode__1386);
     }
     public SqlFragment toSql() {
-        int t_12783;
-        int t_12802;
-        int t_12821;
-        SqlBuilder b__1317 = new SqlBuilder();
+        int t_13830;
+        int t_13849;
+        int t_13868;
+        SqlBuilder b__1390 = new SqlBuilder();
         if (this.isDistinct) {
-            b__1317.appendSafe("SELECT DISTINCT ");
+            b__1390.appendSafe("SELECT DISTINCT ");
         } else {
-            b__1317.appendSafe("SELECT ");
+            b__1390.appendSafe("SELECT ");
         }
         if (!this.selectExprs.isEmpty()) {
-            b__1317.appendFragment(Core.listGet(this.selectExprs, 0));
-            int i__1318 = 1;
+            b__1390.appendFragment(Core.listGet(this.selectExprs, 0));
+            int i__1391 = 1;
             while (true) {
-                t_12783 = this.selectExprs.size();
-                if (i__1318 >= t_12783) {
+                t_13830 = this.selectExprs.size();
+                if (i__1391 >= t_13830) {
                     break;
                 }
-                b__1317.appendSafe(", ");
-                b__1317.appendFragment(Core.listGet(this.selectExprs, i__1318));
-                i__1318 = i__1318 + 1;
+                b__1390.appendSafe(", ");
+                b__1390.appendFragment(Core.listGet(this.selectExprs, i__1391));
+                i__1391 = i__1391 + 1;
             }
         } else if (this.selectedFields.isEmpty()) {
-            b__1317.appendSafe("*");
+            b__1390.appendSafe("*");
         } else {
-            Function<SafeIdentifier, String> fn__12776 = f__1319 -> f__1319.getSqlValue();
-            b__1317.appendSafe(Core.listJoinObj(this.selectedFields, ", ", fn__12776));
+            Function<SafeIdentifier, String> fn__13823 = f__1392 -> f__1392.getSqlValue();
+            b__1390.appendSafe(Core.listJoinObj(this.selectedFields, ", ", fn__13823));
         }
-        b__1317.appendSafe(" FROM ");
-        b__1317.appendSafe(this.tableName.getSqlValue());
-        Consumer<JoinClause> fn__12775 = jc__1320 -> {
-            b__1317.appendSafe(" ");
-            String t_12763 = jc__1320.getJoinType().keyword();
-            b__1317.appendSafe(t_12763);
-            b__1317.appendSafe(" ");
-            String t_12767 = jc__1320.getTable().getSqlValue();
-            b__1317.appendSafe(t_12767);
-            @Nullable SqlFragment oc__1321 = jc__1320.getOnCondition();
-            if (oc__1321 != null) {
-                SqlFragment oc_2478 = oc__1321;
-                b__1317.appendSafe(" ON ");
-                b__1317.appendFragment(oc_2478);
+        b__1390.appendSafe(" FROM ");
+        b__1390.appendSafe(this.tableName.getSqlValue());
+        Consumer<JoinClause> fn__13822 = jc__1393 -> {
+            b__1390.appendSafe(" ");
+            String t_13810 = jc__1393.getJoinType().keyword();
+            b__1390.appendSafe(t_13810);
+            b__1390.appendSafe(" ");
+            String t_13814 = jc__1393.getTable().getSqlValue();
+            b__1390.appendSafe(t_13814);
+            @Nullable SqlFragment oc__1394 = jc__1393.getOnCondition();
+            if (oc__1394 != null) {
+                SqlFragment oc_2623 = oc__1394;
+                b__1390.appendSafe(" ON ");
+                b__1390.appendFragment(oc_2623);
             }
         };
-        this.joinClauses.forEach(fn__12775);
+        this.joinClauses.forEach(fn__13822);
         if (!this.conditions.isEmpty()) {
-            b__1317.appendSafe(" WHERE ");
-            b__1317.appendFragment(Core.listGet(this.conditions, 0).getCondition());
-            int i__1322 = 1;
+            b__1390.appendSafe(" WHERE ");
+            b__1390.appendFragment(Core.listGet(this.conditions, 0).getCondition());
+            int i__1395 = 1;
             while (true) {
-                t_12802 = this.conditions.size();
-                if (i__1322 >= t_12802) {
+                t_13849 = this.conditions.size();
+                if (i__1395 >= t_13849) {
                     break;
                 }
-                b__1317.appendSafe(" ");
-                b__1317.appendSafe(Core.listGet(this.conditions, i__1322).keyword());
-                b__1317.appendSafe(" ");
-                b__1317.appendFragment(Core.listGet(this.conditions, i__1322).getCondition());
-                i__1322 = i__1322 + 1;
+                b__1390.appendSafe(" ");
+                b__1390.appendSafe(Core.listGet(this.conditions, i__1395).keyword());
+                b__1390.appendSafe(" ");
+                b__1390.appendFragment(Core.listGet(this.conditions, i__1395).getCondition());
+                i__1395 = i__1395 + 1;
             }
         }
         if (!this.groupByFields.isEmpty()) {
-            b__1317.appendSafe(" GROUP BY ");
-            Function<SafeIdentifier, String> fn__12774 = f__1323 -> f__1323.getSqlValue();
-            b__1317.appendSafe(Core.listJoinObj(this.groupByFields, ", ", fn__12774));
+            b__1390.appendSafe(" GROUP BY ");
+            Function<SafeIdentifier, String> fn__13821 = f__1396 -> f__1396.getSqlValue();
+            b__1390.appendSafe(Core.listJoinObj(this.groupByFields, ", ", fn__13821));
         }
         if (!this.havingConditions.isEmpty()) {
-            b__1317.appendSafe(" HAVING ");
-            b__1317.appendFragment(Core.listGet(this.havingConditions, 0).getCondition());
-            int i__1324 = 1;
+            b__1390.appendSafe(" HAVING ");
+            b__1390.appendFragment(Core.listGet(this.havingConditions, 0).getCondition());
+            int i__1397 = 1;
             while (true) {
-                t_12821 = this.havingConditions.size();
-                if (i__1324 >= t_12821) {
+                t_13868 = this.havingConditions.size();
+                if (i__1397 >= t_13868) {
                     break;
                 }
-                b__1317.appendSafe(" ");
-                b__1317.appendSafe(Core.listGet(this.havingConditions, i__1324).keyword());
-                b__1317.appendSafe(" ");
-                b__1317.appendFragment(Core.listGet(this.havingConditions, i__1324).getCondition());
-                i__1324 = i__1324 + 1;
+                b__1390.appendSafe(" ");
+                b__1390.appendSafe(Core.listGet(this.havingConditions, i__1397).keyword());
+                b__1390.appendSafe(" ");
+                b__1390.appendFragment(Core.listGet(this.havingConditions, i__1397).getCondition());
+                i__1397 = i__1397 + 1;
             }
         }
         if (!this.orderClauses.isEmpty()) {
-            b__1317.appendSafe(" ORDER BY ");
+            b__1390.appendSafe(" ORDER BY ");
             class Local_4 {
-                boolean first__1325 = true;
+                boolean first__1398 = true;
             }
             final Local_4 local$4 = new Local_4();
-            Consumer<OrderClause> fn__12773 = orc__1326 -> {
-                String t_12758;
-                String t_6760;
-                if (!local$4.first__1325) {
-                    b__1317.appendSafe(", ");
+            Consumer<OrderClause> fn__13820 = orc__1399 -> {
+                String t_13805;
+                String t_7240;
+                if (!local$4.first__1398) {
+                    b__1390.appendSafe(", ");
                 }
-                local$4.first__1325 = false;
-                String t_12753 = orc__1326.getField().getSqlValue();
-                b__1317.appendSafe(t_12753);
-                if (orc__1326.isAscending()) {
-                    t_6760 = " ASC";
+                local$4.first__1398 = false;
+                String t_13800 = orc__1399.getField().getSqlValue();
+                b__1390.appendSafe(t_13800);
+                if (orc__1399.isAscending()) {
+                    t_7240 = " ASC";
                 } else {
-                    t_6760 = " DESC";
+                    t_7240 = " DESC";
                 }
-                b__1317.appendSafe(t_6760);
-                @Nullable NullsPosition np__1327 = orc__1326.getNullsPos();
-                if (np__1327 != null) {
-                    t_12758 = np__1327.keyword();
-                    b__1317.appendSafe(t_12758);
+                b__1390.appendSafe(t_7240);
+                @Nullable NullsPosition np__1400 = orc__1399.getNullsPos();
+                if (np__1400 != null) {
+                    t_13805 = np__1400.keyword();
+                    b__1390.appendSafe(t_13805);
                 }
             };
-            this.orderClauses.forEach(fn__12773);
+            this.orderClauses.forEach(fn__13820);
         }
-        @Nullable Integer lv__1328 = this.limitVal;
-        if (lv__1328 != null) {
-            int lv_2480 = lv__1328;
-            b__1317.appendSafe(" LIMIT ");
-            b__1317.appendInt32(lv_2480);
+        @Nullable Integer lv__1401 = this.limitVal;
+        if (lv__1401 != null) {
+            int lv_2625 = lv__1401;
+            b__1390.appendSafe(" LIMIT ");
+            b__1390.appendInt32(lv_2625);
         }
-        @Nullable Integer ov__1329 = this.offsetVal;
-        if (ov__1329 != null) {
-            int ov_2481 = ov__1329;
-            b__1317.appendSafe(" OFFSET ");
-            b__1317.appendInt32(ov_2481);
+        @Nullable Integer ov__1402 = this.offsetVal;
+        if (ov__1402 != null) {
+            int ov_2626 = ov__1402;
+            b__1390.appendSafe(" OFFSET ");
+            b__1390.appendInt32(ov_2626);
         }
-        @Nullable LockMode lm__1330 = this.lockMode;
-        if (lm__1330 != null) {
-            b__1317.appendSafe(lm__1330.keyword());
+        @Nullable LockMode lm__1403 = this.lockMode;
+        if (lm__1403 != null) {
+            b__1390.appendSafe(lm__1403.keyword());
         }
-        return b__1317.getAccumulated();
+        return b__1390.getAccumulated();
     }
     public SqlFragment countSql() {
-        int t_12722;
-        int t_12741;
-        SqlBuilder b__1333 = new SqlBuilder();
-        b__1333.appendSafe("SELECT COUNT(*) FROM ");
-        b__1333.appendSafe(this.tableName.getSqlValue());
-        Consumer<JoinClause> fn__12710 = jc__1334 -> {
-            b__1333.appendSafe(" ");
-            String t_12700 = jc__1334.getJoinType().keyword();
-            b__1333.appendSafe(t_12700);
-            b__1333.appendSafe(" ");
-            String t_12704 = jc__1334.getTable().getSqlValue();
-            b__1333.appendSafe(t_12704);
-            @Nullable SqlFragment oc2__1335 = jc__1334.getOnCondition();
-            if (oc2__1335 != null) {
-                SqlFragment oc2_2483 = oc2__1335;
-                b__1333.appendSafe(" ON ");
-                b__1333.appendFragment(oc2_2483);
+        int t_13769;
+        int t_13788;
+        SqlBuilder b__1406 = new SqlBuilder();
+        b__1406.appendSafe("SELECT COUNT(*) FROM ");
+        b__1406.appendSafe(this.tableName.getSqlValue());
+        Consumer<JoinClause> fn__13757 = jc__1407 -> {
+            b__1406.appendSafe(" ");
+            String t_13747 = jc__1407.getJoinType().keyword();
+            b__1406.appendSafe(t_13747);
+            b__1406.appendSafe(" ");
+            String t_13751 = jc__1407.getTable().getSqlValue();
+            b__1406.appendSafe(t_13751);
+            @Nullable SqlFragment oc2__1408 = jc__1407.getOnCondition();
+            if (oc2__1408 != null) {
+                SqlFragment oc2_2628 = oc2__1408;
+                b__1406.appendSafe(" ON ");
+                b__1406.appendFragment(oc2_2628);
             }
         };
-        this.joinClauses.forEach(fn__12710);
+        this.joinClauses.forEach(fn__13757);
         if (!this.conditions.isEmpty()) {
-            b__1333.appendSafe(" WHERE ");
-            b__1333.appendFragment(Core.listGet(this.conditions, 0).getCondition());
-            int i__1336 = 1;
+            b__1406.appendSafe(" WHERE ");
+            b__1406.appendFragment(Core.listGet(this.conditions, 0).getCondition());
+            int i__1409 = 1;
             while (true) {
-                t_12722 = this.conditions.size();
-                if (i__1336 >= t_12722) {
+                t_13769 = this.conditions.size();
+                if (i__1409 >= t_13769) {
                     break;
                 }
-                b__1333.appendSafe(" ");
-                b__1333.appendSafe(Core.listGet(this.conditions, i__1336).keyword());
-                b__1333.appendSafe(" ");
-                b__1333.appendFragment(Core.listGet(this.conditions, i__1336).getCondition());
-                i__1336 = i__1336 + 1;
+                b__1406.appendSafe(" ");
+                b__1406.appendSafe(Core.listGet(this.conditions, i__1409).keyword());
+                b__1406.appendSafe(" ");
+                b__1406.appendFragment(Core.listGet(this.conditions, i__1409).getCondition());
+                i__1409 = i__1409 + 1;
             }
         }
         if (!this.groupByFields.isEmpty()) {
-            b__1333.appendSafe(" GROUP BY ");
-            Function<SafeIdentifier, String> fn__12709 = f__1337 -> f__1337.getSqlValue();
-            b__1333.appendSafe(Core.listJoinObj(this.groupByFields, ", ", fn__12709));
+            b__1406.appendSafe(" GROUP BY ");
+            Function<SafeIdentifier, String> fn__13756 = f__1410 -> f__1410.getSqlValue();
+            b__1406.appendSafe(Core.listJoinObj(this.groupByFields, ", ", fn__13756));
         }
         if (!this.havingConditions.isEmpty()) {
-            b__1333.appendSafe(" HAVING ");
-            b__1333.appendFragment(Core.listGet(this.havingConditions, 0).getCondition());
-            int i__1338 = 1;
+            b__1406.appendSafe(" HAVING ");
+            b__1406.appendFragment(Core.listGet(this.havingConditions, 0).getCondition());
+            int i__1411 = 1;
             while (true) {
-                t_12741 = this.havingConditions.size();
-                if (i__1338 >= t_12741) {
+                t_13788 = this.havingConditions.size();
+                if (i__1411 >= t_13788) {
                     break;
                 }
-                b__1333.appendSafe(" ");
-                b__1333.appendSafe(Core.listGet(this.havingConditions, i__1338).keyword());
-                b__1333.appendSafe(" ");
-                b__1333.appendFragment(Core.listGet(this.havingConditions, i__1338).getCondition());
-                i__1338 = i__1338 + 1;
+                b__1406.appendSafe(" ");
+                b__1406.appendSafe(Core.listGet(this.havingConditions, i__1411).keyword());
+                b__1406.appendSafe(" ");
+                b__1406.appendFragment(Core.listGet(this.havingConditions, i__1411).getCondition());
+                i__1411 = i__1411 + 1;
             }
         }
-        return b__1333.getAccumulated();
+        return b__1406.getAccumulated();
     }
-    public SqlFragment safeToSql(int defaultLimit__1340) {
-        SqlFragment return__520;
-        Query t_6710;
-        if (defaultLimit__1340 < 0) {
+    public SqlFragment safeToSql(int defaultLimit__1413) {
+        SqlFragment return__537;
+        Query t_7190;
+        if (defaultLimit__1413 < 0) {
             throw Core.bubble();
         }
         if (this.limitVal != null) {
-            return__520 = this.toSql();
+            return__537 = this.toSql();
         } else {
-            t_6710 = this.limit(defaultLimit__1340);
-            return__520 = t_6710.toSql();
+            t_7190 = this.limit(defaultLimit__1413);
+            return__537 = t_7190.toSql();
         }
-        return return__520;
+        return return__537;
     }
     public static final class Builder {
         SafeIdentifier tableName;
@@ -509,19 +509,19 @@ public final class Query {
             return new Query(tableName, conditions, selectedFields, orderClauses, limitVal, offsetVal, joinClauses, groupByFields, havingConditions, isDistinct, selectExprs, lockMode);
         }
     }
-    public Query(SafeIdentifier tableName__1343, List<WhereClause> conditions__1344, List<SafeIdentifier> selectedFields__1345, List<OrderClause> orderClauses__1346, @Nullable Integer limitVal__1347, @Nullable Integer offsetVal__1348, List<JoinClause> joinClauses__1349, List<SafeIdentifier> groupByFields__1350, List<WhereClause> havingConditions__1351, boolean isDistinct__1352, List<SqlFragment> selectExprs__1353, @Nullable LockMode lockMode__1354) {
-        this.tableName = tableName__1343;
-        this.conditions = conditions__1344;
-        this.selectedFields = selectedFields__1345;
-        this.orderClauses = orderClauses__1346;
-        this.limitVal = limitVal__1347;
-        this.offsetVal = offsetVal__1348;
-        this.joinClauses = joinClauses__1349;
-        this.groupByFields = groupByFields__1350;
-        this.havingConditions = havingConditions__1351;
-        this.isDistinct = isDistinct__1352;
-        this.selectExprs = selectExprs__1353;
-        this.lockMode = lockMode__1354;
+    public Query(SafeIdentifier tableName__1416, List<WhereClause> conditions__1417, List<SafeIdentifier> selectedFields__1418, List<OrderClause> orderClauses__1419, @Nullable Integer limitVal__1420, @Nullable Integer offsetVal__1421, List<JoinClause> joinClauses__1422, List<SafeIdentifier> groupByFields__1423, List<WhereClause> havingConditions__1424, boolean isDistinct__1425, List<SqlFragment> selectExprs__1426, @Nullable LockMode lockMode__1427) {
+        this.tableName = tableName__1416;
+        this.conditions = conditions__1417;
+        this.selectedFields = selectedFields__1418;
+        this.orderClauses = orderClauses__1419;
+        this.limitVal = limitVal__1420;
+        this.offsetVal = offsetVal__1421;
+        this.joinClauses = joinClauses__1422;
+        this.groupByFields = groupByFields__1423;
+        this.havingConditions = havingConditions__1424;
+        this.isDistinct = isDistinct__1425;
+        this.selectExprs = selectExprs__1426;
+        this.lockMode = lockMode__1427;
     }
     public SafeIdentifier getTableName() {
         return this.tableName;
