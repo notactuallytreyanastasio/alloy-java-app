@@ -115,3 +115,41 @@ Schema creation uses hardcoded `CREATE TABLE` statements.
 ## Verdict
 
 **No SQL injection vulnerabilities found.** The ORM handles all user-input-to-SQL paths, and this app achieves 100% parameterized raw SQL via Spring's JdbcTemplate. The strongest raw-SQL safety posture of all 6 apps alongside JavaScript.
+
+---
+
+## Evolution: Temper-Level Remediation
+
+**Date:** 2026-03-12
+**Commit:** [`1df8c7a`](https://github.com/notactuallytreyanastasio/generic_orm/commit/1df8c7a)
+
+The security analysis above identified 3 ORM-level concerns (ORM-1, ORM-2, ORM-3) shared across all 6 app implementations. Because the ORM is written once in Temper and compiled to all backends, fixing these issues at the Temper source level automatically resolves them in every language — including this Java app.
+
+### What Changed
+
+**ORM-1 (MEDIUM → RESOLVED): Column name type safety in INSERT/UPDATE SQL**
+
+The `toInsertSql()` and `toUpdateSql()` methods previously passed `pair.getKey()` (a raw `String`) to `appendSafe()`. While safe by construction (keys originated from `cast()` via `SafeIdentifier.getSqlValue()`), the type system didn't enforce this. A future refactor could have silently introduced an unvalidated code path.
+
+The fix routes column names through the looked-up `FieldDef.getName().getSqlValue()` — a `SafeIdentifier` — so the column name in the generated SQL always comes from a validated identifier, not a raw map key.
+
+**ORM-2 (LOW → RESOLVED): SqlDate quote escaping**
+
+`SqlDate.formatTo()` previously wrapped `value.toString()` in quotes without escaping. The fix adds character-by-character quote escaping identical to `SqlString.formatTo()`, ensuring defense-in-depth against any future Date format that might contain single quotes.
+
+**ORM-3 (LOW → RESOLVED): SqlFloat64 NaN/Infinity handling**
+
+`SqlFloat64.formatTo()` previously called `value.toString()` directly, which could produce `NaN`, `Infinity`, or `-Infinity` — none valid SQL literals. The fix checks for these values and renders `NULL` instead, which is the safest SQL representation for non-representable floating-point values.
+
+### Why This Matters
+
+This is the core value proposition of a cross-compiled ORM: **one fix in Temper source propagates to all 6 backends simultaneously.** The same commit that fixed the Java compiled output also fixed JavaScript, Python, Rust, Lua, and C#. No per-language patches needed. No risk of inconsistent fixes across implementations.
+
+### Updated Status
+
+| Finding | Original | Current | Resolution |
+|---------|----------|---------|------------|
+| ORM-1 | MEDIUM | RESOLVED | Column names routed through `SafeIdentifier` |
+| ORM-2 | LOW | RESOLVED | `SqlDate.formatTo()` now escapes quotes |
+| ORM-3 | LOW | RESOLVED | `SqlFloat64.formatTo()` renders NaN/Infinity as `NULL` |
+| ORM-4 | INFO | ACKNOWLEDGED | Design limitation — escaping-based, not parameterized |
