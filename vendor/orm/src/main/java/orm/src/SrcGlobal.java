@@ -5,182 +5,182 @@ import java.util.Map;
 public final class SrcGlobal {
     private SrcGlobal() {
     }
-    public static Changeset changeset(TableDef tableDef__686, Map<String, String> params__687) {
-        Map<String, String> t_11221 = Core.mapConstructor(List.of());
-        return new ChangesetImpl(tableDef__686, params__687, t_11221, List.of(), true);
+    public static Changeset changeset(TableDef tableDef__921, Map<String, String> params__922) {
+        Map<String, String> t_13867 = Core.mapConstructor(List.of());
+        return new ChangesetImpl(tableDef__921, params__922, t_13867, List.of(), true);
     }
-    static boolean isIdentStart__547(int c__1351) {
-        boolean return__472;
-        boolean t_6355;
-        boolean t_6356;
-        if (c__1351 >= 97) {
-            t_6355 = c__1351 <= 122;
+    static boolean isIdentStart__639(int c__1695) {
+        boolean return__564;
+        boolean t_7693;
+        boolean t_7694;
+        if (c__1695 >= 97) {
+            t_7693 = c__1695 <= 122;
         } else {
-            t_6355 = false;
+            t_7693 = false;
         }
-        if (t_6355) {
-            return__472 = true;
+        if (t_7693) {
+            return__564 = true;
         } else {
-            if (c__1351 >= 65) {
-                t_6356 = c__1351 <= 90;
+            if (c__1695 >= 65) {
+                t_7694 = c__1695 <= 90;
             } else {
-                t_6356 = false;
+                t_7694 = false;
             }
-            if (t_6356) {
-                return__472 = true;
+            if (t_7694) {
+                return__564 = true;
             } else {
-                return__472 = c__1351 == 95;
+                return__564 = c__1695 == 95;
             }
         }
-        return return__472;
+        return return__564;
     }
-    static boolean isIdentPart__548(int c__1353) {
-        boolean return__473;
-        if (SrcGlobal.isIdentStart__547(c__1353)) {
-            return__473 = true;
-        } else if (c__1353 >= 48) {
-            return__473 = c__1353 <= 57;
+    static boolean isIdentPart__640(int c__1697) {
+        boolean return__565;
+        if (SrcGlobal.isIdentStart__639(c__1697)) {
+            return__565 = true;
+        } else if (c__1697 >= 48) {
+            return__565 = c__1697 <= 57;
         } else {
-            return__473 = false;
+            return__565 = false;
         }
-        return return__473;
+        return return__565;
     }
-    public static SafeIdentifier safeIdentifier(String name__1355) {
-        int t_11219;
-        if (name__1355.isEmpty()) {
+    public static SafeIdentifier safeIdentifier(String name__1699) {
+        int t_13865;
+        if (name__1699.isEmpty()) {
             throw Core.bubble();
         }
-        int idx__1357 = 0;
-        if (!SrcGlobal.isIdentStart__547(name__1355.codePointAt(idx__1357))) {
+        int idx__1701 = 0;
+        if (!SrcGlobal.isIdentStart__639(name__1699.codePointAt(idx__1701))) {
             throw Core.bubble();
         }
-        int t_11216 = Core.stringNext(name__1355, idx__1357);
-        idx__1357 = t_11216;
+        int t_13862 = Core.stringNext(name__1699, idx__1701);
+        idx__1701 = t_13862;
         while (true) {
-            if (!Core.stringHasIndex(name__1355, idx__1357)) {
+            if (!Core.stringHasIndex(name__1699, idx__1701)) {
                 break;
             }
-            if (!SrcGlobal.isIdentPart__548(name__1355.codePointAt(idx__1357))) {
+            if (!SrcGlobal.isIdentPart__640(name__1699.codePointAt(idx__1701))) {
                 throw Core.bubble();
             }
-            t_11219 = Core.stringNext(name__1355, idx__1357);
-            idx__1357 = t_11219;
+            t_13865 = Core.stringNext(name__1699, idx__1701);
+            idx__1701 = t_13865;
         }
-        return new ValidatedIdentifier(name__1355);
+        return new ValidatedIdentifier(name__1699);
     }
-    public static SqlFragment deleteSql(TableDef tableDef__776, int id__777) {
-        SqlBuilder b__779 = new SqlBuilder();
-        b__779.appendSafe("DELETE FROM ");
-        b__779.appendSafe(tableDef__776.getTableName().getSqlValue());
-        b__779.appendSafe(" WHERE id = ");
-        b__779.appendInt32(id__777);
-        return b__779.getAccumulated();
+    public static SqlFragment deleteSql(TableDef tableDef__1120, int id__1121) {
+        SqlBuilder b__1123 = new SqlBuilder();
+        b__1123.appendSafe("DELETE FROM ");
+        b__1123.appendSafe(tableDef__1120.getTableName().getSqlValue());
+        b__1123.appendSafe(" WHERE id = ");
+        b__1123.appendInt32(id__1121);
+        return b__1123.getAccumulated();
     }
-    public static Query from(SafeIdentifier tableName__1011) {
-        return new Query(tableName__1011, List.of(), List.of(), List.of(), null, null, List.of(), List.of(), List.of(), false, List.of(), null);
+    public static Query from(SafeIdentifier tableName__1355) {
+        return new Query(tableName__1355, List.of(), List.of(), List.of(), null, null, List.of(), List.of(), List.of(), false, List.of(), null);
     }
-    public static SqlFragment col(SafeIdentifier table__1013, SafeIdentifier column__1014) {
-        SqlBuilder b__1016 = new SqlBuilder();
-        b__1016.appendSafe(table__1013.getSqlValue());
-        b__1016.appendSafe(".");
-        b__1016.appendSafe(column__1014.getSqlValue());
-        return b__1016.getAccumulated();
+    public static SqlFragment col(SafeIdentifier table__1357, SafeIdentifier column__1358) {
+        SqlBuilder b__1360 = new SqlBuilder();
+        b__1360.appendSafe(table__1357.getSqlValue());
+        b__1360.appendSafe(".");
+        b__1360.appendSafe(column__1358.getSqlValue());
+        return b__1360.getAccumulated();
     }
     public static SqlFragment countAll() {
-        SqlBuilder b__1018 = new SqlBuilder();
-        b__1018.appendSafe("COUNT(*)");
-        return b__1018.getAccumulated();
+        SqlBuilder b__1362 = new SqlBuilder();
+        b__1362.appendSafe("COUNT(*)");
+        return b__1362.getAccumulated();
     }
-    public static SqlFragment countCol(SafeIdentifier field__1019) {
-        SqlBuilder b__1021 = new SqlBuilder();
-        b__1021.appendSafe("COUNT(");
-        b__1021.appendSafe(field__1019.getSqlValue());
-        b__1021.appendSafe(")");
-        return b__1021.getAccumulated();
+    public static SqlFragment countCol(SafeIdentifier field__1363) {
+        SqlBuilder b__1365 = new SqlBuilder();
+        b__1365.appendSafe("COUNT(");
+        b__1365.appendSafe(field__1363.getSqlValue());
+        b__1365.appendSafe(")");
+        return b__1365.getAccumulated();
     }
-    public static SqlFragment sumCol(SafeIdentifier field__1022) {
-        SqlBuilder b__1024 = new SqlBuilder();
-        b__1024.appendSafe("SUM(");
-        b__1024.appendSafe(field__1022.getSqlValue());
-        b__1024.appendSafe(")");
-        return b__1024.getAccumulated();
+    public static SqlFragment sumCol(SafeIdentifier field__1366) {
+        SqlBuilder b__1368 = new SqlBuilder();
+        b__1368.appendSafe("SUM(");
+        b__1368.appendSafe(field__1366.getSqlValue());
+        b__1368.appendSafe(")");
+        return b__1368.getAccumulated();
     }
-    public static SqlFragment avgCol(SafeIdentifier field__1025) {
-        SqlBuilder b__1027 = new SqlBuilder();
-        b__1027.appendSafe("AVG(");
-        b__1027.appendSafe(field__1025.getSqlValue());
-        b__1027.appendSafe(")");
-        return b__1027.getAccumulated();
+    public static SqlFragment avgCol(SafeIdentifier field__1369) {
+        SqlBuilder b__1371 = new SqlBuilder();
+        b__1371.appendSafe("AVG(");
+        b__1371.appendSafe(field__1369.getSqlValue());
+        b__1371.appendSafe(")");
+        return b__1371.getAccumulated();
     }
-    public static SqlFragment minCol(SafeIdentifier field__1028) {
-        SqlBuilder b__1030 = new SqlBuilder();
-        b__1030.appendSafe("MIN(");
-        b__1030.appendSafe(field__1028.getSqlValue());
-        b__1030.appendSafe(")");
-        return b__1030.getAccumulated();
+    public static SqlFragment minCol(SafeIdentifier field__1372) {
+        SqlBuilder b__1374 = new SqlBuilder();
+        b__1374.appendSafe("MIN(");
+        b__1374.appendSafe(field__1372.getSqlValue());
+        b__1374.appendSafe(")");
+        return b__1374.getAccumulated();
     }
-    public static SqlFragment maxCol(SafeIdentifier field__1031) {
-        SqlBuilder b__1033 = new SqlBuilder();
-        b__1033.appendSafe("MAX(");
-        b__1033.appendSafe(field__1031.getSqlValue());
-        b__1033.appendSafe(")");
-        return b__1033.getAccumulated();
+    public static SqlFragment maxCol(SafeIdentifier field__1375) {
+        SqlBuilder b__1377 = new SqlBuilder();
+        b__1377.appendSafe("MAX(");
+        b__1377.appendSafe(field__1375.getSqlValue());
+        b__1377.appendSafe(")");
+        return b__1377.getAccumulated();
     }
-    public static SqlFragment unionSql(Query a__1034, Query b__1035) {
-        SqlBuilder sb__1037 = new SqlBuilder();
-        sb__1037.appendSafe("(");
-        sb__1037.appendFragment(a__1034.toSql());
-        sb__1037.appendSafe(") UNION (");
-        sb__1037.appendFragment(b__1035.toSql());
-        sb__1037.appendSafe(")");
-        return sb__1037.getAccumulated();
+    public static SqlFragment unionSql(Query a__1378, Query b__1379) {
+        SqlBuilder sb__1381 = new SqlBuilder();
+        sb__1381.appendSafe("(");
+        sb__1381.appendFragment(a__1378.toSql());
+        sb__1381.appendSafe(") UNION (");
+        sb__1381.appendFragment(b__1379.toSql());
+        sb__1381.appendSafe(")");
+        return sb__1381.getAccumulated();
     }
-    public static SqlFragment unionAllSql(Query a__1038, Query b__1039) {
-        SqlBuilder sb__1041 = new SqlBuilder();
-        sb__1041.appendSafe("(");
-        sb__1041.appendFragment(a__1038.toSql());
-        sb__1041.appendSafe(") UNION ALL (");
-        sb__1041.appendFragment(b__1039.toSql());
-        sb__1041.appendSafe(")");
-        return sb__1041.getAccumulated();
+    public static SqlFragment unionAllSql(Query a__1382, Query b__1383) {
+        SqlBuilder sb__1385 = new SqlBuilder();
+        sb__1385.appendSafe("(");
+        sb__1385.appendFragment(a__1382.toSql());
+        sb__1385.appendSafe(") UNION ALL (");
+        sb__1385.appendFragment(b__1383.toSql());
+        sb__1385.appendSafe(")");
+        return sb__1385.getAccumulated();
     }
-    public static SqlFragment intersectSql(Query a__1042, Query b__1043) {
-        SqlBuilder sb__1045 = new SqlBuilder();
-        sb__1045.appendSafe("(");
-        sb__1045.appendFragment(a__1042.toSql());
-        sb__1045.appendSafe(") INTERSECT (");
-        sb__1045.appendFragment(b__1043.toSql());
-        sb__1045.appendSafe(")");
-        return sb__1045.getAccumulated();
+    public static SqlFragment intersectSql(Query a__1386, Query b__1387) {
+        SqlBuilder sb__1389 = new SqlBuilder();
+        sb__1389.appendSafe("(");
+        sb__1389.appendFragment(a__1386.toSql());
+        sb__1389.appendSafe(") INTERSECT (");
+        sb__1389.appendFragment(b__1387.toSql());
+        sb__1389.appendSafe(")");
+        return sb__1389.getAccumulated();
     }
-    public static SqlFragment exceptSql(Query a__1046, Query b__1047) {
-        SqlBuilder sb__1049 = new SqlBuilder();
-        sb__1049.appendSafe("(");
-        sb__1049.appendFragment(a__1046.toSql());
-        sb__1049.appendSafe(") EXCEPT (");
-        sb__1049.appendFragment(b__1047.toSql());
-        sb__1049.appendSafe(")");
-        return sb__1049.getAccumulated();
+    public static SqlFragment exceptSql(Query a__1390, Query b__1391) {
+        SqlBuilder sb__1393 = new SqlBuilder();
+        sb__1393.appendSafe("(");
+        sb__1393.appendFragment(a__1390.toSql());
+        sb__1393.appendSafe(") EXCEPT (");
+        sb__1393.appendFragment(b__1391.toSql());
+        sb__1393.appendSafe(")");
+        return sb__1393.getAccumulated();
     }
-    public static SqlFragment subquery(Query q__1050, SafeIdentifier alias__1051) {
-        SqlBuilder b__1053 = new SqlBuilder();
-        b__1053.appendSafe("(");
-        b__1053.appendFragment(q__1050.toSql());
-        b__1053.appendSafe(") AS ");
-        b__1053.appendSafe(alias__1051.getSqlValue());
-        return b__1053.getAccumulated();
+    public static SqlFragment subquery(Query q__1394, SafeIdentifier alias__1395) {
+        SqlBuilder b__1397 = new SqlBuilder();
+        b__1397.appendSafe("(");
+        b__1397.appendFragment(q__1394.toSql());
+        b__1397.appendSafe(") AS ");
+        b__1397.appendSafe(alias__1395.getSqlValue());
+        return b__1397.getAccumulated();
     }
-    public static SqlFragment existsSql(Query q__1054) {
-        SqlBuilder b__1056 = new SqlBuilder();
-        b__1056.appendSafe("EXISTS (");
-        b__1056.appendFragment(q__1054.toSql());
-        b__1056.appendSafe(")");
-        return b__1056.getAccumulated();
+    public static SqlFragment existsSql(Query q__1398) {
+        SqlBuilder b__1400 = new SqlBuilder();
+        b__1400.appendSafe("EXISTS (");
+        b__1400.appendFragment(q__1398.toSql());
+        b__1400.appendSafe(")");
+        return b__1400.getAccumulated();
     }
-    public static UpdateQuery update(SafeIdentifier tableName__1116) {
-        return new UpdateQuery(tableName__1116, List.of(), List.of(), null);
+    public static UpdateQuery update(SafeIdentifier tableName__1460) {
+        return new UpdateQuery(tableName__1460, List.of(), List.of(), null);
     }
-    public static DeleteQuery deleteFrom(SafeIdentifier tableName__1118) {
-        return new DeleteQuery(tableName__1118, List.of(), null);
+    public static DeleteQuery deleteFrom(SafeIdentifier tableName__1462) {
+        return new DeleteQuery(tableName__1462, List.of(), null);
     }
 }

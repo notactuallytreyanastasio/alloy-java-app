@@ -41,10 +41,10 @@ public final class OrderClause {
             return new OrderClause(field, ascending, nullsPos);
         }
     }
-    public OrderClause(SafeIdentifier field__816, boolean ascending__817, @Nullable NullsPosition nullsPos__818) {
-        this.field = field__816;
-        this.ascending = ascending__817;
-        this.nullsPos = nullsPos__818;
+    public OrderClause(SafeIdentifier field__1160, boolean ascending__1161, @Nullable NullsPosition nullsPos__1162) {
+        this.field = field__1160;
+        this.ascending = ascending__1161;
+        this.nullsPos = nullsPos__1162;
     }
     public SafeIdentifier getField() {
         return this.field;

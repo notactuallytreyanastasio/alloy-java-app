@@ -4,11 +4,11 @@ package orm.src;
  */
 public final class SqlSource implements SqlPart {
     public final String source;
-    public void formatTo(StringBuilder builder__1480) {
-        builder__1480.append(this.source);
+    public void formatTo(StringBuilder builder__1824) {
+        builder__1824.append(this.source);
     }
-    public SqlSource(String source__1483) {
-        this.source = source__1483;
+    public SqlSource(String source__1827) {
+        this.source = source__1827;
     }
     public String getSource() {
         return this.source;

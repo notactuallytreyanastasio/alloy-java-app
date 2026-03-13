@@ -7,51 +7,51 @@ public final class DeleteQuery {
     public final SafeIdentifier tableName;
     public final List<WhereClause> conditions;
     public final @Nullable Integer limitVal;
-    public DeleteQuery where(SqlFragment condition__1097) {
-        List<WhereClause> nb__1099 = new ArrayList<>(this.conditions);
-        Core.listAdd(nb__1099, new AndCondition(condition__1097));
-        return new DeleteQuery(this.tableName, List.copyOf(nb__1099), this.limitVal);
+    public DeleteQuery where(SqlFragment condition__1441) {
+        List<WhereClause> nb__1443 = new ArrayList<>(this.conditions);
+        Core.listAdd(nb__1443, new AndCondition(condition__1441));
+        return new DeleteQuery(this.tableName, List.copyOf(nb__1443), this.limitVal);
     }
-    public DeleteQuery orWhere(SqlFragment condition__1101) {
-        List<WhereClause> nb__1103 = new ArrayList<>(this.conditions);
-        Core.listAdd(nb__1103, new OrCondition(condition__1101));
-        return new DeleteQuery(this.tableName, List.copyOf(nb__1103), this.limitVal);
+    public DeleteQuery orWhere(SqlFragment condition__1445) {
+        List<WhereClause> nb__1447 = new ArrayList<>(this.conditions);
+        Core.listAdd(nb__1447, new OrCondition(condition__1445));
+        return new DeleteQuery(this.tableName, List.copyOf(nb__1447), this.limitVal);
     }
-    public DeleteQuery limit(int n__1105) {
-        if (n__1105 < 0) {
+    public DeleteQuery limit(int n__1449) {
+        if (n__1449 < 0) {
             throw Core.bubble();
         }
-        return new DeleteQuery(this.tableName, this.conditions, n__1105);
+        return new DeleteQuery(this.tableName, this.conditions, n__1449);
     }
     public SqlFragment toSql() {
-        int t_10350;
+        int t_12517;
         if (this.conditions.isEmpty()) {
             throw Core.bubble();
         }
-        SqlBuilder b__1109 = new SqlBuilder();
-        b__1109.appendSafe("DELETE FROM ");
-        b__1109.appendSafe(this.tableName.getSqlValue());
-        b__1109.appendSafe(" WHERE ");
-        b__1109.appendFragment(Core.listGet(this.conditions, 0).getCondition());
-        int i__1110 = 1;
+        SqlBuilder b__1453 = new SqlBuilder();
+        b__1453.appendSafe("DELETE FROM ");
+        b__1453.appendSafe(this.tableName.getSqlValue());
+        b__1453.appendSafe(" WHERE ");
+        b__1453.appendFragment(Core.listGet(this.conditions, 0).getCondition());
+        int i__1454 = 1;
         while (true) {
-            t_10350 = this.conditions.size();
-            if (i__1110 >= t_10350) {
+            t_12517 = this.conditions.size();
+            if (i__1454 >= t_12517) {
                 break;
             }
-            b__1109.appendSafe(" ");
-            b__1109.appendSafe(Core.listGet(this.conditions, i__1110).keyword());
-            b__1109.appendSafe(" ");
-            b__1109.appendFragment(Core.listGet(this.conditions, i__1110).getCondition());
-            i__1110 = i__1110 + 1;
+            b__1453.appendSafe(" ");
+            b__1453.appendSafe(Core.listGet(this.conditions, i__1454).keyword());
+            b__1453.appendSafe(" ");
+            b__1453.appendFragment(Core.listGet(this.conditions, i__1454).getCondition());
+            i__1454 = i__1454 + 1;
         }
-        @Nullable Integer lv__1111 = this.limitVal;
-        if (lv__1111 != null) {
-            int lv_2076 = lv__1111;
-            b__1109.appendSafe(" LIMIT ");
-            b__1109.appendInt32(lv_2076);
+        @Nullable Integer lv__1455 = this.limitVal;
+        if (lv__1455 != null) {
+            int lv_2485 = lv__1455;
+            b__1453.appendSafe(" LIMIT ");
+            b__1453.appendInt32(lv_2485);
         }
-        return b__1109.getAccumulated();
+        return b__1453.getAccumulated();
     }
     public static final class Builder {
         SafeIdentifier tableName;
@@ -88,10 +88,10 @@ public final class DeleteQuery {
             return new DeleteQuery(tableName, conditions, limitVal);
         }
     }
-    public DeleteQuery(SafeIdentifier tableName__1113, List<WhereClause> conditions__1114, @Nullable Integer limitVal__1115) {
-        this.tableName = tableName__1113;
-        this.conditions = conditions__1114;
-        this.limitVal = limitVal__1115;
+    public DeleteQuery(SafeIdentifier tableName__1457, List<WhereClause> conditions__1458, @Nullable Integer limitVal__1459) {
+        this.tableName = tableName__1457;
+        this.conditions = conditions__1458;
+        this.limitVal = limitVal__1459;
     }
     public SafeIdentifier getTableName() {
         return this.tableName;
