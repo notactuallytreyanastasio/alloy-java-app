@@ -2,28 +2,28 @@ package orm.src;
 import temper.core.Core;
 public final class SqlFloat64 implements SqlPart {
     public final double value;
-    public void formatTo(StringBuilder builder__1185) {
-        boolean t_5050;
-        boolean t_5051;
-        String s__1187 = Core.float64ToString(this.value);
-        if (s__1187.equals("NaN")) {
-            t_5051 = true;
+    public void formatTo(StringBuilder builder__1269) {
+        boolean t_5524;
+        boolean t_5525;
+        String s__1271 = Core.float64ToString(this.value);
+        if (s__1271.equals("NaN")) {
+            t_5525 = true;
         } else {
-            if (s__1187.equals("Infinity")) {
-                t_5050 = true;
+            if (s__1271.equals("Infinity")) {
+                t_5524 = true;
             } else {
-                t_5050 = s__1187.equals("-Infinity");
+                t_5524 = s__1271.equals("-Infinity");
             }
-            t_5051 = t_5050;
+            t_5525 = t_5524;
         }
-        if (t_5051) {
-            builder__1185.append("NULL");
+        if (t_5525) {
+            builder__1269.append("NULL");
         } else {
-            builder__1185.append(s__1187);
+            builder__1269.append(s__1271);
         }
     }
-    public SqlFloat64(double value__1189) {
-        this.value = value__1189;
+    public SqlFloat64(double value__1273) {
+        this.value = value__1273;
     }
     public double getValue() {
         return this.value;

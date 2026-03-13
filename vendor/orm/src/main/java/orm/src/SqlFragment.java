@@ -7,21 +7,21 @@ public final class SqlFragment {
         return new SqlSource(this.toString());
     }
     public String toString() {
-        int t_8791;
-        StringBuilder builder__1157 = new StringBuilder();
-        int i__1158 = 0;
+        int t_9665;
+        StringBuilder builder__1241 = new StringBuilder();
+        int i__1242 = 0;
         while (true) {
-            t_8791 = this.parts.size();
-            if (i__1158 >= t_8791) {
+            t_9665 = this.parts.size();
+            if (i__1242 >= t_9665) {
                 break;
             }
-            Core.listGet(this.parts, i__1158).formatTo(builder__1157);
-            i__1158 = i__1158 + 1;
+            Core.listGet(this.parts, i__1242).formatTo(builder__1241);
+            i__1242 = i__1242 + 1;
         }
-        return builder__1157.toString();
+        return builder__1241.toString();
     }
-    public SqlFragment(List<SqlPart> parts__1160) {
-        this.parts = parts__1160;
+    public SqlFragment(List<SqlPart> parts__1244) {
+        this.parts = parts__1244;
     }
     public List<SqlPart> getParts() {
         return this.parts;
