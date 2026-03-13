@@ -4,24 +4,24 @@ import temper.core.Core;
 public final class TableDef {
     public final SafeIdentifier tableName;
     public final List<FieldDef> fields;
-    public FieldDef field(String name__922) {
-        FieldDef return__346;
-        fn__923: {
-            List<FieldDef> this__4373 = this.fields;
-            int n__4374 = this__4373.size();
-            int i__4375 = 0;
-            while (i__4375 < n__4374) {
-                FieldDef el__4376 = Core.listGet(this__4373, i__4375);
-                i__4375 = i__4375 + 1;
-                FieldDef f__924 = el__4376;
-                if (f__924.getName().getSqlValue().equals(name__922)) {
-                    return__346 = f__924;
-                    break fn__923;
+    public FieldDef field(String name__1060) {
+        FieldDef return__389;
+        fn__1061: {
+            List<FieldDef> this__5239 = this.fields;
+            int n__5240 = this__5239.size();
+            int i__5241 = 0;
+            while (i__5241 < n__5240) {
+                FieldDef el__5242 = Core.listGet(this__5239, i__5241);
+                i__5241 = i__5241 + 1;
+                FieldDef f__1062 = el__5242;
+                if (f__1062.getName().getSqlValue().equals(name__1060)) {
+                    return__389 = f__1062;
+                    break fn__1061;
                 }
             }
             throw Core.bubble();
         }
-        return return__346;
+        return return__389;
     }
     public static final class Builder {
         SafeIdentifier tableName;
@@ -38,9 +38,9 @@ public final class TableDef {
             return new TableDef(tableName, fields);
         }
     }
-    public TableDef(SafeIdentifier tableName__926, List<FieldDef> fields__927) {
-        this.tableName = tableName__926;
-        this.fields = fields__927;
+    public TableDef(SafeIdentifier tableName__1064, List<FieldDef> fields__1065) {
+        this.tableName = tableName__1064;
+        this.fields = fields__1065;
     }
     public SafeIdentifier getTableName() {
         return this.tableName;

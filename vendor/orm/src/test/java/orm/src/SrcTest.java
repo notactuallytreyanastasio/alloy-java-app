@@ -11,1602 +11,1901 @@ import java.util.function.Function;
 public final class SrcTest {
     private SrcTest() {
     }
-    static SafeIdentifier csid__398(String name__543) {
-        SafeIdentifier t_3969;
-        t_3969 = SrcGlobal.safeIdentifier(name__543);
-        return t_3969;
+    static SafeIdentifier csid__441(String name__586) {
+        SafeIdentifier t_4812;
+        t_4812 = SrcGlobal.safeIdentifier(name__586);
+        return t_4812;
     }
-    static TableDef userTable__399() {
-        return new TableDef(SrcTest.csid__398("users"), List.of(new FieldDef(SrcTest.csid__398("name"), new StringField(), false), new FieldDef(SrcTest.csid__398("email"), new StringField(), false), new FieldDef(SrcTest.csid__398("age"), new IntField(), true), new FieldDef(SrcTest.csid__398("score"), new FloatField(), true), new FieldDef(SrcTest.csid__398("active"), new BoolField(), true)));
+    static TableDef userTable__442() {
+        return new TableDef(SrcTest.csid__441("users"), List.of(new FieldDef(SrcTest.csid__441("name"), new StringField(), false), new FieldDef(SrcTest.csid__441("email"), new StringField(), false), new FieldDef(SrcTest.csid__441("age"), new IntField(), true), new FieldDef(SrcTest.csid__441("score"), new FloatField(), true), new FieldDef(SrcTest.csid__441("active"), new BoolField(), true)));
     }
-    @org.junit.jupiter.api.Test public void castWhitelistsAllowedFields__1178() {
-        Test test_22 = new Test();
-        try {
-            Map<String, String> params__547 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Alice"), new SimpleImmutableEntry<>("email", "alice@example.com"), new SimpleImmutableEntry<>("admin", "true")));
-            TableDef t_6946 = SrcTest.userTable__399();
-            SafeIdentifier t_6947 = SrcTest.csid__398("name");
-            SafeIdentifier t_6948 = SrcTest.csid__398("email");
-            Changeset cs__548 = SrcGlobal.changeset(t_6946, params__547).cast(List.of(t_6947, t_6948));
-            boolean t_6951 = cs__548.getChanges().containsKey("name");
-            Supplier<String> fn__6941 = () -> "name should be in changes";
-            test_22.assert_(t_6951, fn__6941);
-            boolean t_6955 = cs__548.getChanges().containsKey("email");
-            Supplier<String> fn__6940 = () -> "email should be in changes";
-            test_22.assert_(t_6955, fn__6940);
-            boolean t_6961 = !cs__548.getChanges().containsKey("admin");
-            Supplier<String> fn__6939 = () -> "admin must be dropped (not in whitelist)";
-            test_22.assert_(t_6961, fn__6939);
-            boolean t_6963 = cs__548.isValid();
-            Supplier<String> fn__6938 = () -> "should still be valid";
-            test_22.assert_(t_6963, fn__6938);
-        } finally {
-            test_22.softFailToHard();
-        }
-    }
-    @org.junit.jupiter.api.Test public void castIsReplacingNotAdditiveSecondCallResetsWhitelist__1179() {
-        Test test_23 = new Test();
-        try {
-            Map<String, String> params__550 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Alice"), new SimpleImmutableEntry<>("email", "alice@example.com")));
-            TableDef t_6924 = SrcTest.userTable__399();
-            SafeIdentifier t_6925 = SrcTest.csid__398("name");
-            Changeset cs__551 = SrcGlobal.changeset(t_6924, params__550).cast(List.of(t_6925)).cast(List.of(SrcTest.csid__398("email")));
-            boolean t_6932 = !cs__551.getChanges().containsKey("name");
-            Supplier<String> fn__6920 = () -> "name must be excluded by second cast";
-            test_23.assert_(t_6932, fn__6920);
-            boolean t_6935 = cs__551.getChanges().containsKey("email");
-            Supplier<String> fn__6919 = () -> "email should be present";
-            test_23.assert_(t_6935, fn__6919);
-        } finally {
-            test_23.softFailToHard();
-        }
-    }
-    @org.junit.jupiter.api.Test public void castIgnoresEmptyStringValues__1180() {
+    @org.junit.jupiter.api.Test public void castWhitelistsAllowedFields__1320() {
         Test test_24 = new Test();
         try {
-            Map<String, String> params__553 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", ""), new SimpleImmutableEntry<>("email", "bob@example.com")));
-            TableDef t_6906 = SrcTest.userTable__399();
-            SafeIdentifier t_6907 = SrcTest.csid__398("name");
-            SafeIdentifier t_6908 = SrcTest.csid__398("email");
-            Changeset cs__554 = SrcGlobal.changeset(t_6906, params__553).cast(List.of(t_6907, t_6908));
-            boolean t_6913 = !cs__554.getChanges().containsKey("name");
-            Supplier<String> fn__6902 = () -> "empty name should not be in changes";
-            test_24.assert_(t_6913, fn__6902);
-            boolean t_6916 = cs__554.getChanges().containsKey("email");
-            Supplier<String> fn__6901 = () -> "email should be in changes";
-            test_24.assert_(t_6916, fn__6901);
+            Map<String, String> params__590 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Alice"), new SimpleImmutableEntry<>("email", "alice@example.com"), new SimpleImmutableEntry<>("admin", "true")));
+            TableDef t_8523 = SrcTest.userTable__442();
+            SafeIdentifier t_8524 = SrcTest.csid__441("name");
+            SafeIdentifier t_8525 = SrcTest.csid__441("email");
+            Changeset cs__591 = SrcGlobal.changeset(t_8523, params__590).cast(List.of(t_8524, t_8525));
+            boolean t_8528 = cs__591.getChanges().containsKey("name");
+            Supplier<String> fn__8518 = () -> "name should be in changes";
+            test_24.assert_(t_8528, fn__8518);
+            boolean t_8532 = cs__591.getChanges().containsKey("email");
+            Supplier<String> fn__8517 = () -> "email should be in changes";
+            test_24.assert_(t_8532, fn__8517);
+            boolean t_8538 = !cs__591.getChanges().containsKey("admin");
+            Supplier<String> fn__8516 = () -> "admin must be dropped (not in whitelist)";
+            test_24.assert_(t_8538, fn__8516);
+            boolean t_8540 = cs__591.isValid();
+            Supplier<String> fn__8515 = () -> "should still be valid";
+            test_24.assert_(t_8540, fn__8515);
         } finally {
             test_24.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateRequiredPassesWhenFieldPresent__1181() {
+    @org.junit.jupiter.api.Test public void castIsReplacingNotAdditiveSecondCallResetsWhitelist__1321() {
         Test test_25 = new Test();
         try {
-            Map<String, String> params__556 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Alice")));
-            TableDef t_6888 = SrcTest.userTable__399();
-            SafeIdentifier t_6889 = SrcTest.csid__398("name");
-            Changeset cs__557 = SrcGlobal.changeset(t_6888, params__556).cast(List.of(t_6889)).validateRequired(List.of(SrcTest.csid__398("name")));
-            boolean t_6893 = cs__557.isValid();
-            Supplier<String> fn__6885 = () -> "should be valid";
-            test_25.assert_(t_6893, fn__6885);
-            boolean t_6899 = cs__557.getErrors().size() == 0;
-            Supplier<String> fn__6884 = () -> "no errors expected";
-            test_25.assert_(t_6899, fn__6884);
+            Map<String, String> params__593 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Alice"), new SimpleImmutableEntry<>("email", "alice@example.com")));
+            TableDef t_8501 = SrcTest.userTable__442();
+            SafeIdentifier t_8502 = SrcTest.csid__441("name");
+            Changeset cs__594 = SrcGlobal.changeset(t_8501, params__593).cast(List.of(t_8502)).cast(List.of(SrcTest.csid__441("email")));
+            boolean t_8509 = !cs__594.getChanges().containsKey("name");
+            Supplier<String> fn__8497 = () -> "name must be excluded by second cast";
+            test_25.assert_(t_8509, fn__8497);
+            boolean t_8512 = cs__594.getChanges().containsKey("email");
+            Supplier<String> fn__8496 = () -> "email should be present";
+            test_25.assert_(t_8512, fn__8496);
         } finally {
             test_25.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateRequiredFailsWhenFieldMissing__1182() {
+    @org.junit.jupiter.api.Test public void castIgnoresEmptyStringValues__1322() {
         Test test_26 = new Test();
         try {
-            Map<String, String> params__559 = Core.mapConstructor(List.of());
-            TableDef t_6864 = SrcTest.userTable__399();
-            SafeIdentifier t_6865 = SrcTest.csid__398("name");
-            Changeset cs__560 = SrcGlobal.changeset(t_6864, params__559).cast(List.of(t_6865)).validateRequired(List.of(SrcTest.csid__398("name")));
-            boolean t_6871 = !cs__560.isValid();
-            Supplier<String> fn__6862 = () -> "should be invalid";
-            test_26.assert_(t_6871, fn__6862);
-            boolean t_6876 = cs__560.getErrors().size() == 1;
-            Supplier<String> fn__6861 = () -> "should have one error";
-            test_26.assert_(t_6876, fn__6861);
-            boolean t_6882 = Core.listGet(cs__560.getErrors(), 0).getField().equals("name");
-            Supplier<String> fn__6860 = () -> "error should name the field";
-            test_26.assert_(t_6882, fn__6860);
+            Map<String, String> params__596 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", ""), new SimpleImmutableEntry<>("email", "bob@example.com")));
+            TableDef t_8483 = SrcTest.userTable__442();
+            SafeIdentifier t_8484 = SrcTest.csid__441("name");
+            SafeIdentifier t_8485 = SrcTest.csid__441("email");
+            Changeset cs__597 = SrcGlobal.changeset(t_8483, params__596).cast(List.of(t_8484, t_8485));
+            boolean t_8490 = !cs__597.getChanges().containsKey("name");
+            Supplier<String> fn__8479 = () -> "empty name should not be in changes";
+            test_26.assert_(t_8490, fn__8479);
+            boolean t_8493 = cs__597.getChanges().containsKey("email");
+            Supplier<String> fn__8478 = () -> "email should be in changes";
+            test_26.assert_(t_8493, fn__8478);
         } finally {
             test_26.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateLengthPassesWithinRange__1183() {
+    @org.junit.jupiter.api.Test public void validateRequiredPassesWhenFieldPresent__1323() {
         Test test_27 = new Test();
         try {
-            Map<String, String> params__562 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Alice")));
-            TableDef t_6852 = SrcTest.userTable__399();
-            SafeIdentifier t_6853 = SrcTest.csid__398("name");
-            Changeset cs__563 = SrcGlobal.changeset(t_6852, params__562).cast(List.of(t_6853)).validateLength(SrcTest.csid__398("name"), 2, 50);
-            boolean t_6857 = cs__563.isValid();
-            Supplier<String> fn__6849 = () -> "should be valid";
-            test_27.assert_(t_6857, fn__6849);
+            Map<String, String> params__599 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Alice")));
+            TableDef t_8465 = SrcTest.userTable__442();
+            SafeIdentifier t_8466 = SrcTest.csid__441("name");
+            Changeset cs__600 = SrcGlobal.changeset(t_8465, params__599).cast(List.of(t_8466)).validateRequired(List.of(SrcTest.csid__441("name")));
+            boolean t_8470 = cs__600.isValid();
+            Supplier<String> fn__8462 = () -> "should be valid";
+            test_27.assert_(t_8470, fn__8462);
+            boolean t_8476 = cs__600.getErrors().size() == 0;
+            Supplier<String> fn__8461 = () -> "no errors expected";
+            test_27.assert_(t_8476, fn__8461);
         } finally {
             test_27.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateLengthFailsWhenTooShort__1184() {
+    @org.junit.jupiter.api.Test public void validateRequiredFailsWhenFieldMissing__1324() {
         Test test_28 = new Test();
         try {
-            Map<String, String> params__565 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "A")));
-            TableDef t_6840 = SrcTest.userTable__399();
-            SafeIdentifier t_6841 = SrcTest.csid__398("name");
-            Changeset cs__566 = SrcGlobal.changeset(t_6840, params__565).cast(List.of(t_6841)).validateLength(SrcTest.csid__398("name"), 2, 50);
-            boolean t_6847 = !cs__566.isValid();
-            Supplier<String> fn__6837 = () -> "should be invalid";
-            test_28.assert_(t_6847, fn__6837);
+            Map<String, String> params__602 = Core.mapConstructor(List.of());
+            TableDef t_8441 = SrcTest.userTable__442();
+            SafeIdentifier t_8442 = SrcTest.csid__441("name");
+            Changeset cs__603 = SrcGlobal.changeset(t_8441, params__602).cast(List.of(t_8442)).validateRequired(List.of(SrcTest.csid__441("name")));
+            boolean t_8448 = !cs__603.isValid();
+            Supplier<String> fn__8439 = () -> "should be invalid";
+            test_28.assert_(t_8448, fn__8439);
+            boolean t_8453 = cs__603.getErrors().size() == 1;
+            Supplier<String> fn__8438 = () -> "should have one error";
+            test_28.assert_(t_8453, fn__8438);
+            boolean t_8459 = Core.listGet(cs__603.getErrors(), 0).getField().equals("name");
+            Supplier<String> fn__8437 = () -> "error should name the field";
+            test_28.assert_(t_8459, fn__8437);
         } finally {
             test_28.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateLengthFailsWhenTooLong__1185() {
+    @org.junit.jupiter.api.Test public void validateLengthPassesWithinRange__1325() {
         Test test_29 = new Test();
         try {
-            Map<String, String> params__568 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")));
-            TableDef t_6828 = SrcTest.userTable__399();
-            SafeIdentifier t_6829 = SrcTest.csid__398("name");
-            Changeset cs__569 = SrcGlobal.changeset(t_6828, params__568).cast(List.of(t_6829)).validateLength(SrcTest.csid__398("name"), 2, 10);
-            boolean t_6835 = !cs__569.isValid();
-            Supplier<String> fn__6825 = () -> "should be invalid";
-            test_29.assert_(t_6835, fn__6825);
+            Map<String, String> params__605 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Alice")));
+            TableDef t_8429 = SrcTest.userTable__442();
+            SafeIdentifier t_8430 = SrcTest.csid__441("name");
+            Changeset cs__606 = SrcGlobal.changeset(t_8429, params__605).cast(List.of(t_8430)).validateLength(SrcTest.csid__441("name"), 2, 50);
+            boolean t_8434 = cs__606.isValid();
+            Supplier<String> fn__8426 = () -> "should be valid";
+            test_29.assert_(t_8434, fn__8426);
         } finally {
             test_29.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateIntPassesForValidInteger__1186() {
+    @org.junit.jupiter.api.Test public void validateLengthFailsWhenTooShort__1326() {
         Test test_30 = new Test();
         try {
-            Map<String, String> params__571 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("age", "30")));
-            TableDef t_6817 = SrcTest.userTable__399();
-            SafeIdentifier t_6818 = SrcTest.csid__398("age");
-            Changeset cs__572 = SrcGlobal.changeset(t_6817, params__571).cast(List.of(t_6818)).validateInt(SrcTest.csid__398("age"));
-            boolean t_6822 = cs__572.isValid();
-            Supplier<String> fn__6814 = () -> "should be valid";
-            test_30.assert_(t_6822, fn__6814);
+            Map<String, String> params__608 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "A")));
+            TableDef t_8417 = SrcTest.userTable__442();
+            SafeIdentifier t_8418 = SrcTest.csid__441("name");
+            Changeset cs__609 = SrcGlobal.changeset(t_8417, params__608).cast(List.of(t_8418)).validateLength(SrcTest.csid__441("name"), 2, 50);
+            boolean t_8424 = !cs__609.isValid();
+            Supplier<String> fn__8414 = () -> "should be invalid";
+            test_30.assert_(t_8424, fn__8414);
         } finally {
             test_30.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateIntFailsForNonInteger__1187() {
+    @org.junit.jupiter.api.Test public void validateLengthFailsWhenTooLong__1327() {
         Test test_31 = new Test();
         try {
-            Map<String, String> params__574 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("age", "not-a-number")));
-            TableDef t_6805 = SrcTest.userTable__399();
-            SafeIdentifier t_6806 = SrcTest.csid__398("age");
-            Changeset cs__575 = SrcGlobal.changeset(t_6805, params__574).cast(List.of(t_6806)).validateInt(SrcTest.csid__398("age"));
-            boolean t_6812 = !cs__575.isValid();
-            Supplier<String> fn__6802 = () -> "should be invalid";
-            test_31.assert_(t_6812, fn__6802);
+            Map<String, String> params__611 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")));
+            TableDef t_8405 = SrcTest.userTable__442();
+            SafeIdentifier t_8406 = SrcTest.csid__441("name");
+            Changeset cs__612 = SrcGlobal.changeset(t_8405, params__611).cast(List.of(t_8406)).validateLength(SrcTest.csid__441("name"), 2, 10);
+            boolean t_8412 = !cs__612.isValid();
+            Supplier<String> fn__8402 = () -> "should be invalid";
+            test_31.assert_(t_8412, fn__8402);
         } finally {
             test_31.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateFloatPassesForValidFloat__1188() {
+    @org.junit.jupiter.api.Test public void validateIntPassesForValidInteger__1328() {
         Test test_32 = new Test();
         try {
-            Map<String, String> params__577 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("score", "9.5")));
-            TableDef t_6794 = SrcTest.userTable__399();
-            SafeIdentifier t_6795 = SrcTest.csid__398("score");
-            Changeset cs__578 = SrcGlobal.changeset(t_6794, params__577).cast(List.of(t_6795)).validateFloat(SrcTest.csid__398("score"));
-            boolean t_6799 = cs__578.isValid();
-            Supplier<String> fn__6791 = () -> "should be valid";
-            test_32.assert_(t_6799, fn__6791);
+            Map<String, String> params__614 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("age", "30")));
+            TableDef t_8394 = SrcTest.userTable__442();
+            SafeIdentifier t_8395 = SrcTest.csid__441("age");
+            Changeset cs__615 = SrcGlobal.changeset(t_8394, params__614).cast(List.of(t_8395)).validateInt(SrcTest.csid__441("age"));
+            boolean t_8399 = cs__615.isValid();
+            Supplier<String> fn__8391 = () -> "should be valid";
+            test_32.assert_(t_8399, fn__8391);
         } finally {
             test_32.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateInt64_passesForValid64_bitInteger__1189() {
+    @org.junit.jupiter.api.Test public void validateIntFailsForNonInteger__1329() {
         Test test_33 = new Test();
         try {
-            Map<String, String> params__580 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("age", "9999999999")));
-            TableDef t_6783 = SrcTest.userTable__399();
-            SafeIdentifier t_6784 = SrcTest.csid__398("age");
-            Changeset cs__581 = SrcGlobal.changeset(t_6783, params__580).cast(List.of(t_6784)).validateInt64(SrcTest.csid__398("age"));
-            boolean t_6788 = cs__581.isValid();
-            Supplier<String> fn__6780 = () -> "should be valid";
-            test_33.assert_(t_6788, fn__6780);
+            Map<String, String> params__617 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("age", "not-a-number")));
+            TableDef t_8382 = SrcTest.userTable__442();
+            SafeIdentifier t_8383 = SrcTest.csid__441("age");
+            Changeset cs__618 = SrcGlobal.changeset(t_8382, params__617).cast(List.of(t_8383)).validateInt(SrcTest.csid__441("age"));
+            boolean t_8389 = !cs__618.isValid();
+            Supplier<String> fn__8379 = () -> "should be invalid";
+            test_33.assert_(t_8389, fn__8379);
         } finally {
             test_33.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateInt64_failsForNonInteger__1190() {
+    @org.junit.jupiter.api.Test public void validateFloatPassesForValidFloat__1330() {
         Test test_34 = new Test();
         try {
-            Map<String, String> params__583 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("age", "not-a-number")));
-            TableDef t_6771 = SrcTest.userTable__399();
-            SafeIdentifier t_6772 = SrcTest.csid__398("age");
-            Changeset cs__584 = SrcGlobal.changeset(t_6771, params__583).cast(List.of(t_6772)).validateInt64(SrcTest.csid__398("age"));
-            boolean t_6778 = !cs__584.isValid();
-            Supplier<String> fn__6768 = () -> "should be invalid";
-            test_34.assert_(t_6778, fn__6768);
+            Map<String, String> params__620 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("score", "9.5")));
+            TableDef t_8371 = SrcTest.userTable__442();
+            SafeIdentifier t_8372 = SrcTest.csid__441("score");
+            Changeset cs__621 = SrcGlobal.changeset(t_8371, params__620).cast(List.of(t_8372)).validateFloat(SrcTest.csid__441("score"));
+            boolean t_8376 = cs__621.isValid();
+            Supplier<String> fn__8368 = () -> "should be valid";
+            test_34.assert_(t_8376, fn__8368);
         } finally {
             test_34.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateBoolAcceptsTrue1_yesOn__1191() {
+    @org.junit.jupiter.api.Test public void validateInt64_passesForValid64_bitInteger__1331() {
         Test test_35 = new Test();
         try {
-            Consumer<String> fn__6765 = v__586 -> {
-                Map<String, String> params__587 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("active", v__586)));
-                TableDef t_6757 = SrcTest.userTable__399();
-                SafeIdentifier t_6758 = SrcTest.csid__398("active");
-                Changeset cs__588 = SrcGlobal.changeset(t_6757, params__587).cast(List.of(t_6758)).validateBool(SrcTest.csid__398("active"));
-                boolean t_6762 = cs__588.isValid();
-                Supplier<String> fn__6754 = () -> "should accept: " + v__586;
-                test_35.assert_(t_6762, fn__6754);
-            };
-            List.of("true", "1", "yes", "on").forEach(fn__6765);
+            Map<String, String> params__623 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("age", "9999999999")));
+            TableDef t_8360 = SrcTest.userTable__442();
+            SafeIdentifier t_8361 = SrcTest.csid__441("age");
+            Changeset cs__624 = SrcGlobal.changeset(t_8360, params__623).cast(List.of(t_8361)).validateInt64(SrcTest.csid__441("age"));
+            boolean t_8365 = cs__624.isValid();
+            Supplier<String> fn__8357 = () -> "should be valid";
+            test_35.assert_(t_8365, fn__8357);
         } finally {
             test_35.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateBoolAcceptsFalse0_noOff__1192() {
+    @org.junit.jupiter.api.Test public void validateInt64_failsForNonInteger__1332() {
         Test test_36 = new Test();
         try {
-            Consumer<String> fn__6751 = v__590 -> {
-                Map<String, String> params__591 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("active", v__590)));
-                TableDef t_6743 = SrcTest.userTable__399();
-                SafeIdentifier t_6744 = SrcTest.csid__398("active");
-                Changeset cs__592 = SrcGlobal.changeset(t_6743, params__591).cast(List.of(t_6744)).validateBool(SrcTest.csid__398("active"));
-                boolean t_6748 = cs__592.isValid();
-                Supplier<String> fn__6740 = () -> "should accept: " + v__590;
-                test_36.assert_(t_6748, fn__6740);
-            };
-            List.of("false", "0", "no", "off").forEach(fn__6751);
+            Map<String, String> params__626 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("age", "not-a-number")));
+            TableDef t_8348 = SrcTest.userTable__442();
+            SafeIdentifier t_8349 = SrcTest.csid__441("age");
+            Changeset cs__627 = SrcGlobal.changeset(t_8348, params__626).cast(List.of(t_8349)).validateInt64(SrcTest.csid__441("age"));
+            boolean t_8355 = !cs__627.isValid();
+            Supplier<String> fn__8345 = () -> "should be invalid";
+            test_36.assert_(t_8355, fn__8345);
         } finally {
             test_36.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void validateBoolRejectsAmbiguousValues__1193() {
+    @org.junit.jupiter.api.Test public void validateBoolAcceptsTrue1_yesOn__1333() {
         Test test_37 = new Test();
         try {
-            Consumer<String> fn__6737 = v__594 -> {
-                Map<String, String> params__595 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("active", v__594)));
-                TableDef t_6728 = SrcTest.userTable__399();
-                SafeIdentifier t_6729 = SrcTest.csid__398("active");
-                Changeset cs__596 = SrcGlobal.changeset(t_6728, params__595).cast(List.of(t_6729)).validateBool(SrcTest.csid__398("active"));
-                boolean t_6735 = !cs__596.isValid();
-                Supplier<String> fn__6725 = () -> "should reject ambiguous: " + v__594;
-                test_37.assert_(t_6735, fn__6725);
+            Consumer<String> fn__8342 = v__629 -> {
+                Map<String, String> params__630 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("active", v__629)));
+                TableDef t_8334 = SrcTest.userTable__442();
+                SafeIdentifier t_8335 = SrcTest.csid__441("active");
+                Changeset cs__631 = SrcGlobal.changeset(t_8334, params__630).cast(List.of(t_8335)).validateBool(SrcTest.csid__441("active"));
+                boolean t_8339 = cs__631.isValid();
+                Supplier<String> fn__8331 = () -> "should accept: " + v__629;
+                test_37.assert_(t_8339, fn__8331);
             };
-            List.of("TRUE", "Yes", "maybe", "2", "enabled").forEach(fn__6737);
+            List.of("true", "1", "yes", "on").forEach(fn__8342);
         } finally {
             test_37.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void toInsertSqlEscapesBobbyTables__1194() {
+    @org.junit.jupiter.api.Test public void validateBoolAcceptsFalse0_noOff__1334() {
         Test test_38 = new Test();
         try {
-            Map<String, String> params__598 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Robert'); DROP TABLE users;--"), new SimpleImmutableEntry<>("email", "bobby@evil.com")));
-            TableDef t_6713 = SrcTest.userTable__399();
-            SafeIdentifier t_6714 = SrcTest.csid__398("name");
-            SafeIdentifier t_6715 = SrcTest.csid__398("email");
-            Changeset cs__599 = SrcGlobal.changeset(t_6713, params__598).cast(List.of(t_6714, t_6715)).validateRequired(List.of(SrcTest.csid__398("name"), SrcTest.csid__398("email")));
-            SqlFragment t_3770;
-            t_3770 = cs__599.toInsertSql();
-            SqlFragment sqlFrag__600 = t_3770;
-            String s__601 = sqlFrag__600.toString();
-            boolean t_6722 = s__601.indexOf("''") >= 0;
-            Supplier<String> fn__6709 = () -> "single quote must be doubled: " + s__601;
-            test_38.assert_(t_6722, fn__6709);
+            Consumer<String> fn__8328 = v__633 -> {
+                Map<String, String> params__634 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("active", v__633)));
+                TableDef t_8320 = SrcTest.userTable__442();
+                SafeIdentifier t_8321 = SrcTest.csid__441("active");
+                Changeset cs__635 = SrcGlobal.changeset(t_8320, params__634).cast(List.of(t_8321)).validateBool(SrcTest.csid__441("active"));
+                boolean t_8325 = cs__635.isValid();
+                Supplier<String> fn__8317 = () -> "should accept: " + v__633;
+                test_38.assert_(t_8325, fn__8317);
+            };
+            List.of("false", "0", "no", "off").forEach(fn__8328);
         } finally {
             test_38.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void toInsertSqlProducesCorrectSqlForStringField__1195() {
+    @org.junit.jupiter.api.Test public void validateBoolRejectsAmbiguousValues__1335() {
         Test test_39 = new Test();
         try {
-            Map<String, String> params__603 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Alice"), new SimpleImmutableEntry<>("email", "a@example.com")));
-            TableDef t_6693 = SrcTest.userTable__399();
-            SafeIdentifier t_6694 = SrcTest.csid__398("name");
-            SafeIdentifier t_6695 = SrcTest.csid__398("email");
-            Changeset cs__604 = SrcGlobal.changeset(t_6693, params__603).cast(List.of(t_6694, t_6695)).validateRequired(List.of(SrcTest.csid__398("name"), SrcTest.csid__398("email")));
-            SqlFragment t_3749;
-            t_3749 = cs__604.toInsertSql();
-            SqlFragment sqlFrag__605 = t_3749;
-            String s__606 = sqlFrag__605.toString();
-            boolean t_6702 = s__606.indexOf("INSERT INTO users") >= 0;
-            Supplier<String> fn__6689 = () -> "has INSERT INTO: " + s__606;
-            test_39.assert_(t_6702, fn__6689);
-            boolean t_6706 = s__606.indexOf("'Alice'") >= 0;
-            Supplier<String> fn__6688 = () -> "has quoted name: " + s__606;
-            test_39.assert_(t_6706, fn__6688);
+            Consumer<String> fn__8314 = v__637 -> {
+                Map<String, String> params__638 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("active", v__637)));
+                TableDef t_8305 = SrcTest.userTable__442();
+                SafeIdentifier t_8306 = SrcTest.csid__441("active");
+                Changeset cs__639 = SrcGlobal.changeset(t_8305, params__638).cast(List.of(t_8306)).validateBool(SrcTest.csid__441("active"));
+                boolean t_8312 = !cs__639.isValid();
+                Supplier<String> fn__8302 = () -> "should reject ambiguous: " + v__637;
+                test_39.assert_(t_8312, fn__8302);
+            };
+            List.of("TRUE", "Yes", "maybe", "2", "enabled").forEach(fn__8314);
         } finally {
             test_39.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void toInsertSqlProducesCorrectSqlForIntField__1196() {
+    @org.junit.jupiter.api.Test public void toInsertSqlEscapesBobbyTables__1336() {
         Test test_40 = new Test();
         try {
-            Map<String, String> params__608 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Bob"), new SimpleImmutableEntry<>("email", "b@example.com"), new SimpleImmutableEntry<>("age", "25")));
-            TableDef t_6675 = SrcTest.userTable__399();
-            SafeIdentifier t_6676 = SrcTest.csid__398("name");
-            SafeIdentifier t_6677 = SrcTest.csid__398("email");
-            SafeIdentifier t_6678 = SrcTest.csid__398("age");
-            Changeset cs__609 = SrcGlobal.changeset(t_6675, params__608).cast(List.of(t_6676, t_6677, t_6678)).validateRequired(List.of(SrcTest.csid__398("name"), SrcTest.csid__398("email")));
-            SqlFragment t_3732;
-            t_3732 = cs__609.toInsertSql();
-            SqlFragment sqlFrag__610 = t_3732;
-            String s__611 = sqlFrag__610.toString();
-            boolean t_6685 = s__611.indexOf("25") >= 0;
-            Supplier<String> fn__6670 = () -> "age rendered unquoted: " + s__611;
-            test_40.assert_(t_6685, fn__6670);
+            Map<String, String> params__641 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Robert'); DROP TABLE users;--"), new SimpleImmutableEntry<>("email", "bobby@evil.com")));
+            TableDef t_8290 = SrcTest.userTable__442();
+            SafeIdentifier t_8291 = SrcTest.csid__441("name");
+            SafeIdentifier t_8292 = SrcTest.csid__441("email");
+            Changeset cs__642 = SrcGlobal.changeset(t_8290, params__641).cast(List.of(t_8291, t_8292)).validateRequired(List.of(SrcTest.csid__441("name"), SrcTest.csid__441("email")));
+            SqlFragment t_4613;
+            t_4613 = cs__642.toInsertSql();
+            SqlFragment sqlFrag__643 = t_4613;
+            String s__644 = sqlFrag__643.toString();
+            boolean t_8299 = s__644.indexOf("''") >= 0;
+            Supplier<String> fn__8286 = () -> "single quote must be doubled: " + s__644;
+            test_40.assert_(t_8299, fn__8286);
         } finally {
             test_40.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void toInsertSqlBubblesOnInvalidChangeset__1197() {
+    @org.junit.jupiter.api.Test public void toInsertSqlProducesCorrectSqlForStringField__1337() {
         Test test_41 = new Test();
         try {
-            Map<String, String> params__613 = Core.mapConstructor(List.of());
-            TableDef t_6663 = SrcTest.userTable__399();
-            SafeIdentifier t_6664 = SrcTest.csid__398("name");
-            Changeset cs__614 = SrcGlobal.changeset(t_6663, params__613).cast(List.of(t_6664)).validateRequired(List.of(SrcTest.csid__398("name")));
-            boolean didBubble__615;
-            boolean didBubble_7264;
-            try {
-                cs__614.toInsertSql();
-                didBubble_7264 = false;
-            } catch (RuntimeException ignored$4) {
-                didBubble_7264 = true;
-            }
-            didBubble__615 = didBubble_7264;
-            Supplier<String> fn__6661 = () -> "invalid changeset should bubble";
-            test_41.assert_(didBubble__615, fn__6661);
+            Map<String, String> params__646 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Alice"), new SimpleImmutableEntry<>("email", "a@example.com")));
+            TableDef t_8270 = SrcTest.userTable__442();
+            SafeIdentifier t_8271 = SrcTest.csid__441("name");
+            SafeIdentifier t_8272 = SrcTest.csid__441("email");
+            Changeset cs__647 = SrcGlobal.changeset(t_8270, params__646).cast(List.of(t_8271, t_8272)).validateRequired(List.of(SrcTest.csid__441("name"), SrcTest.csid__441("email")));
+            SqlFragment t_4592;
+            t_4592 = cs__647.toInsertSql();
+            SqlFragment sqlFrag__648 = t_4592;
+            String s__649 = sqlFrag__648.toString();
+            boolean t_8279 = s__649.indexOf("INSERT INTO users") >= 0;
+            Supplier<String> fn__8266 = () -> "has INSERT INTO: " + s__649;
+            test_41.assert_(t_8279, fn__8266);
+            boolean t_8283 = s__649.indexOf("'Alice'") >= 0;
+            Supplier<String> fn__8265 = () -> "has quoted name: " + s__649;
+            test_41.assert_(t_8283, fn__8265);
         } finally {
             test_41.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void toInsertSqlEnforcesNonNullableFieldsIndependentlyOfIsValid__1198() {
+    @org.junit.jupiter.api.Test public void toInsertSqlProducesCorrectSqlForIntField__1338() {
         Test test_42 = new Test();
         try {
-            TableDef strictTable__617 = new TableDef(SrcTest.csid__398("posts"), List.of(new FieldDef(SrcTest.csid__398("title"), new StringField(), false), new FieldDef(SrcTest.csid__398("body"), new StringField(), true)));
-            Map<String, String> params__618 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("body", "hello")));
-            SafeIdentifier t_6654 = SrcTest.csid__398("body");
-            Changeset cs__619 = SrcGlobal.changeset(strictTable__617, params__618).cast(List.of(t_6654));
-            boolean t_6656 = cs__619.isValid();
-            Supplier<String> fn__6643 = () -> "changeset should appear valid (no explicit validation run)";
-            test_42.assert_(t_6656, fn__6643);
-            boolean didBubble__620;
-            boolean didBubble_7265;
-            try {
-                cs__619.toInsertSql();
-                didBubble_7265 = false;
-            } catch (RuntimeException ignored$5) {
-                didBubble_7265 = true;
-            }
-            didBubble__620 = didBubble_7265;
-            Supplier<String> fn__6642 = () -> "toInsertSql should enforce nullable regardless of isValid";
-            test_42.assert_(didBubble__620, fn__6642);
+            Map<String, String> params__651 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Bob"), new SimpleImmutableEntry<>("email", "b@example.com"), new SimpleImmutableEntry<>("age", "25")));
+            TableDef t_8252 = SrcTest.userTable__442();
+            SafeIdentifier t_8253 = SrcTest.csid__441("name");
+            SafeIdentifier t_8254 = SrcTest.csid__441("email");
+            SafeIdentifier t_8255 = SrcTest.csid__441("age");
+            Changeset cs__652 = SrcGlobal.changeset(t_8252, params__651).cast(List.of(t_8253, t_8254, t_8255)).validateRequired(List.of(SrcTest.csid__441("name"), SrcTest.csid__441("email")));
+            SqlFragment t_4575;
+            t_4575 = cs__652.toInsertSql();
+            SqlFragment sqlFrag__653 = t_4575;
+            String s__654 = sqlFrag__653.toString();
+            boolean t_8262 = s__654.indexOf("25") >= 0;
+            Supplier<String> fn__8247 = () -> "age rendered unquoted: " + s__654;
+            test_42.assert_(t_8262, fn__8247);
         } finally {
             test_42.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void toUpdateSqlProducesCorrectSql__1199() {
+    @org.junit.jupiter.api.Test public void toInsertSqlBubblesOnInvalidChangeset__1339() {
         Test test_43 = new Test();
         try {
-            Map<String, String> params__622 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Bob")));
-            TableDef t_6633 = SrcTest.userTable__399();
-            SafeIdentifier t_6634 = SrcTest.csid__398("name");
-            Changeset cs__623 = SrcGlobal.changeset(t_6633, params__622).cast(List.of(t_6634)).validateRequired(List.of(SrcTest.csid__398("name")));
-            SqlFragment t_3692;
-            t_3692 = cs__623.toUpdateSql(42);
-            SqlFragment sqlFrag__624 = t_3692;
-            String s__625 = sqlFrag__624.toString();
-            boolean t_6640 = s__625.equals("UPDATE users SET name = 'Bob' WHERE id = 42");
-            Supplier<String> fn__6630 = () -> "got: " + s__625;
-            test_43.assert_(t_6640, fn__6630);
+            Map<String, String> params__656 = Core.mapConstructor(List.of());
+            TableDef t_8240 = SrcTest.userTable__442();
+            SafeIdentifier t_8241 = SrcTest.csid__441("name");
+            Changeset cs__657 = SrcGlobal.changeset(t_8240, params__656).cast(List.of(t_8241)).validateRequired(List.of(SrcTest.csid__441("name")));
+            boolean didBubble__658;
+            boolean didBubble_8841;
+            try {
+                cs__657.toInsertSql();
+                didBubble_8841 = false;
+            } catch (RuntimeException ignored$4) {
+                didBubble_8841 = true;
+            }
+            didBubble__658 = didBubble_8841;
+            Supplier<String> fn__8238 = () -> "invalid changeset should bubble";
+            test_43.assert_(didBubble__658, fn__8238);
         } finally {
             test_43.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void toUpdateSqlBubblesOnInvalidChangeset__1200() {
+    @org.junit.jupiter.api.Test public void toInsertSqlEnforcesNonNullableFieldsIndependentlyOfIsValid__1340() {
         Test test_44 = new Test();
         try {
-            Map<String, String> params__627 = Core.mapConstructor(List.of());
-            TableDef t_6623 = SrcTest.userTable__399();
-            SafeIdentifier t_6624 = SrcTest.csid__398("name");
-            Changeset cs__628 = SrcGlobal.changeset(t_6623, params__627).cast(List.of(t_6624)).validateRequired(List.of(SrcTest.csid__398("name")));
-            boolean didBubble__629;
-            boolean didBubble_7266;
+            TableDef strictTable__660 = new TableDef(SrcTest.csid__441("posts"), List.of(new FieldDef(SrcTest.csid__441("title"), new StringField(), false), new FieldDef(SrcTest.csid__441("body"), new StringField(), true)));
+            Map<String, String> params__661 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("body", "hello")));
+            SafeIdentifier t_8231 = SrcTest.csid__441("body");
+            Changeset cs__662 = SrcGlobal.changeset(strictTable__660, params__661).cast(List.of(t_8231));
+            boolean t_8233 = cs__662.isValid();
+            Supplier<String> fn__8220 = () -> "changeset should appear valid (no explicit validation run)";
+            test_44.assert_(t_8233, fn__8220);
+            boolean didBubble__663;
+            boolean didBubble_8842;
             try {
-                cs__628.toUpdateSql(1);
-                didBubble_7266 = false;
-            } catch (RuntimeException ignored$6) {
-                didBubble_7266 = true;
+                cs__662.toInsertSql();
+                didBubble_8842 = false;
+            } catch (RuntimeException ignored$5) {
+                didBubble_8842 = true;
             }
-            didBubble__629 = didBubble_7266;
-            Supplier<String> fn__6621 = () -> "invalid changeset should bubble";
-            test_44.assert_(didBubble__629, fn__6621);
+            didBubble__663 = didBubble_8842;
+            Supplier<String> fn__8219 = () -> "toInsertSql should enforce nullable regardless of isValid";
+            test_44.assert_(didBubble__663, fn__8219);
         } finally {
             test_44.softFailToHard();
         }
     }
-    static SafeIdentifier sid__400(String name__791) {
-        SafeIdentifier t_3489;
-        t_3489 = SrcGlobal.safeIdentifier(name__791);
-        return t_3489;
-    }
-    @org.junit.jupiter.api.Test public void bareFromProducesSelect__1237() {
+    @org.junit.jupiter.api.Test public void toUpdateSqlProducesCorrectSql__1341() {
         Test test_45 = new Test();
         try {
-            Query q__794 = SrcGlobal.from(SrcTest.sid__400("users"));
-            boolean t_6444 = q__794.toSql().toString().equals("SELECT * FROM users");
-            Supplier<String> fn__6439 = () -> "bare query";
-            test_45.assert_(t_6444, fn__6439);
+            Map<String, String> params__665 = Core.mapConstructor(List.of(new SimpleImmutableEntry<>("name", "Bob")));
+            TableDef t_8210 = SrcTest.userTable__442();
+            SafeIdentifier t_8211 = SrcTest.csid__441("name");
+            Changeset cs__666 = SrcGlobal.changeset(t_8210, params__665).cast(List.of(t_8211)).validateRequired(List.of(SrcTest.csid__441("name")));
+            SqlFragment t_4535;
+            t_4535 = cs__666.toUpdateSql(42);
+            SqlFragment sqlFrag__667 = t_4535;
+            String s__668 = sqlFrag__667.toString();
+            boolean t_8217 = s__668.equals("UPDATE users SET name = 'Bob' WHERE id = 42");
+            Supplier<String> fn__8207 = () -> "got: " + s__668;
+            test_45.assert_(t_8217, fn__8207);
         } finally {
             test_45.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void selectRestrictsColumns__1238() {
+    @org.junit.jupiter.api.Test public void toUpdateSqlBubblesOnInvalidChangeset__1342() {
         Test test_46 = new Test();
         try {
-            SafeIdentifier t_6430 = SrcTest.sid__400("users");
-            SafeIdentifier t_6431 = SrcTest.sid__400("id");
-            SafeIdentifier t_6432 = SrcTest.sid__400("name");
-            Query q__796 = SrcGlobal.from(t_6430).select(List.of(t_6431, t_6432));
-            boolean t_6437 = q__796.toSql().toString().equals("SELECT id, name FROM users");
-            Supplier<String> fn__6429 = () -> "select columns";
-            test_46.assert_(t_6437, fn__6429);
+            Map<String, String> params__670 = Core.mapConstructor(List.of());
+            TableDef t_8200 = SrcTest.userTable__442();
+            SafeIdentifier t_8201 = SrcTest.csid__441("name");
+            Changeset cs__671 = SrcGlobal.changeset(t_8200, params__670).cast(List.of(t_8201)).validateRequired(List.of(SrcTest.csid__441("name")));
+            boolean didBubble__672;
+            boolean didBubble_8843;
+            try {
+                cs__671.toUpdateSql(1);
+                didBubble_8843 = false;
+            } catch (RuntimeException ignored$6) {
+                didBubble_8843 = true;
+            }
+            didBubble__672 = didBubble_8843;
+            Supplier<String> fn__8198 = () -> "invalid changeset should bubble";
+            test_46.assert_(didBubble__672, fn__8198);
         } finally {
             test_46.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereAddsConditionWithIntValue__1239() {
+    static SafeIdentifier sid__443(String name__886) {
+        SafeIdentifier t_4188;
+        t_4188 = SrcGlobal.safeIdentifier(name__886);
+        return t_4188;
+    }
+    @org.junit.jupiter.api.Test public void bareFromProducesSelect__1391() {
         Test test_47 = new Test();
         try {
-            SafeIdentifier t_6418 = SrcTest.sid__400("users");
-            SqlBuilder t_6419 = new SqlBuilder();
-            t_6419.appendSafe("age > ");
-            t_6419.appendInt32(18);
-            SqlFragment t_6422 = t_6419.getAccumulated();
-            Query q__798 = SrcGlobal.from(t_6418).where(t_6422);
-            boolean t_6427 = q__798.toSql().toString().equals("SELECT * FROM users WHERE age > 18");
-            Supplier<String> fn__6417 = () -> "where int";
-            test_47.assert_(t_6427, fn__6417);
+            Query q__889 = SrcGlobal.from(SrcTest.sid__443("users"));
+            boolean t_7866 = q__889.toSql().toString().equals("SELECT * FROM users");
+            Supplier<String> fn__7861 = () -> "bare query";
+            test_47.assert_(t_7866, fn__7861);
         } finally {
             test_47.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereAddsConditionWithBoolValue__1241() {
+    @org.junit.jupiter.api.Test public void selectRestrictsColumns__1392() {
         Test test_48 = new Test();
         try {
-            SafeIdentifier t_6406 = SrcTest.sid__400("users");
-            SqlBuilder t_6407 = new SqlBuilder();
-            t_6407.appendSafe("active = ");
-            t_6407.appendBoolean(true);
-            SqlFragment t_6410 = t_6407.getAccumulated();
-            Query q__800 = SrcGlobal.from(t_6406).where(t_6410);
-            boolean t_6415 = q__800.toSql().toString().equals("SELECT * FROM users WHERE active = TRUE");
-            Supplier<String> fn__6405 = () -> "where bool";
-            test_48.assert_(t_6415, fn__6405);
+            SafeIdentifier t_7852 = SrcTest.sid__443("users");
+            SafeIdentifier t_7853 = SrcTest.sid__443("id");
+            SafeIdentifier t_7854 = SrcTest.sid__443("name");
+            Query q__891 = SrcGlobal.from(t_7852).select(List.of(t_7853, t_7854));
+            boolean t_7859 = q__891.toSql().toString().equals("SELECT id, name FROM users");
+            Supplier<String> fn__7851 = () -> "select columns";
+            test_48.assert_(t_7859, fn__7851);
         } finally {
             test_48.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void chainedWhereUsesAnd__1243() {
+    @org.junit.jupiter.api.Test public void whereAddsConditionWithIntValue__1393() {
         Test test_49 = new Test();
         try {
-            SafeIdentifier t_6389 = SrcTest.sid__400("users");
-            SqlBuilder t_6390 = new SqlBuilder();
-            t_6390.appendSafe("age > ");
-            t_6390.appendInt32(18);
-            SqlFragment t_6393 = t_6390.getAccumulated();
-            Query t_6394 = SrcGlobal.from(t_6389).where(t_6393);
-            SqlBuilder t_6395 = new SqlBuilder();
-            t_6395.appendSafe("active = ");
-            t_6395.appendBoolean(true);
-            Query q__802 = t_6394.where(t_6395.getAccumulated());
-            boolean t_6403 = q__802.toSql().toString().equals("SELECT * FROM users WHERE age > 18 AND active = TRUE");
-            Supplier<String> fn__6388 = () -> "chained where";
-            test_49.assert_(t_6403, fn__6388);
+            SafeIdentifier t_7840 = SrcTest.sid__443("users");
+            SqlBuilder t_7841 = new SqlBuilder();
+            t_7841.appendSafe("age > ");
+            t_7841.appendInt32(18);
+            SqlFragment t_7844 = t_7841.getAccumulated();
+            Query q__893 = SrcGlobal.from(t_7840).where(t_7844);
+            boolean t_7849 = q__893.toSql().toString().equals("SELECT * FROM users WHERE age > 18");
+            Supplier<String> fn__7839 = () -> "where int";
+            test_49.assert_(t_7849, fn__7839);
         } finally {
             test_49.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void orderByAsc__1246() {
+    @org.junit.jupiter.api.Test public void whereAddsConditionWithBoolValue__1395() {
         Test test_50 = new Test();
         try {
-            SafeIdentifier t_6380 = SrcTest.sid__400("users");
-            SafeIdentifier t_6381 = SrcTest.sid__400("name");
-            Query q__804 = SrcGlobal.from(t_6380).orderBy(t_6381, true);
-            boolean t_6386 = q__804.toSql().toString().equals("SELECT * FROM users ORDER BY name ASC");
-            Supplier<String> fn__6379 = () -> "order asc";
-            test_50.assert_(t_6386, fn__6379);
+            SafeIdentifier t_7828 = SrcTest.sid__443("users");
+            SqlBuilder t_7829 = new SqlBuilder();
+            t_7829.appendSafe("active = ");
+            t_7829.appendBoolean(true);
+            SqlFragment t_7832 = t_7829.getAccumulated();
+            Query q__895 = SrcGlobal.from(t_7828).where(t_7832);
+            boolean t_7837 = q__895.toSql().toString().equals("SELECT * FROM users WHERE active = TRUE");
+            Supplier<String> fn__7827 = () -> "where bool";
+            test_50.assert_(t_7837, fn__7827);
         } finally {
             test_50.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void orderByDesc__1247() {
+    @org.junit.jupiter.api.Test public void chainedWhereUsesAnd__1397() {
         Test test_51 = new Test();
         try {
-            SafeIdentifier t_6371 = SrcTest.sid__400("users");
-            SafeIdentifier t_6372 = SrcTest.sid__400("created_at");
-            Query q__806 = SrcGlobal.from(t_6371).orderBy(t_6372, false);
-            boolean t_6377 = q__806.toSql().toString().equals("SELECT * FROM users ORDER BY created_at DESC");
-            Supplier<String> fn__6370 = () -> "order desc";
-            test_51.assert_(t_6377, fn__6370);
+            SafeIdentifier t_7811 = SrcTest.sid__443("users");
+            SqlBuilder t_7812 = new SqlBuilder();
+            t_7812.appendSafe("age > ");
+            t_7812.appendInt32(18);
+            SqlFragment t_7815 = t_7812.getAccumulated();
+            Query t_7816 = SrcGlobal.from(t_7811).where(t_7815);
+            SqlBuilder t_7817 = new SqlBuilder();
+            t_7817.appendSafe("active = ");
+            t_7817.appendBoolean(true);
+            Query q__897 = t_7816.where(t_7817.getAccumulated());
+            boolean t_7825 = q__897.toSql().toString().equals("SELECT * FROM users WHERE age > 18 AND active = TRUE");
+            Supplier<String> fn__7810 = () -> "chained where";
+            test_51.assert_(t_7825, fn__7810);
         } finally {
             test_51.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void limitAndOffset__1248() {
+    @org.junit.jupiter.api.Test public void orderByAsc__1400() {
         Test test_52 = new Test();
         try {
-            Query t_3423;
-            t_3423 = SrcGlobal.from(SrcTest.sid__400("users")).limit(10);
-            Query t_3424;
-            t_3424 = t_3423.offset(20);
-            Query q__808 = t_3424;
-            boolean t_6368 = q__808.toSql().toString().equals("SELECT * FROM users LIMIT 10 OFFSET 20");
-            Supplier<String> fn__6363 = () -> "limit/offset";
-            test_52.assert_(t_6368, fn__6363);
+            SafeIdentifier t_7802 = SrcTest.sid__443("users");
+            SafeIdentifier t_7803 = SrcTest.sid__443("name");
+            Query q__899 = SrcGlobal.from(t_7802).orderBy(t_7803, true);
+            boolean t_7808 = q__899.toSql().toString().equals("SELECT * FROM users ORDER BY name ASC");
+            Supplier<String> fn__7801 = () -> "order asc";
+            test_52.assert_(t_7808, fn__7801);
         } finally {
             test_52.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void limitBubblesOnNegative__1249() {
+    @org.junit.jupiter.api.Test public void orderByDesc__1401() {
         Test test_53 = new Test();
         try {
-            boolean didBubble__810;
-            boolean didBubble_7267;
-            try {
-                SrcGlobal.from(SrcTest.sid__400("users")).limit(-1);
-                didBubble_7267 = false;
-            } catch (RuntimeException ignored$7) {
-                didBubble_7267 = true;
-            }
-            didBubble__810 = didBubble_7267;
-            Supplier<String> fn__6359 = () -> "negative limit should bubble";
-            test_53.assert_(didBubble__810, fn__6359);
+            SafeIdentifier t_7793 = SrcTest.sid__443("users");
+            SafeIdentifier t_7794 = SrcTest.sid__443("created_at");
+            Query q__901 = SrcGlobal.from(t_7793).orderBy(t_7794, false);
+            boolean t_7799 = q__901.toSql().toString().equals("SELECT * FROM users ORDER BY created_at DESC");
+            Supplier<String> fn__7792 = () -> "order desc";
+            test_53.assert_(t_7799, fn__7792);
         } finally {
             test_53.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void offsetBubblesOnNegative__1250() {
+    @org.junit.jupiter.api.Test public void limitAndOffset__1402() {
         Test test_54 = new Test();
         try {
-            boolean didBubble__812;
-            boolean didBubble_7268;
-            try {
-                SrcGlobal.from(SrcTest.sid__400("users")).offset(-1);
-                didBubble_7268 = false;
-            } catch (RuntimeException ignored$8) {
-                didBubble_7268 = true;
-            }
-            didBubble__812 = didBubble_7268;
-            Supplier<String> fn__6355 = () -> "negative offset should bubble";
-            test_54.assert_(didBubble__812, fn__6355);
+            Query t_4122;
+            t_4122 = SrcGlobal.from(SrcTest.sid__443("users")).limit(10);
+            Query t_4123;
+            t_4123 = t_4122.offset(20);
+            Query q__903 = t_4123;
+            boolean t_7790 = q__903.toSql().toString().equals("SELECT * FROM users LIMIT 10 OFFSET 20");
+            Supplier<String> fn__7785 = () -> "limit/offset";
+            test_54.assert_(t_7790, fn__7785);
         } finally {
             test_54.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void complexComposedQuery__1251() {
+    @org.junit.jupiter.api.Test public void limitBubblesOnNegative__1403() {
         Test test_55 = new Test();
         try {
-            int minAge__814 = 21;
-            SafeIdentifier t_6333 = SrcTest.sid__400("users");
-            SafeIdentifier t_6334 = SrcTest.sid__400("id");
-            SafeIdentifier t_6335 = SrcTest.sid__400("name");
-            SafeIdentifier t_6336 = SrcTest.sid__400("email");
-            Query t_6337 = SrcGlobal.from(t_6333).select(List.of(t_6334, t_6335, t_6336));
-            SqlBuilder t_6338 = new SqlBuilder();
-            t_6338.appendSafe("age >= ");
-            t_6338.appendInt32(21);
-            Query t_6342 = t_6337.where(t_6338.getAccumulated());
-            SqlBuilder t_6343 = new SqlBuilder();
-            t_6343.appendSafe("active = ");
-            t_6343.appendBoolean(true);
-            Query t_3409;
-            t_3409 = t_6342.where(t_6343.getAccumulated()).orderBy(SrcTest.sid__400("name"), true).limit(25);
-            Query t_3410;
-            t_3410 = t_3409.offset(0);
-            Query q__815 = t_3410;
-            boolean t_6353 = q__815.toSql().toString().equals("SELECT id, name, email FROM users WHERE age >= 21 AND active = TRUE ORDER BY name ASC LIMIT 25 OFFSET 0");
-            Supplier<String> fn__6332 = () -> "complex query";
-            test_55.assert_(t_6353, fn__6332);
+            boolean didBubble__905;
+            boolean didBubble_8844;
+            try {
+                SrcGlobal.from(SrcTest.sid__443("users")).limit(-1);
+                didBubble_8844 = false;
+            } catch (RuntimeException ignored$7) {
+                didBubble_8844 = true;
+            }
+            didBubble__905 = didBubble_8844;
+            Supplier<String> fn__7781 = () -> "negative limit should bubble";
+            test_55.assert_(didBubble__905, fn__7781);
         } finally {
             test_55.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void safeToSqlAppliesDefaultLimitWhenNoneSet__1254() {
+    @org.junit.jupiter.api.Test public void offsetBubblesOnNegative__1404() {
         Test test_56 = new Test();
         try {
-            Query q__817 = SrcGlobal.from(SrcTest.sid__400("users"));
-            SqlFragment t_3386;
-            t_3386 = q__817.safeToSql(100);
-            SqlFragment t_3387 = t_3386;
-            String s__818 = t_3387.toString();
-            boolean t_6330 = s__818.equals("SELECT * FROM users LIMIT 100");
-            Supplier<String> fn__6326 = () -> "should have limit: " + s__818;
-            test_56.assert_(t_6330, fn__6326);
+            boolean didBubble__907;
+            boolean didBubble_8845;
+            try {
+                SrcGlobal.from(SrcTest.sid__443("users")).offset(-1);
+                didBubble_8845 = false;
+            } catch (RuntimeException ignored$8) {
+                didBubble_8845 = true;
+            }
+            didBubble__907 = didBubble_8845;
+            Supplier<String> fn__7777 = () -> "negative offset should bubble";
+            test_56.assert_(didBubble__907, fn__7777);
         } finally {
             test_56.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void safeToSqlRespectsExplicitLimit__1255() {
+    @org.junit.jupiter.api.Test public void complexComposedQuery__1405() {
         Test test_57 = new Test();
         try {
-            Query t_3378;
-            t_3378 = SrcGlobal.from(SrcTest.sid__400("users")).limit(5);
-            Query q__820 = t_3378;
-            SqlFragment t_3381;
-            t_3381 = q__820.safeToSql(100);
-            SqlFragment t_3382 = t_3381;
-            String s__821 = t_3382.toString();
-            boolean t_6324 = s__821.equals("SELECT * FROM users LIMIT 5");
-            Supplier<String> fn__6320 = () -> "explicit limit preserved: " + s__821;
-            test_57.assert_(t_6324, fn__6320);
+            int minAge__909 = 21;
+            SafeIdentifier t_7755 = SrcTest.sid__443("users");
+            SafeIdentifier t_7756 = SrcTest.sid__443("id");
+            SafeIdentifier t_7757 = SrcTest.sid__443("name");
+            SafeIdentifier t_7758 = SrcTest.sid__443("email");
+            Query t_7759 = SrcGlobal.from(t_7755).select(List.of(t_7756, t_7757, t_7758));
+            SqlBuilder t_7760 = new SqlBuilder();
+            t_7760.appendSafe("age >= ");
+            t_7760.appendInt32(21);
+            Query t_7764 = t_7759.where(t_7760.getAccumulated());
+            SqlBuilder t_7765 = new SqlBuilder();
+            t_7765.appendSafe("active = ");
+            t_7765.appendBoolean(true);
+            Query t_4108;
+            t_4108 = t_7764.where(t_7765.getAccumulated()).orderBy(SrcTest.sid__443("name"), true).limit(25);
+            Query t_4109;
+            t_4109 = t_4108.offset(0);
+            Query q__910 = t_4109;
+            boolean t_7775 = q__910.toSql().toString().equals("SELECT id, name, email FROM users WHERE age >= 21 AND active = TRUE ORDER BY name ASC LIMIT 25 OFFSET 0");
+            Supplier<String> fn__7754 = () -> "complex query";
+            test_57.assert_(t_7775, fn__7754);
         } finally {
             test_57.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void safeToSqlBubblesOnNegativeDefaultLimit__1256() {
+    @org.junit.jupiter.api.Test public void safeToSqlAppliesDefaultLimitWhenNoneSet__1408() {
         Test test_58 = new Test();
         try {
-            boolean didBubble__823;
-            boolean didBubble_7269;
-            try {
-                SrcGlobal.from(SrcTest.sid__400("users")).safeToSql(-1);
-                didBubble_7269 = false;
-            } catch (RuntimeException ignored$9) {
-                didBubble_7269 = true;
-            }
-            didBubble__823 = didBubble_7269;
-            Supplier<String> fn__6316 = () -> "negative defaultLimit should bubble";
-            test_58.assert_(didBubble__823, fn__6316);
+            Query q__912 = SrcGlobal.from(SrcTest.sid__443("users"));
+            SqlFragment t_4085;
+            t_4085 = q__912.safeToSql(100);
+            SqlFragment t_4086 = t_4085;
+            String s__913 = t_4086.toString();
+            boolean t_7752 = s__913.equals("SELECT * FROM users LIMIT 100");
+            Supplier<String> fn__7748 = () -> "should have limit: " + s__913;
+            test_58.assert_(t_7752, fn__7748);
         } finally {
             test_58.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereWithInjectionAttemptInStringValueIsEscaped__1257() {
+    @org.junit.jupiter.api.Test public void safeToSqlRespectsExplicitLimit__1409() {
         Test test_59 = new Test();
         try {
-            String evil__825 = "'; DROP TABLE users; --";
-            SafeIdentifier t_6300 = SrcTest.sid__400("users");
-            SqlBuilder t_6301 = new SqlBuilder();
-            t_6301.appendSafe("name = ");
-            t_6301.appendString("'; DROP TABLE users; --");
-            SqlFragment t_6304 = t_6301.getAccumulated();
-            Query q__826 = SrcGlobal.from(t_6300).where(t_6304);
-            String s__827 = q__826.toSql().toString();
-            boolean t_6309 = s__827.indexOf("''") >= 0;
-            Supplier<String> fn__6299 = () -> "quotes must be doubled: " + s__827;
-            test_59.assert_(t_6309, fn__6299);
-            boolean t_6313 = s__827.indexOf("SELECT * FROM users WHERE name =") >= 0;
-            Supplier<String> fn__6298 = () -> "structure intact: " + s__827;
-            test_59.assert_(t_6313, fn__6298);
+            Query t_4077;
+            t_4077 = SrcGlobal.from(SrcTest.sid__443("users")).limit(5);
+            Query q__915 = t_4077;
+            SqlFragment t_4080;
+            t_4080 = q__915.safeToSql(100);
+            SqlFragment t_4081 = t_4080;
+            String s__916 = t_4081.toString();
+            boolean t_7746 = s__916.equals("SELECT * FROM users LIMIT 5");
+            Supplier<String> fn__7742 = () -> "explicit limit preserved: " + s__916;
+            test_59.assert_(t_7746, fn__7742);
         } finally {
             test_59.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void safeIdentifierRejectsUserSuppliedTableNameWithMetacharacters__1259() {
+    @org.junit.jupiter.api.Test public void safeToSqlBubblesOnNegativeDefaultLimit__1410() {
         Test test_60 = new Test();
         try {
-            String attack__829 = "users; DROP TABLE users; --";
-            boolean didBubble__830;
-            boolean didBubble_7270;
+            boolean didBubble__918;
+            boolean didBubble_8846;
             try {
-                SrcGlobal.safeIdentifier("users; DROP TABLE users; --");
-                didBubble_7270 = false;
-            } catch (RuntimeException ignored$10) {
-                didBubble_7270 = true;
+                SrcGlobal.from(SrcTest.sid__443("users")).safeToSql(-1);
+                didBubble_8846 = false;
+            } catch (RuntimeException ignored$9) {
+                didBubble_8846 = true;
             }
-            didBubble__830 = didBubble_7270;
-            Supplier<String> fn__6295 = () -> "metacharacter-containing name must be rejected at construction";
-            test_60.assert_(didBubble__830, fn__6295);
+            didBubble__918 = didBubble_8846;
+            Supplier<String> fn__7738 = () -> "negative defaultLimit should bubble";
+            test_60.assert_(didBubble__918, fn__7738);
         } finally {
             test_60.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void innerJoinProducesInnerJoin__1260() {
+    @org.junit.jupiter.api.Test public void whereWithInjectionAttemptInStringValueIsEscaped__1411() {
         Test test_61 = new Test();
         try {
-            SafeIdentifier t_6284 = SrcTest.sid__400("users");
-            SafeIdentifier t_6285 = SrcTest.sid__400("orders");
-            SqlBuilder t_6286 = new SqlBuilder();
-            t_6286.appendSafe("users.id = orders.user_id");
-            SqlFragment t_6288 = t_6286.getAccumulated();
-            Query q__832 = SrcGlobal.from(t_6284).innerJoin(t_6285, t_6288);
-            boolean t_6293 = q__832.toSql().toString().equals("SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id");
-            Supplier<String> fn__6283 = () -> "inner join";
-            test_61.assert_(t_6293, fn__6283);
+            String evil__920 = "'; DROP TABLE users; --";
+            SafeIdentifier t_7722 = SrcTest.sid__443("users");
+            SqlBuilder t_7723 = new SqlBuilder();
+            t_7723.appendSafe("name = ");
+            t_7723.appendString("'; DROP TABLE users; --");
+            SqlFragment t_7726 = t_7723.getAccumulated();
+            Query q__921 = SrcGlobal.from(t_7722).where(t_7726);
+            String s__922 = q__921.toSql().toString();
+            boolean t_7731 = s__922.indexOf("''") >= 0;
+            Supplier<String> fn__7721 = () -> "quotes must be doubled: " + s__922;
+            test_61.assert_(t_7731, fn__7721);
+            boolean t_7735 = s__922.indexOf("SELECT * FROM users WHERE name =") >= 0;
+            Supplier<String> fn__7720 = () -> "structure intact: " + s__922;
+            test_61.assert_(t_7735, fn__7720);
         } finally {
             test_61.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void leftJoinProducesLeftJoin__1262() {
+    @org.junit.jupiter.api.Test public void safeIdentifierRejectsUserSuppliedTableNameWithMetacharacters__1413() {
         Test test_62 = new Test();
         try {
-            SafeIdentifier t_6272 = SrcTest.sid__400("users");
-            SafeIdentifier t_6273 = SrcTest.sid__400("profiles");
-            SqlBuilder t_6274 = new SqlBuilder();
-            t_6274.appendSafe("users.id = profiles.user_id");
-            SqlFragment t_6276 = t_6274.getAccumulated();
-            Query q__834 = SrcGlobal.from(t_6272).leftJoin(t_6273, t_6276);
-            boolean t_6281 = q__834.toSql().toString().equals("SELECT * FROM users LEFT JOIN profiles ON users.id = profiles.user_id");
-            Supplier<String> fn__6271 = () -> "left join";
-            test_62.assert_(t_6281, fn__6271);
+            String attack__924 = "users; DROP TABLE users; --";
+            boolean didBubble__925;
+            boolean didBubble_8847;
+            try {
+                SrcGlobal.safeIdentifier("users; DROP TABLE users; --");
+                didBubble_8847 = false;
+            } catch (RuntimeException ignored$10) {
+                didBubble_8847 = true;
+            }
+            didBubble__925 = didBubble_8847;
+            Supplier<String> fn__7717 = () -> "metacharacter-containing name must be rejected at construction";
+            test_62.assert_(didBubble__925, fn__7717);
         } finally {
             test_62.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void rightJoinProducesRightJoin__1264() {
+    @org.junit.jupiter.api.Test public void innerJoinProducesInnerJoin__1414() {
         Test test_63 = new Test();
         try {
-            SafeIdentifier t_6260 = SrcTest.sid__400("orders");
-            SafeIdentifier t_6261 = SrcTest.sid__400("users");
-            SqlBuilder t_6262 = new SqlBuilder();
-            t_6262.appendSafe("orders.user_id = users.id");
-            SqlFragment t_6264 = t_6262.getAccumulated();
-            Query q__836 = SrcGlobal.from(t_6260).rightJoin(t_6261, t_6264);
-            boolean t_6269 = q__836.toSql().toString().equals("SELECT * FROM orders RIGHT JOIN users ON orders.user_id = users.id");
-            Supplier<String> fn__6259 = () -> "right join";
-            test_63.assert_(t_6269, fn__6259);
+            SafeIdentifier t_7706 = SrcTest.sid__443("users");
+            SafeIdentifier t_7707 = SrcTest.sid__443("orders");
+            SqlBuilder t_7708 = new SqlBuilder();
+            t_7708.appendSafe("users.id = orders.user_id");
+            SqlFragment t_7710 = t_7708.getAccumulated();
+            Query q__927 = SrcGlobal.from(t_7706).innerJoin(t_7707, t_7710);
+            boolean t_7715 = q__927.toSql().toString().equals("SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id");
+            Supplier<String> fn__7705 = () -> "inner join";
+            test_63.assert_(t_7715, fn__7705);
         } finally {
             test_63.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void fullJoinProducesFullOuterJoin__1266() {
+    @org.junit.jupiter.api.Test public void leftJoinProducesLeftJoin__1416() {
         Test test_64 = new Test();
         try {
-            SafeIdentifier t_6248 = SrcTest.sid__400("users");
-            SafeIdentifier t_6249 = SrcTest.sid__400("orders");
-            SqlBuilder t_6250 = new SqlBuilder();
-            t_6250.appendSafe("users.id = orders.user_id");
-            SqlFragment t_6252 = t_6250.getAccumulated();
-            Query q__838 = SrcGlobal.from(t_6248).fullJoin(t_6249, t_6252);
-            boolean t_6257 = q__838.toSql().toString().equals("SELECT * FROM users FULL OUTER JOIN orders ON users.id = orders.user_id");
-            Supplier<String> fn__6247 = () -> "full join";
-            test_64.assert_(t_6257, fn__6247);
+            SafeIdentifier t_7694 = SrcTest.sid__443("users");
+            SafeIdentifier t_7695 = SrcTest.sid__443("profiles");
+            SqlBuilder t_7696 = new SqlBuilder();
+            t_7696.appendSafe("users.id = profiles.user_id");
+            SqlFragment t_7698 = t_7696.getAccumulated();
+            Query q__929 = SrcGlobal.from(t_7694).leftJoin(t_7695, t_7698);
+            boolean t_7703 = q__929.toSql().toString().equals("SELECT * FROM users LEFT JOIN profiles ON users.id = profiles.user_id");
+            Supplier<String> fn__7693 = () -> "left join";
+            test_64.assert_(t_7703, fn__7693);
         } finally {
             test_64.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void chainedJoins__1268() {
+    @org.junit.jupiter.api.Test public void rightJoinProducesRightJoin__1418() {
         Test test_65 = new Test();
         try {
-            SafeIdentifier t_6231 = SrcTest.sid__400("users");
-            SafeIdentifier t_6232 = SrcTest.sid__400("orders");
-            SqlBuilder t_6233 = new SqlBuilder();
-            t_6233.appendSafe("users.id = orders.user_id");
-            SqlFragment t_6235 = t_6233.getAccumulated();
-            Query t_6236 = SrcGlobal.from(t_6231).innerJoin(t_6232, t_6235);
-            SafeIdentifier t_6237 = SrcTest.sid__400("profiles");
-            SqlBuilder t_6238 = new SqlBuilder();
-            t_6238.appendSafe("users.id = profiles.user_id");
-            Query q__840 = t_6236.leftJoin(t_6237, t_6238.getAccumulated());
-            boolean t_6245 = q__840.toSql().toString().equals("SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id LEFT JOIN profiles ON users.id = profiles.user_id");
-            Supplier<String> fn__6230 = () -> "chained joins";
-            test_65.assert_(t_6245, fn__6230);
+            SafeIdentifier t_7682 = SrcTest.sid__443("orders");
+            SafeIdentifier t_7683 = SrcTest.sid__443("users");
+            SqlBuilder t_7684 = new SqlBuilder();
+            t_7684.appendSafe("orders.user_id = users.id");
+            SqlFragment t_7686 = t_7684.getAccumulated();
+            Query q__931 = SrcGlobal.from(t_7682).rightJoin(t_7683, t_7686);
+            boolean t_7691 = q__931.toSql().toString().equals("SELECT * FROM orders RIGHT JOIN users ON orders.user_id = users.id");
+            Supplier<String> fn__7681 = () -> "right join";
+            test_65.assert_(t_7691, fn__7681);
         } finally {
             test_65.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void joinWithWhereAndOrderBy__1271() {
+    @org.junit.jupiter.api.Test public void fullJoinProducesFullOuterJoin__1420() {
         Test test_66 = new Test();
         try {
-            SafeIdentifier t_6212 = SrcTest.sid__400("users");
-            SafeIdentifier t_6213 = SrcTest.sid__400("orders");
-            SqlBuilder t_6214 = new SqlBuilder();
-            t_6214.appendSafe("users.id = orders.user_id");
-            SqlFragment t_6216 = t_6214.getAccumulated();
-            Query t_6217 = SrcGlobal.from(t_6212).innerJoin(t_6213, t_6216);
-            SqlBuilder t_6218 = new SqlBuilder();
-            t_6218.appendSafe("orders.total > ");
-            t_6218.appendInt32(100);
-            Query t_3293;
-            t_3293 = t_6217.where(t_6218.getAccumulated()).orderBy(SrcTest.sid__400("name"), true).limit(10);
-            Query q__842 = t_3293;
-            boolean t_6228 = q__842.toSql().toString().equals("SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id WHERE orders.total > 100 ORDER BY name ASC LIMIT 10");
-            Supplier<String> fn__6211 = () -> "join with where/order/limit";
-            test_66.assert_(t_6228, fn__6211);
+            SafeIdentifier t_7670 = SrcTest.sid__443("users");
+            SafeIdentifier t_7671 = SrcTest.sid__443("orders");
+            SqlBuilder t_7672 = new SqlBuilder();
+            t_7672.appendSafe("users.id = orders.user_id");
+            SqlFragment t_7674 = t_7672.getAccumulated();
+            Query q__933 = SrcGlobal.from(t_7670).fullJoin(t_7671, t_7674);
+            boolean t_7679 = q__933.toSql().toString().equals("SELECT * FROM users FULL OUTER JOIN orders ON users.id = orders.user_id");
+            Supplier<String> fn__7669 = () -> "full join";
+            test_66.assert_(t_7679, fn__7669);
         } finally {
             test_66.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void colHelperProducesQualifiedReference__1274() {
+    @org.junit.jupiter.api.Test public void chainedJoins__1422() {
         Test test_67 = new Test();
         try {
-            SqlFragment c__844 = SrcGlobal.col(SrcTest.sid__400("users"), SrcTest.sid__400("id"));
-            boolean t_6209 = c__844.toString().equals("users.id");
-            Supplier<String> fn__6203 = () -> "col helper";
-            test_67.assert_(t_6209, fn__6203);
+            SafeIdentifier t_7653 = SrcTest.sid__443("users");
+            SafeIdentifier t_7654 = SrcTest.sid__443("orders");
+            SqlBuilder t_7655 = new SqlBuilder();
+            t_7655.appendSafe("users.id = orders.user_id");
+            SqlFragment t_7657 = t_7655.getAccumulated();
+            Query t_7658 = SrcGlobal.from(t_7653).innerJoin(t_7654, t_7657);
+            SafeIdentifier t_7659 = SrcTest.sid__443("profiles");
+            SqlBuilder t_7660 = new SqlBuilder();
+            t_7660.appendSafe("users.id = profiles.user_id");
+            Query q__935 = t_7658.leftJoin(t_7659, t_7660.getAccumulated());
+            boolean t_7667 = q__935.toSql().toString().equals("SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id LEFT JOIN profiles ON users.id = profiles.user_id");
+            Supplier<String> fn__7652 = () -> "chained joins";
+            test_67.assert_(t_7667, fn__7652);
         } finally {
             test_67.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void joinWithColHelper__1275() {
+    @org.junit.jupiter.api.Test public void joinWithWhereAndOrderBy__1425() {
         Test test_68 = new Test();
         try {
-            SqlFragment onCond__846 = SrcGlobal.col(SrcTest.sid__400("users"), SrcTest.sid__400("id"));
-            SqlBuilder b__847 = new SqlBuilder();
-            b__847.appendFragment(onCond__846);
-            b__847.appendSafe(" = ");
-            b__847.appendFragment(SrcGlobal.col(SrcTest.sid__400("orders"), SrcTest.sid__400("user_id")));
-            SafeIdentifier t_6194 = SrcTest.sid__400("users");
-            SafeIdentifier t_6195 = SrcTest.sid__400("orders");
-            SqlFragment t_6196 = b__847.getAccumulated();
-            Query q__848 = SrcGlobal.from(t_6194).innerJoin(t_6195, t_6196);
-            boolean t_6201 = q__848.toSql().toString().equals("SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id");
-            Supplier<String> fn__6183 = () -> "join with col";
-            test_68.assert_(t_6201, fn__6183);
+            SafeIdentifier t_7634 = SrcTest.sid__443("users");
+            SafeIdentifier t_7635 = SrcTest.sid__443("orders");
+            SqlBuilder t_7636 = new SqlBuilder();
+            t_7636.appendSafe("users.id = orders.user_id");
+            SqlFragment t_7638 = t_7636.getAccumulated();
+            Query t_7639 = SrcGlobal.from(t_7634).innerJoin(t_7635, t_7638);
+            SqlBuilder t_7640 = new SqlBuilder();
+            t_7640.appendSafe("orders.total > ");
+            t_7640.appendInt32(100);
+            Query t_3992;
+            t_3992 = t_7639.where(t_7640.getAccumulated()).orderBy(SrcTest.sid__443("name"), true).limit(10);
+            Query q__937 = t_3992;
+            boolean t_7650 = q__937.toSql().toString().equals("SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id WHERE orders.total > 100 ORDER BY name ASC LIMIT 10");
+            Supplier<String> fn__7633 = () -> "join with where/order/limit";
+            test_68.assert_(t_7650, fn__7633);
         } finally {
             test_68.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void orWhereBasic__1276() {
+    @org.junit.jupiter.api.Test public void colHelperProducesQualifiedReference__1428() {
         Test test_69 = new Test();
         try {
-            SafeIdentifier t_6172 = SrcTest.sid__400("users");
-            SqlBuilder t_6173 = new SqlBuilder();
-            t_6173.appendSafe("status = ");
-            t_6173.appendString("active");
-            SqlFragment t_6176 = t_6173.getAccumulated();
-            Query q__850 = SrcGlobal.from(t_6172).orWhere(t_6176);
-            boolean t_6181 = q__850.toSql().toString().equals("SELECT * FROM users WHERE status = 'active'");
-            Supplier<String> fn__6171 = () -> "orWhere basic";
-            test_69.assert_(t_6181, fn__6171);
+            SqlFragment c__939 = SrcGlobal.col(SrcTest.sid__443("users"), SrcTest.sid__443("id"));
+            boolean t_7631 = c__939.toString().equals("users.id");
+            Supplier<String> fn__7625 = () -> "col helper";
+            test_69.assert_(t_7631, fn__7625);
         } finally {
             test_69.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereThenOrWhere__1278() {
+    @org.junit.jupiter.api.Test public void joinWithColHelper__1429() {
         Test test_70 = new Test();
         try {
-            SafeIdentifier t_6155 = SrcTest.sid__400("users");
-            SqlBuilder t_6156 = new SqlBuilder();
-            t_6156.appendSafe("age > ");
-            t_6156.appendInt32(18);
-            SqlFragment t_6159 = t_6156.getAccumulated();
-            Query t_6160 = SrcGlobal.from(t_6155).where(t_6159);
-            SqlBuilder t_6161 = new SqlBuilder();
-            t_6161.appendSafe("vip = ");
-            t_6161.appendBoolean(true);
-            Query q__852 = t_6160.orWhere(t_6161.getAccumulated());
-            boolean t_6169 = q__852.toSql().toString().equals("SELECT * FROM users WHERE age > 18 OR vip = TRUE");
-            Supplier<String> fn__6154 = () -> "where then orWhere";
-            test_70.assert_(t_6169, fn__6154);
+            SqlFragment onCond__941 = SrcGlobal.col(SrcTest.sid__443("users"), SrcTest.sid__443("id"));
+            SqlBuilder b__942 = new SqlBuilder();
+            b__942.appendFragment(onCond__941);
+            b__942.appendSafe(" = ");
+            b__942.appendFragment(SrcGlobal.col(SrcTest.sid__443("orders"), SrcTest.sid__443("user_id")));
+            SafeIdentifier t_7616 = SrcTest.sid__443("users");
+            SafeIdentifier t_7617 = SrcTest.sid__443("orders");
+            SqlFragment t_7618 = b__942.getAccumulated();
+            Query q__943 = SrcGlobal.from(t_7616).innerJoin(t_7617, t_7618);
+            boolean t_7623 = q__943.toSql().toString().equals("SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id");
+            Supplier<String> fn__7605 = () -> "join with col";
+            test_70.assert_(t_7623, fn__7605);
         } finally {
             test_70.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void multipleOrWhere__1281() {
+    @org.junit.jupiter.api.Test public void orWhereBasic__1430() {
         Test test_71 = new Test();
         try {
-            SafeIdentifier t_6133 = SrcTest.sid__400("users");
-            SqlBuilder t_6134 = new SqlBuilder();
-            t_6134.appendSafe("active = ");
-            t_6134.appendBoolean(true);
-            SqlFragment t_6137 = t_6134.getAccumulated();
-            Query t_6138 = SrcGlobal.from(t_6133).where(t_6137);
-            SqlBuilder t_6139 = new SqlBuilder();
-            t_6139.appendSafe("role = ");
-            t_6139.appendString("admin");
-            Query t_6143 = t_6138.orWhere(t_6139.getAccumulated());
-            SqlBuilder t_6144 = new SqlBuilder();
-            t_6144.appendSafe("role = ");
-            t_6144.appendString("moderator");
-            Query q__854 = t_6143.orWhere(t_6144.getAccumulated());
-            boolean t_6152 = q__854.toSql().toString().equals("SELECT * FROM users WHERE active = TRUE OR role = 'admin' OR role = 'moderator'");
-            Supplier<String> fn__6132 = () -> "multiple orWhere";
-            test_71.assert_(t_6152, fn__6132);
+            SafeIdentifier t_7594 = SrcTest.sid__443("users");
+            SqlBuilder t_7595 = new SqlBuilder();
+            t_7595.appendSafe("status = ");
+            t_7595.appendString("active");
+            SqlFragment t_7598 = t_7595.getAccumulated();
+            Query q__945 = SrcGlobal.from(t_7594).orWhere(t_7598);
+            boolean t_7603 = q__945.toSql().toString().equals("SELECT * FROM users WHERE status = 'active'");
+            Supplier<String> fn__7593 = () -> "orWhere basic";
+            test_71.assert_(t_7603, fn__7593);
         } finally {
             test_71.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void mixedWhereAndOrWhere__1285() {
+    @org.junit.jupiter.api.Test public void whereThenOrWhere__1432() {
         Test test_72 = new Test();
         try {
-            SafeIdentifier t_6111 = SrcTest.sid__400("users");
-            SqlBuilder t_6112 = new SqlBuilder();
-            t_6112.appendSafe("age > ");
-            t_6112.appendInt32(18);
-            SqlFragment t_6115 = t_6112.getAccumulated();
-            Query t_6116 = SrcGlobal.from(t_6111).where(t_6115);
-            SqlBuilder t_6117 = new SqlBuilder();
-            t_6117.appendSafe("active = ");
-            t_6117.appendBoolean(true);
-            Query t_6121 = t_6116.where(t_6117.getAccumulated());
-            SqlBuilder t_6122 = new SqlBuilder();
-            t_6122.appendSafe("vip = ");
-            t_6122.appendBoolean(true);
-            Query q__856 = t_6121.orWhere(t_6122.getAccumulated());
-            boolean t_6130 = q__856.toSql().toString().equals("SELECT * FROM users WHERE age > 18 AND active = TRUE OR vip = TRUE");
-            Supplier<String> fn__6110 = () -> "mixed where and orWhere";
-            test_72.assert_(t_6130, fn__6110);
+            SafeIdentifier t_7577 = SrcTest.sid__443("users");
+            SqlBuilder t_7578 = new SqlBuilder();
+            t_7578.appendSafe("age > ");
+            t_7578.appendInt32(18);
+            SqlFragment t_7581 = t_7578.getAccumulated();
+            Query t_7582 = SrcGlobal.from(t_7577).where(t_7581);
+            SqlBuilder t_7583 = new SqlBuilder();
+            t_7583.appendSafe("vip = ");
+            t_7583.appendBoolean(true);
+            Query q__947 = t_7582.orWhere(t_7583.getAccumulated());
+            boolean t_7591 = q__947.toSql().toString().equals("SELECT * FROM users WHERE age > 18 OR vip = TRUE");
+            Supplier<String> fn__7576 = () -> "where then orWhere";
+            test_72.assert_(t_7591, fn__7576);
         } finally {
             test_72.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereNull__1289() {
+    @org.junit.jupiter.api.Test public void multipleOrWhere__1435() {
         Test test_73 = new Test();
         try {
-            SafeIdentifier t_6102 = SrcTest.sid__400("users");
-            SafeIdentifier t_6103 = SrcTest.sid__400("deleted_at");
-            Query q__858 = SrcGlobal.from(t_6102).whereNull(t_6103);
-            boolean t_6108 = q__858.toSql().toString().equals("SELECT * FROM users WHERE deleted_at IS NULL");
-            Supplier<String> fn__6101 = () -> "whereNull";
-            test_73.assert_(t_6108, fn__6101);
+            SafeIdentifier t_7555 = SrcTest.sid__443("users");
+            SqlBuilder t_7556 = new SqlBuilder();
+            t_7556.appendSafe("active = ");
+            t_7556.appendBoolean(true);
+            SqlFragment t_7559 = t_7556.getAccumulated();
+            Query t_7560 = SrcGlobal.from(t_7555).where(t_7559);
+            SqlBuilder t_7561 = new SqlBuilder();
+            t_7561.appendSafe("role = ");
+            t_7561.appendString("admin");
+            Query t_7565 = t_7560.orWhere(t_7561.getAccumulated());
+            SqlBuilder t_7566 = new SqlBuilder();
+            t_7566.appendSafe("role = ");
+            t_7566.appendString("moderator");
+            Query q__949 = t_7565.orWhere(t_7566.getAccumulated());
+            boolean t_7574 = q__949.toSql().toString().equals("SELECT * FROM users WHERE active = TRUE OR role = 'admin' OR role = 'moderator'");
+            Supplier<String> fn__7554 = () -> "multiple orWhere";
+            test_73.assert_(t_7574, fn__7554);
         } finally {
             test_73.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereNotNull__1290() {
+    @org.junit.jupiter.api.Test public void mixedWhereAndOrWhere__1439() {
         Test test_74 = new Test();
         try {
-            SafeIdentifier t_6093 = SrcTest.sid__400("users");
-            SafeIdentifier t_6094 = SrcTest.sid__400("email");
-            Query q__860 = SrcGlobal.from(t_6093).whereNotNull(t_6094);
-            boolean t_6099 = q__860.toSql().toString().equals("SELECT * FROM users WHERE email IS NOT NULL");
-            Supplier<String> fn__6092 = () -> "whereNotNull";
-            test_74.assert_(t_6099, fn__6092);
+            SafeIdentifier t_7533 = SrcTest.sid__443("users");
+            SqlBuilder t_7534 = new SqlBuilder();
+            t_7534.appendSafe("age > ");
+            t_7534.appendInt32(18);
+            SqlFragment t_7537 = t_7534.getAccumulated();
+            Query t_7538 = SrcGlobal.from(t_7533).where(t_7537);
+            SqlBuilder t_7539 = new SqlBuilder();
+            t_7539.appendSafe("active = ");
+            t_7539.appendBoolean(true);
+            Query t_7543 = t_7538.where(t_7539.getAccumulated());
+            SqlBuilder t_7544 = new SqlBuilder();
+            t_7544.appendSafe("vip = ");
+            t_7544.appendBoolean(true);
+            Query q__951 = t_7543.orWhere(t_7544.getAccumulated());
+            boolean t_7552 = q__951.toSql().toString().equals("SELECT * FROM users WHERE age > 18 AND active = TRUE OR vip = TRUE");
+            Supplier<String> fn__7532 = () -> "mixed where and orWhere";
+            test_74.assert_(t_7552, fn__7532);
         } finally {
             test_74.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereNullChainedWithWhere__1291() {
+    @org.junit.jupiter.api.Test public void whereNull__1443() {
         Test test_75 = new Test();
         try {
-            SafeIdentifier t_6079 = SrcTest.sid__400("users");
-            SqlBuilder t_6080 = new SqlBuilder();
-            t_6080.appendSafe("active = ");
-            t_6080.appendBoolean(true);
-            SqlFragment t_6083 = t_6080.getAccumulated();
-            Query q__862 = SrcGlobal.from(t_6079).where(t_6083).whereNull(SrcTest.sid__400("deleted_at"));
-            boolean t_6090 = q__862.toSql().toString().equals("SELECT * FROM users WHERE active = TRUE AND deleted_at IS NULL");
-            Supplier<String> fn__6078 = () -> "whereNull chained";
-            test_75.assert_(t_6090, fn__6078);
+            SafeIdentifier t_7524 = SrcTest.sid__443("users");
+            SafeIdentifier t_7525 = SrcTest.sid__443("deleted_at");
+            Query q__953 = SrcGlobal.from(t_7524).whereNull(t_7525);
+            boolean t_7530 = q__953.toSql().toString().equals("SELECT * FROM users WHERE deleted_at IS NULL");
+            Supplier<String> fn__7523 = () -> "whereNull";
+            test_75.assert_(t_7530, fn__7523);
         } finally {
             test_75.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereNotNullChainedWithOrWhere__1293() {
+    @org.junit.jupiter.api.Test public void whereNotNull__1444() {
         Test test_76 = new Test();
         try {
-            SafeIdentifier t_6065 = SrcTest.sid__400("users");
-            SafeIdentifier t_6066 = SrcTest.sid__400("deleted_at");
-            Query t_6067 = SrcGlobal.from(t_6065).whereNull(t_6066);
-            SqlBuilder t_6068 = new SqlBuilder();
-            t_6068.appendSafe("role = ");
-            t_6068.appendString("admin");
-            Query q__864 = t_6067.orWhere(t_6068.getAccumulated());
-            boolean t_6076 = q__864.toSql().toString().equals("SELECT * FROM users WHERE deleted_at IS NULL OR role = 'admin'");
-            Supplier<String> fn__6064 = () -> "whereNotNull with orWhere";
-            test_76.assert_(t_6076, fn__6064);
+            SafeIdentifier t_7515 = SrcTest.sid__443("users");
+            SafeIdentifier t_7516 = SrcTest.sid__443("email");
+            Query q__955 = SrcGlobal.from(t_7515).whereNotNull(t_7516);
+            boolean t_7521 = q__955.toSql().toString().equals("SELECT * FROM users WHERE email IS NOT NULL");
+            Supplier<String> fn__7514 = () -> "whereNotNull";
+            test_76.assert_(t_7521, fn__7514);
         } finally {
             test_76.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereInWithIntValues__1295() {
+    @org.junit.jupiter.api.Test public void whereNullChainedWithWhere__1445() {
         Test test_77 = new Test();
         try {
-            SafeIdentifier t_6053 = SrcTest.sid__400("users");
-            SafeIdentifier t_6054 = SrcTest.sid__400("id");
-            SqlInt32 t_6055 = new SqlInt32(1);
-            SqlInt32 t_6056 = new SqlInt32(2);
-            SqlInt32 t_6057 = new SqlInt32(3);
-            Query q__866 = SrcGlobal.from(t_6053).whereIn(t_6054, List.of(t_6055, t_6056, t_6057));
-            boolean t_6062 = q__866.toSql().toString().equals("SELECT * FROM users WHERE id IN (1, 2, 3)");
-            Supplier<String> fn__6052 = () -> "whereIn ints";
-            test_77.assert_(t_6062, fn__6052);
+            SafeIdentifier t_7501 = SrcTest.sid__443("users");
+            SqlBuilder t_7502 = new SqlBuilder();
+            t_7502.appendSafe("active = ");
+            t_7502.appendBoolean(true);
+            SqlFragment t_7505 = t_7502.getAccumulated();
+            Query q__957 = SrcGlobal.from(t_7501).where(t_7505).whereNull(SrcTest.sid__443("deleted_at"));
+            boolean t_7512 = q__957.toSql().toString().equals("SELECT * FROM users WHERE active = TRUE AND deleted_at IS NULL");
+            Supplier<String> fn__7500 = () -> "whereNull chained";
+            test_77.assert_(t_7512, fn__7500);
         } finally {
             test_77.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereInWithStringValuesEscaping__1296() {
+    @org.junit.jupiter.api.Test public void whereNotNullChainedWithOrWhere__1447() {
         Test test_78 = new Test();
         try {
-            SafeIdentifier t_6042 = SrcTest.sid__400("users");
-            SafeIdentifier t_6043 = SrcTest.sid__400("name");
-            SqlString t_6044 = new SqlString("Alice");
-            SqlString t_6045 = new SqlString("Bob's");
-            Query q__868 = SrcGlobal.from(t_6042).whereIn(t_6043, List.of(t_6044, t_6045));
-            boolean t_6050 = q__868.toSql().toString().equals("SELECT * FROM users WHERE name IN ('Alice', 'Bob''s')");
-            Supplier<String> fn__6041 = () -> "whereIn strings";
-            test_78.assert_(t_6050, fn__6041);
+            SafeIdentifier t_7487 = SrcTest.sid__443("users");
+            SafeIdentifier t_7488 = SrcTest.sid__443("deleted_at");
+            Query t_7489 = SrcGlobal.from(t_7487).whereNull(t_7488);
+            SqlBuilder t_7490 = new SqlBuilder();
+            t_7490.appendSafe("role = ");
+            t_7490.appendString("admin");
+            Query q__959 = t_7489.orWhere(t_7490.getAccumulated());
+            boolean t_7498 = q__959.toSql().toString().equals("SELECT * FROM users WHERE deleted_at IS NULL OR role = 'admin'");
+            Supplier<String> fn__7486 = () -> "whereNotNull with orWhere";
+            test_78.assert_(t_7498, fn__7486);
         } finally {
             test_78.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereInWithEmptyListProduces1_0__1297() {
+    @org.junit.jupiter.api.Test public void whereInWithIntValues__1449() {
         Test test_79 = new Test();
         try {
-            SafeIdentifier t_6033 = SrcTest.sid__400("users");
-            SafeIdentifier t_6034 = SrcTest.sid__400("id");
-            Query q__870 = SrcGlobal.from(t_6033).whereIn(t_6034, List.of());
-            boolean t_6039 = q__870.toSql().toString().equals("SELECT * FROM users WHERE 1 = 0");
-            Supplier<String> fn__6032 = () -> "whereIn empty";
-            test_79.assert_(t_6039, fn__6032);
+            SafeIdentifier t_7475 = SrcTest.sid__443("users");
+            SafeIdentifier t_7476 = SrcTest.sid__443("id");
+            SqlInt32 t_7477 = new SqlInt32(1);
+            SqlInt32 t_7478 = new SqlInt32(2);
+            SqlInt32 t_7479 = new SqlInt32(3);
+            Query q__961 = SrcGlobal.from(t_7475).whereIn(t_7476, List.of(t_7477, t_7478, t_7479));
+            boolean t_7484 = q__961.toSql().toString().equals("SELECT * FROM users WHERE id IN (1, 2, 3)");
+            Supplier<String> fn__7474 = () -> "whereIn ints";
+            test_79.assert_(t_7484, fn__7474);
         } finally {
             test_79.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereInChained__1298() {
+    @org.junit.jupiter.api.Test public void whereInWithStringValuesEscaping__1450() {
         Test test_80 = new Test();
         try {
-            SafeIdentifier t_6017 = SrcTest.sid__400("users");
-            SqlBuilder t_6018 = new SqlBuilder();
-            t_6018.appendSafe("active = ");
-            t_6018.appendBoolean(true);
-            SqlFragment t_6021 = t_6018.getAccumulated();
-            Query q__872 = SrcGlobal.from(t_6017).where(t_6021).whereIn(SrcTest.sid__400("role"), List.of(new SqlString("admin"), new SqlString("user")));
-            boolean t_6030 = q__872.toSql().toString().equals("SELECT * FROM users WHERE active = TRUE AND role IN ('admin', 'user')");
-            Supplier<String> fn__6016 = () -> "whereIn chained";
-            test_80.assert_(t_6030, fn__6016);
+            SafeIdentifier t_7464 = SrcTest.sid__443("users");
+            SafeIdentifier t_7465 = SrcTest.sid__443("name");
+            SqlString t_7466 = new SqlString("Alice");
+            SqlString t_7467 = new SqlString("Bob's");
+            Query q__963 = SrcGlobal.from(t_7464).whereIn(t_7465, List.of(t_7466, t_7467));
+            boolean t_7472 = q__963.toSql().toString().equals("SELECT * FROM users WHERE name IN ('Alice', 'Bob''s')");
+            Supplier<String> fn__7463 = () -> "whereIn strings";
+            test_80.assert_(t_7472, fn__7463);
         } finally {
             test_80.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereInSingleElement__1300() {
+    @org.junit.jupiter.api.Test public void whereInWithEmptyListProduces1_0__1451() {
         Test test_81 = new Test();
         try {
-            SafeIdentifier t_6007 = SrcTest.sid__400("users");
-            SafeIdentifier t_6008 = SrcTest.sid__400("id");
-            SqlInt32 t_6009 = new SqlInt32(42);
-            Query q__874 = SrcGlobal.from(t_6007).whereIn(t_6008, List.of(t_6009));
-            boolean t_6014 = q__874.toSql().toString().equals("SELECT * FROM users WHERE id IN (42)");
-            Supplier<String> fn__6006 = () -> "whereIn single";
-            test_81.assert_(t_6014, fn__6006);
+            SafeIdentifier t_7455 = SrcTest.sid__443("users");
+            SafeIdentifier t_7456 = SrcTest.sid__443("id");
+            Query q__965 = SrcGlobal.from(t_7455).whereIn(t_7456, List.of());
+            boolean t_7461 = q__965.toSql().toString().equals("SELECT * FROM users WHERE 1 = 0");
+            Supplier<String> fn__7454 = () -> "whereIn empty";
+            test_81.assert_(t_7461, fn__7454);
         } finally {
             test_81.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereNotBasic__1301() {
+    @org.junit.jupiter.api.Test public void whereInChained__1452() {
         Test test_82 = new Test();
         try {
-            SafeIdentifier t_5995 = SrcTest.sid__400("users");
-            SqlBuilder t_5996 = new SqlBuilder();
-            t_5996.appendSafe("active = ");
-            t_5996.appendBoolean(true);
-            SqlFragment t_5999 = t_5996.getAccumulated();
-            Query q__876 = SrcGlobal.from(t_5995).whereNot(t_5999);
-            boolean t_6004 = q__876.toSql().toString().equals("SELECT * FROM users WHERE NOT (active = TRUE)");
-            Supplier<String> fn__5994 = () -> "whereNot";
-            test_82.assert_(t_6004, fn__5994);
+            SafeIdentifier t_7439 = SrcTest.sid__443("users");
+            SqlBuilder t_7440 = new SqlBuilder();
+            t_7440.appendSafe("active = ");
+            t_7440.appendBoolean(true);
+            SqlFragment t_7443 = t_7440.getAccumulated();
+            Query q__967 = SrcGlobal.from(t_7439).where(t_7443).whereIn(SrcTest.sid__443("role"), List.of(new SqlString("admin"), new SqlString("user")));
+            boolean t_7452 = q__967.toSql().toString().equals("SELECT * FROM users WHERE active = TRUE AND role IN ('admin', 'user')");
+            Supplier<String> fn__7438 = () -> "whereIn chained";
+            test_82.assert_(t_7452, fn__7438);
         } finally {
             test_82.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereNotChained__1303() {
+    @org.junit.jupiter.api.Test public void whereInSingleElement__1454() {
         Test test_83 = new Test();
         try {
-            SafeIdentifier t_5978 = SrcTest.sid__400("users");
-            SqlBuilder t_5979 = new SqlBuilder();
-            t_5979.appendSafe("age > ");
-            t_5979.appendInt32(18);
-            SqlFragment t_5982 = t_5979.getAccumulated();
-            Query t_5983 = SrcGlobal.from(t_5978).where(t_5982);
-            SqlBuilder t_5984 = new SqlBuilder();
-            t_5984.appendSafe("banned = ");
-            t_5984.appendBoolean(true);
-            Query q__878 = t_5983.whereNot(t_5984.getAccumulated());
-            boolean t_5992 = q__878.toSql().toString().equals("SELECT * FROM users WHERE age > 18 AND NOT (banned = TRUE)");
-            Supplier<String> fn__5977 = () -> "whereNot chained";
-            test_83.assert_(t_5992, fn__5977);
+            SafeIdentifier t_7429 = SrcTest.sid__443("users");
+            SafeIdentifier t_7430 = SrcTest.sid__443("id");
+            SqlInt32 t_7431 = new SqlInt32(42);
+            Query q__969 = SrcGlobal.from(t_7429).whereIn(t_7430, List.of(t_7431));
+            boolean t_7436 = q__969.toSql().toString().equals("SELECT * FROM users WHERE id IN (42)");
+            Supplier<String> fn__7428 = () -> "whereIn single";
+            test_83.assert_(t_7436, fn__7428);
         } finally {
             test_83.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereBetweenIntegers__1306() {
+    @org.junit.jupiter.api.Test public void whereNotBasic__1455() {
         Test test_84 = new Test();
         try {
-            SafeIdentifier t_5967 = SrcTest.sid__400("users");
-            SafeIdentifier t_5968 = SrcTest.sid__400("age");
-            SqlInt32 t_5969 = new SqlInt32(18);
-            SqlInt32 t_5970 = new SqlInt32(65);
-            Query q__880 = SrcGlobal.from(t_5967).whereBetween(t_5968, t_5969, t_5970);
-            boolean t_5975 = q__880.toSql().toString().equals("SELECT * FROM users WHERE age BETWEEN 18 AND 65");
-            Supplier<String> fn__5966 = () -> "whereBetween ints";
-            test_84.assert_(t_5975, fn__5966);
+            SafeIdentifier t_7417 = SrcTest.sid__443("users");
+            SqlBuilder t_7418 = new SqlBuilder();
+            t_7418.appendSafe("active = ");
+            t_7418.appendBoolean(true);
+            SqlFragment t_7421 = t_7418.getAccumulated();
+            Query q__971 = SrcGlobal.from(t_7417).whereNot(t_7421);
+            boolean t_7426 = q__971.toSql().toString().equals("SELECT * FROM users WHERE NOT (active = TRUE)");
+            Supplier<String> fn__7416 = () -> "whereNot";
+            test_84.assert_(t_7426, fn__7416);
         } finally {
             test_84.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereBetweenChained__1307() {
+    @org.junit.jupiter.api.Test public void whereNotChained__1457() {
         Test test_85 = new Test();
         try {
-            SafeIdentifier t_5951 = SrcTest.sid__400("users");
-            SqlBuilder t_5952 = new SqlBuilder();
-            t_5952.appendSafe("active = ");
-            t_5952.appendBoolean(true);
-            SqlFragment t_5955 = t_5952.getAccumulated();
-            Query q__882 = SrcGlobal.from(t_5951).where(t_5955).whereBetween(SrcTest.sid__400("age"), new SqlInt32(21), new SqlInt32(30));
-            boolean t_5964 = q__882.toSql().toString().equals("SELECT * FROM users WHERE active = TRUE AND age BETWEEN 21 AND 30");
-            Supplier<String> fn__5950 = () -> "whereBetween chained";
-            test_85.assert_(t_5964, fn__5950);
+            SafeIdentifier t_7400 = SrcTest.sid__443("users");
+            SqlBuilder t_7401 = new SqlBuilder();
+            t_7401.appendSafe("age > ");
+            t_7401.appendInt32(18);
+            SqlFragment t_7404 = t_7401.getAccumulated();
+            Query t_7405 = SrcGlobal.from(t_7400).where(t_7404);
+            SqlBuilder t_7406 = new SqlBuilder();
+            t_7406.appendSafe("banned = ");
+            t_7406.appendBoolean(true);
+            Query q__973 = t_7405.whereNot(t_7406.getAccumulated());
+            boolean t_7414 = q__973.toSql().toString().equals("SELECT * FROM users WHERE age > 18 AND NOT (banned = TRUE)");
+            Supplier<String> fn__7399 = () -> "whereNot chained";
+            test_85.assert_(t_7414, fn__7399);
         } finally {
             test_85.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereLikeBasic__1309() {
+    @org.junit.jupiter.api.Test public void whereBetweenIntegers__1460() {
         Test test_86 = new Test();
         try {
-            SafeIdentifier t_5942 = SrcTest.sid__400("users");
-            SafeIdentifier t_5943 = SrcTest.sid__400("name");
-            Query q__884 = SrcGlobal.from(t_5942).whereLike(t_5943, "John%");
-            boolean t_5948 = q__884.toSql().toString().equals("SELECT * FROM users WHERE name LIKE 'John%'");
-            Supplier<String> fn__5941 = () -> "whereLike";
-            test_86.assert_(t_5948, fn__5941);
+            SafeIdentifier t_7389 = SrcTest.sid__443("users");
+            SafeIdentifier t_7390 = SrcTest.sid__443("age");
+            SqlInt32 t_7391 = new SqlInt32(18);
+            SqlInt32 t_7392 = new SqlInt32(65);
+            Query q__975 = SrcGlobal.from(t_7389).whereBetween(t_7390, t_7391, t_7392);
+            boolean t_7397 = q__975.toSql().toString().equals("SELECT * FROM users WHERE age BETWEEN 18 AND 65");
+            Supplier<String> fn__7388 = () -> "whereBetween ints";
+            test_86.assert_(t_7397, fn__7388);
         } finally {
             test_86.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereIlikeBasic__1310() {
+    @org.junit.jupiter.api.Test public void whereBetweenChained__1461() {
         Test test_87 = new Test();
         try {
-            SafeIdentifier t_5933 = SrcTest.sid__400("users");
-            SafeIdentifier t_5934 = SrcTest.sid__400("email");
-            Query q__886 = SrcGlobal.from(t_5933).whereILike(t_5934, "%@gmail.com");
-            boolean t_5939 = q__886.toSql().toString().equals("SELECT * FROM users WHERE email ILIKE '%@gmail.com'");
-            Supplier<String> fn__5932 = () -> "whereILike";
-            test_87.assert_(t_5939, fn__5932);
+            SafeIdentifier t_7373 = SrcTest.sid__443("users");
+            SqlBuilder t_7374 = new SqlBuilder();
+            t_7374.appendSafe("active = ");
+            t_7374.appendBoolean(true);
+            SqlFragment t_7377 = t_7374.getAccumulated();
+            Query q__977 = SrcGlobal.from(t_7373).where(t_7377).whereBetween(SrcTest.sid__443("age"), new SqlInt32(21), new SqlInt32(30));
+            boolean t_7386 = q__977.toSql().toString().equals("SELECT * FROM users WHERE active = TRUE AND age BETWEEN 21 AND 30");
+            Supplier<String> fn__7372 = () -> "whereBetween chained";
+            test_87.assert_(t_7386, fn__7372);
         } finally {
             test_87.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereLikeWithInjectionAttempt__1311() {
+    @org.junit.jupiter.api.Test public void whereLikeBasic__1463() {
         Test test_88 = new Test();
         try {
-            SafeIdentifier t_5919 = SrcTest.sid__400("users");
-            SafeIdentifier t_5920 = SrcTest.sid__400("name");
-            Query q__888 = SrcGlobal.from(t_5919).whereLike(t_5920, "'; DROP TABLE users; --");
-            String s__889 = q__888.toSql().toString();
-            boolean t_5925 = s__889.indexOf("''") >= 0;
-            Supplier<String> fn__5918 = () -> "like injection escaped: " + s__889;
-            test_88.assert_(t_5925, fn__5918);
-            boolean t_5929 = s__889.indexOf("LIKE") >= 0;
-            Supplier<String> fn__5917 = () -> "like structure intact: " + s__889;
-            test_88.assert_(t_5929, fn__5917);
+            SafeIdentifier t_7364 = SrcTest.sid__443("users");
+            SafeIdentifier t_7365 = SrcTest.sid__443("name");
+            Query q__979 = SrcGlobal.from(t_7364).whereLike(t_7365, "John%");
+            boolean t_7370 = q__979.toSql().toString().equals("SELECT * FROM users WHERE name LIKE 'John%'");
+            Supplier<String> fn__7363 = () -> "whereLike";
+            test_88.assert_(t_7370, fn__7363);
         } finally {
             test_88.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void whereLikeWildcardPatterns__1312() {
+    @org.junit.jupiter.api.Test public void whereIlikeBasic__1464() {
         Test test_89 = new Test();
         try {
-            SafeIdentifier t_5909 = SrcTest.sid__400("users");
-            SafeIdentifier t_5910 = SrcTest.sid__400("name");
-            Query q__891 = SrcGlobal.from(t_5909).whereLike(t_5910, "%son%");
-            boolean t_5915 = q__891.toSql().toString().equals("SELECT * FROM users WHERE name LIKE '%son%'");
-            Supplier<String> fn__5908 = () -> "whereLike wildcard";
-            test_89.assert_(t_5915, fn__5908);
+            SafeIdentifier t_7355 = SrcTest.sid__443("users");
+            SafeIdentifier t_7356 = SrcTest.sid__443("email");
+            Query q__981 = SrcGlobal.from(t_7355).whereILike(t_7356, "%@gmail.com");
+            boolean t_7361 = q__981.toSql().toString().equals("SELECT * FROM users WHERE email ILIKE '%@gmail.com'");
+            Supplier<String> fn__7354 = () -> "whereILike";
+            test_89.assert_(t_7361, fn__7354);
         } finally {
             test_89.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void safeIdentifierAcceptsValidNames__1313() {
+    @org.junit.jupiter.api.Test public void whereLikeWithInjectionAttempt__1465() {
+        Test test_90 = new Test();
+        try {
+            SafeIdentifier t_7341 = SrcTest.sid__443("users");
+            SafeIdentifier t_7342 = SrcTest.sid__443("name");
+            Query q__983 = SrcGlobal.from(t_7341).whereLike(t_7342, "'; DROP TABLE users; --");
+            String s__984 = q__983.toSql().toString();
+            boolean t_7347 = s__984.indexOf("''") >= 0;
+            Supplier<String> fn__7340 = () -> "like injection escaped: " + s__984;
+            test_90.assert_(t_7347, fn__7340);
+            boolean t_7351 = s__984.indexOf("LIKE") >= 0;
+            Supplier<String> fn__7339 = () -> "like structure intact: " + s__984;
+            test_90.assert_(t_7351, fn__7339);
+        } finally {
+            test_90.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void whereLikeWildcardPatterns__1466() {
+        Test test_91 = new Test();
+        try {
+            SafeIdentifier t_7331 = SrcTest.sid__443("users");
+            SafeIdentifier t_7332 = SrcTest.sid__443("name");
+            Query q__986 = SrcGlobal.from(t_7331).whereLike(t_7332, "%son%");
+            boolean t_7337 = q__986.toSql().toString().equals("SELECT * FROM users WHERE name LIKE '%son%'");
+            Supplier<String> fn__7330 = () -> "whereLike wildcard";
+            test_91.assert_(t_7337, fn__7330);
+        } finally {
+            test_91.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void countAllProducesCount__1467() {
+        Test test_92 = new Test();
+        try {
+            SqlFragment f__988 = SrcGlobal.countAll();
+            boolean t_7328 = f__988.toString().equals("COUNT(*)");
+            Supplier<String> fn__7324 = () -> "countAll";
+            test_92.assert_(t_7328, fn__7324);
+        } finally {
+            test_92.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void countColProducesCountField__1468() {
+        Test test_93 = new Test();
+        try {
+            SqlFragment f__990 = SrcGlobal.countCol(SrcTest.sid__443("id"));
+            boolean t_7322 = f__990.toString().equals("COUNT(id)");
+            Supplier<String> fn__7317 = () -> "countCol";
+            test_93.assert_(t_7322, fn__7317);
+        } finally {
+            test_93.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void sumColProducesSumField__1469() {
+        Test test_94 = new Test();
+        try {
+            SqlFragment f__992 = SrcGlobal.sumCol(SrcTest.sid__443("amount"));
+            boolean t_7315 = f__992.toString().equals("SUM(amount)");
+            Supplier<String> fn__7310 = () -> "sumCol";
+            test_94.assert_(t_7315, fn__7310);
+        } finally {
+            test_94.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void avgColProducesAvgField__1470() {
+        Test test_95 = new Test();
+        try {
+            SqlFragment f__994 = SrcGlobal.avgCol(SrcTest.sid__443("price"));
+            boolean t_7308 = f__994.toString().equals("AVG(price)");
+            Supplier<String> fn__7303 = () -> "avgCol";
+            test_95.assert_(t_7308, fn__7303);
+        } finally {
+            test_95.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void minColProducesMinField__1471() {
         Test test_96 = new Test();
         try {
-            SafeIdentifier t_3023;
-            t_3023 = SrcGlobal.safeIdentifier("user_name");
-            SafeIdentifier id__929 = t_3023;
-            boolean t_5906 = id__929.getSqlValue().equals("user_name");
-            Supplier<String> fn__5903 = () -> "value should round-trip";
-            test_96.assert_(t_5906, fn__5903);
+            SqlFragment f__996 = SrcGlobal.minCol(SrcTest.sid__443("created_at"));
+            boolean t_7301 = f__996.toString().equals("MIN(created_at)");
+            Supplier<String> fn__7296 = () -> "minCol";
+            test_96.assert_(t_7301, fn__7296);
         } finally {
             test_96.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void safeIdentifierRejectsEmptyString__1314() {
+    @org.junit.jupiter.api.Test public void maxColProducesMaxField__1472() {
         Test test_97 = new Test();
         try {
-            boolean didBubble__931;
-            boolean didBubble_7271;
-            try {
-                SrcGlobal.safeIdentifier("");
-                didBubble_7271 = false;
-            } catch (RuntimeException ignored$11) {
-                didBubble_7271 = true;
-            }
-            didBubble__931 = didBubble_7271;
-            Supplier<String> fn__5900 = () -> "empty string should bubble";
-            test_97.assert_(didBubble__931, fn__5900);
+            SqlFragment f__998 = SrcGlobal.maxCol(SrcTest.sid__443("score"));
+            boolean t_7294 = f__998.toString().equals("MAX(score)");
+            Supplier<String> fn__7289 = () -> "maxCol";
+            test_97.assert_(t_7294, fn__7289);
         } finally {
             test_97.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void safeIdentifierRejectsLeadingDigit__1315() {
+    @org.junit.jupiter.api.Test public void selectExprWithAggregate__1473() {
         Test test_98 = new Test();
         try {
-            boolean didBubble__933;
-            boolean didBubble_7272;
-            try {
-                SrcGlobal.safeIdentifier("1col");
-                didBubble_7272 = false;
-            } catch (RuntimeException ignored$12) {
-                didBubble_7272 = true;
-            }
-            didBubble__933 = didBubble_7272;
-            Supplier<String> fn__5897 = () -> "leading digit should bubble";
-            test_98.assert_(didBubble__933, fn__5897);
+            SafeIdentifier t_7281 = SrcTest.sid__443("orders");
+            SqlFragment t_7282 = SrcGlobal.countAll();
+            Query q__1000 = SrcGlobal.from(t_7281).selectExpr(List.of(t_7282));
+            boolean t_7287 = q__1000.toSql().toString().equals("SELECT COUNT(*) FROM orders");
+            Supplier<String> fn__7280 = () -> "selectExpr count";
+            test_98.assert_(t_7287, fn__7280);
         } finally {
             test_98.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void safeIdentifierRejectsSqlMetacharacters__1316() {
+    @org.junit.jupiter.api.Test public void selectExprWithMultipleExpressions__1474() {
         Test test_99 = new Test();
         try {
-            List<String> cases__935 = List.of("name); DROP TABLE", "col'", "a b", "a-b", "a.b", "a;b");
-            Consumer<String> fn__5894 = c__936 -> {
-                boolean didBubble__937;
-                boolean didBubble_7273;
-                try {
-                    SrcGlobal.safeIdentifier(c__936);
-                    didBubble_7273 = false;
-                } catch (RuntimeException ignored$13) {
-                    didBubble_7273 = true;
-                }
-                didBubble__937 = didBubble_7273;
-                Supplier<String> fn__5891 = () -> "should reject: " + c__936;
-                test_99.assert_(didBubble__937, fn__5891);
-            };
-            cases__935.forEach(fn__5894);
+            SqlFragment nameFrag__1002 = SrcGlobal.col(SrcTest.sid__443("users"), SrcTest.sid__443("name"));
+            SafeIdentifier t_7272 = SrcTest.sid__443("users");
+            SqlFragment t_7273 = SrcGlobal.countAll();
+            Query q__1003 = SrcGlobal.from(t_7272).selectExpr(List.of(nameFrag__1002, t_7273));
+            boolean t_7278 = q__1003.toSql().toString().equals("SELECT users.name, COUNT(*) FROM users");
+            Supplier<String> fn__7268 = () -> "selectExpr multi";
+            test_99.assert_(t_7278, fn__7268);
         } finally {
             test_99.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void tableDefFieldLookupFound__1317() {
+    @org.junit.jupiter.api.Test public void selectExprOverridesSelectedFields__1475() {
         Test test_100 = new Test();
         try {
-            SafeIdentifier t_3000;
-            t_3000 = SrcGlobal.safeIdentifier("users");
-            SafeIdentifier t_3001 = t_3000;
-            SafeIdentifier t_3002;
-            t_3002 = SrcGlobal.safeIdentifier("name");
-            SafeIdentifier t_3003 = t_3002;
-            StringField t_5881 = new StringField();
-            FieldDef t_5882 = new FieldDef(t_3003, t_5881, false);
-            SafeIdentifier t_3006;
-            t_3006 = SrcGlobal.safeIdentifier("age");
-            SafeIdentifier t_3007 = t_3006;
-            IntField t_5883 = new IntField();
-            FieldDef t_5884 = new FieldDef(t_3007, t_5883, false);
-            TableDef td__939 = new TableDef(t_3001, List.of(t_5882, t_5884));
-            FieldDef t_3011;
-            t_3011 = td__939.field("age");
-            FieldDef f__940 = t_3011;
-            boolean t_5889 = f__940.getName().getSqlValue().equals("age");
-            Supplier<String> fn__5880 = () -> "should find age field";
-            test_100.assert_(t_5889, fn__5880);
+            SafeIdentifier t_7257 = SrcTest.sid__443("users");
+            SafeIdentifier t_7258 = SrcTest.sid__443("id");
+            SafeIdentifier t_7259 = SrcTest.sid__443("name");
+            Query q__1005 = SrcGlobal.from(t_7257).select(List.of(t_7258, t_7259)).selectExpr(List.of(SrcGlobal.countAll()));
+            boolean t_7266 = q__1005.toSql().toString().equals("SELECT COUNT(*) FROM users");
+            Supplier<String> fn__7256 = () -> "selectExpr overrides select";
+            test_100.assert_(t_7266, fn__7256);
         } finally {
             test_100.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void tableDefFieldLookupNotFoundBubbles__1318() {
+    @org.junit.jupiter.api.Test public void groupBySingleField__1476() {
         Test test_101 = new Test();
         try {
-            SafeIdentifier t_2991;
-            t_2991 = SrcGlobal.safeIdentifier("users");
-            SafeIdentifier t_2992 = t_2991;
-            SafeIdentifier t_2993;
-            t_2993 = SrcGlobal.safeIdentifier("name");
-            SafeIdentifier t_2994 = t_2993;
-            StringField t_5875 = new StringField();
-            FieldDef t_5876 = new FieldDef(t_2994, t_5875, false);
-            TableDef td__942 = new TableDef(t_2992, List.of(t_5876));
-            boolean didBubble__943;
-            boolean didBubble_7274;
-            try {
-                td__942.field("nonexistent");
-                didBubble_7274 = false;
-            } catch (RuntimeException ignored$14) {
-                didBubble_7274 = true;
-            }
-            didBubble__943 = didBubble_7274;
-            Supplier<String> fn__5874 = () -> "unknown field should bubble";
-            test_101.assert_(didBubble__943, fn__5874);
+            SafeIdentifier t_7243 = SrcTest.sid__443("orders");
+            SqlFragment t_7246 = SrcGlobal.col(SrcTest.sid__443("orders"), SrcTest.sid__443("status"));
+            SqlFragment t_7247 = SrcGlobal.countAll();
+            Query q__1007 = SrcGlobal.from(t_7243).selectExpr(List.of(t_7246, t_7247)).groupBy(SrcTest.sid__443("status"));
+            boolean t_7254 = q__1007.toSql().toString().equals("SELECT orders.status, COUNT(*) FROM orders GROUP BY status");
+            Supplier<String> fn__7242 = () -> "groupBy single";
+            test_101.assert_(t_7254, fn__7242);
         } finally {
             test_101.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void fieldDefNullableFlag__1319() {
+    @org.junit.jupiter.api.Test public void groupByMultipleFields__1477() {
         Test test_102 = new Test();
         try {
-            SafeIdentifier t_2979;
-            t_2979 = SrcGlobal.safeIdentifier("email");
-            SafeIdentifier t_2980 = t_2979;
-            StringField t_5863 = new StringField();
-            FieldDef required__945 = new FieldDef(t_2980, t_5863, false);
-            SafeIdentifier t_2983;
-            t_2983 = SrcGlobal.safeIdentifier("bio");
-            SafeIdentifier t_2984 = t_2983;
-            StringField t_5865 = new StringField();
-            FieldDef optional__946 = new FieldDef(t_2984, t_5865, true);
-            boolean t_5869 = !required__945.isNullable();
-            Supplier<String> fn__5862 = () -> "required field should not be nullable";
-            test_102.assert_(t_5869, fn__5862);
-            boolean t_5871 = optional__946.isNullable();
-            Supplier<String> fn__5861 = () -> "optional field should be nullable";
-            test_102.assert_(t_5871, fn__5861);
+            SafeIdentifier t_7232 = SrcTest.sid__443("orders");
+            SafeIdentifier t_7233 = SrcTest.sid__443("status");
+            Query q__1009 = SrcGlobal.from(t_7232).groupBy(t_7233).groupBy(SrcTest.sid__443("category"));
+            boolean t_7240 = q__1009.toSql().toString().equals("SELECT * FROM orders GROUP BY status, category");
+            Supplier<String> fn__7231 = () -> "groupBy multiple";
+            test_102.assert_(t_7240, fn__7231);
         } finally {
             test_102.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void stringEscaping__1320() {
+    @org.junit.jupiter.api.Test public void havingBasic__1478() {
+        Test test_103 = new Test();
+        try {
+            SafeIdentifier t_7213 = SrcTest.sid__443("orders");
+            SqlFragment t_7216 = SrcGlobal.col(SrcTest.sid__443("orders"), SrcTest.sid__443("status"));
+            SqlFragment t_7217 = SrcGlobal.countAll();
+            Query t_7220 = SrcGlobal.from(t_7213).selectExpr(List.of(t_7216, t_7217)).groupBy(SrcTest.sid__443("status"));
+            SqlBuilder t_7221 = new SqlBuilder();
+            t_7221.appendSafe("COUNT(*) > ");
+            t_7221.appendInt32(5);
+            Query q__1011 = t_7220.having(t_7221.getAccumulated());
+            boolean t_7229 = q__1011.toSql().toString().equals("SELECT orders.status, COUNT(*) FROM orders GROUP BY status HAVING COUNT(*) > 5");
+            Supplier<String> fn__7212 = () -> "having basic";
+            test_103.assert_(t_7229, fn__7212);
+        } finally {
+            test_103.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void orHaving__1480() {
+        Test test_104 = new Test();
+        try {
+            SafeIdentifier t_7194 = SrcTest.sid__443("orders");
+            SafeIdentifier t_7195 = SrcTest.sid__443("status");
+            Query t_7196 = SrcGlobal.from(t_7194).groupBy(t_7195);
+            SqlBuilder t_7197 = new SqlBuilder();
+            t_7197.appendSafe("COUNT(*) > ");
+            t_7197.appendInt32(5);
+            Query t_7201 = t_7196.having(t_7197.getAccumulated());
+            SqlBuilder t_7202 = new SqlBuilder();
+            t_7202.appendSafe("SUM(total) > ");
+            t_7202.appendInt32(1000);
+            Query q__1013 = t_7201.orHaving(t_7202.getAccumulated());
+            boolean t_7210 = q__1013.toSql().toString().equals("SELECT * FROM orders GROUP BY status HAVING COUNT(*) > 5 OR SUM(total) > 1000");
+            Supplier<String> fn__7193 = () -> "orHaving";
+            test_104.assert_(t_7210, fn__7193);
+        } finally {
+            test_104.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void distinctBasic__1483() {
+        Test test_105 = new Test();
+        try {
+            SafeIdentifier t_7184 = SrcTest.sid__443("users");
+            SafeIdentifier t_7185 = SrcTest.sid__443("name");
+            Query q__1015 = SrcGlobal.from(t_7184).select(List.of(t_7185)).distinct();
+            boolean t_7191 = q__1015.toSql().toString().equals("SELECT DISTINCT name FROM users");
+            Supplier<String> fn__7183 = () -> "distinct";
+            test_105.assert_(t_7191, fn__7183);
+        } finally {
+            test_105.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void distinctWithWhere__1484() {
         Test test_106 = new Test();
         try {
-            Function<String, String> build__1072 = name__1074 -> {
-                SqlBuilder t_5843 = new SqlBuilder();
-                t_5843.appendSafe("select * from hi where name = ");
-                t_5843.appendString(name__1074);
-                return t_5843.getAccumulated().toString();
-            };
-            Function<String, String> buildWrong__1073 = name__1076 -> "select * from hi where name = '" + name__1076 + "'";
-            String actual_1322 = build__1072.apply("world");
-            boolean t_5853 = actual_1322.equals("select * from hi where name = 'world'");
-            Supplier<String> fn__5850 = () -> "expected build(\"world\") == (" + "select * from hi where name = 'world'" + ") not (" + actual_1322 + ")";
-            test_106.assert_(t_5853, fn__5850);
-            String bobbyTables__1078 = "Robert'); drop table hi;--";
-            String actual_1324 = build__1072.apply("Robert'); drop table hi;--");
-            boolean t_5857 = actual_1324.equals("select * from hi where name = 'Robert''); drop table hi;--'");
-            Supplier<String> fn__5849 = () -> "expected build(bobbyTables) == (" + "select * from hi where name = 'Robert''); drop table hi;--'" + ") not (" + actual_1324 + ")";
-            test_106.assert_(t_5857, fn__5849);
-            Supplier<String> fn__5848 = () -> "expected buildWrong(bobbyTables) == (select * from hi where name = 'Robert'); drop table hi;--') not (select * from hi where name = 'Robert'); drop table hi;--')";
-            test_106.assert_(true, fn__5848);
+            SafeIdentifier t_7169 = SrcTest.sid__443("users");
+            SafeIdentifier t_7170 = SrcTest.sid__443("email");
+            Query t_7171 = SrcGlobal.from(t_7169).select(List.of(t_7170));
+            SqlBuilder t_7172 = new SqlBuilder();
+            t_7172.appendSafe("active = ");
+            t_7172.appendBoolean(true);
+            Query q__1017 = t_7171.where(t_7172.getAccumulated()).distinct();
+            boolean t_7181 = q__1017.toSql().toString().equals("SELECT DISTINCT email FROM users WHERE active = TRUE");
+            Supplier<String> fn__7168 = () -> "distinct with where";
+            test_106.assert_(t_7181, fn__7168);
         } finally {
             test_106.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void stringEdgeCases__1328() {
+    @org.junit.jupiter.api.Test public void countSqlBare__1486() {
         Test test_107 = new Test();
         try {
-            SqlBuilder t_5811 = new SqlBuilder();
-            t_5811.appendSafe("v = ");
-            t_5811.appendString("");
-            String actual_1329 = t_5811.getAccumulated().toString();
-            boolean t_5817 = actual_1329.equals("v = ''");
-            Supplier<String> fn__5810 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, \"\").toString() == (" + "v = ''" + ") not (" + actual_1329 + ")";
-            test_107.assert_(t_5817, fn__5810);
-            SqlBuilder t_5819 = new SqlBuilder();
-            t_5819.appendSafe("v = ");
-            t_5819.appendString("a''b");
-            String actual_1332 = t_5819.getAccumulated().toString();
-            boolean t_5825 = actual_1332.equals("v = 'a''''b'");
-            Supplier<String> fn__5809 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, \"a''b\").toString() == (" + "v = 'a''''b'" + ") not (" + actual_1332 + ")";
-            test_107.assert_(t_5825, fn__5809);
-            SqlBuilder t_5827 = new SqlBuilder();
-            t_5827.appendSafe("v = ");
-            t_5827.appendString("Hello \u4e16\u754c");
-            String actual_1335 = t_5827.getAccumulated().toString();
-            boolean t_5833 = actual_1335.equals("v = 'Hello \u4e16\u754c'");
-            Supplier<String> fn__5808 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, \"Hello \u4e16\u754c\").toString() == (" + "v = 'Hello \u4e16\u754c'" + ") not (" + actual_1335 + ")";
-            test_107.assert_(t_5833, fn__5808);
-            SqlBuilder t_5835 = new SqlBuilder();
-            t_5835.appendSafe("v = ");
-            t_5835.appendString("Line1\nLine2");
-            String actual_1338 = t_5835.getAccumulated().toString();
-            boolean t_5841 = actual_1338.equals("v = 'Line1\nLine2'");
-            Supplier<String> fn__5807 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, \"Line1\\nLine2\").toString() == (" + "v = 'Line1\nLine2'" + ") not (" + actual_1338 + ")";
-            test_107.assert_(t_5841, fn__5807);
+            Query q__1019 = SrcGlobal.from(SrcTest.sid__443("users"));
+            boolean t_7166 = q__1019.countSql().toString().equals("SELECT COUNT(*) FROM users");
+            Supplier<String> fn__7161 = () -> "countSql bare";
+            test_107.assert_(t_7166, fn__7161);
         } finally {
             test_107.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void numbersAndBooleans__1341() {
+    @org.junit.jupiter.api.Test public void countSqlWithWhere__1487() {
         Test test_108 = new Test();
         try {
-            SqlBuilder t_5782 = new SqlBuilder();
-            t_5782.appendSafe("select ");
-            t_5782.appendInt32(42);
-            t_5782.appendSafe(", ");
-            t_5782.appendInt64(43);
-            t_5782.appendSafe(", ");
-            t_5782.appendFloat64(19.99D);
-            t_5782.appendSafe(", ");
-            t_5782.appendBoolean(true);
-            t_5782.appendSafe(", ");
-            t_5782.appendBoolean(false);
-            String actual_1342 = t_5782.getAccumulated().toString();
-            boolean t_5796 = actual_1342.equals("select 42, 43, 19.99, TRUE, FALSE");
-            Supplier<String> fn__5781 = () -> "expected stringExpr(`-work//src/`.sql, true, \"select \", \\interpolate, 42, \", \", \\interpolate, 43, \", \", \\interpolate, 19.99, \", \", \\interpolate, true, \", \", \\interpolate, false).toString() == (" + "select 42, 43, 19.99, TRUE, FALSE" + ") not (" + actual_1342 + ")";
-            test_108.assert_(t_5796, fn__5781);
-            LocalDate t_2924;
-            t_2924 = LocalDate.of(2024, 12, 25);
-            LocalDate date__1081 = t_2924;
-            SqlBuilder t_5798 = new SqlBuilder();
-            t_5798.appendSafe("insert into t values (");
-            t_5798.appendDate(date__1081);
-            t_5798.appendSafe(")");
-            String actual_1345 = t_5798.getAccumulated().toString();
-            boolean t_5805 = actual_1345.equals("insert into t values ('2024-12-25')");
-            Supplier<String> fn__5780 = () -> "expected stringExpr(`-work//src/`.sql, true, \"insert into t values (\", \\interpolate, date, \")\").toString() == (" + "insert into t values ('2024-12-25')" + ") not (" + actual_1345 + ")";
-            test_108.assert_(t_5805, fn__5780);
+            SafeIdentifier t_7150 = SrcTest.sid__443("users");
+            SqlBuilder t_7151 = new SqlBuilder();
+            t_7151.appendSafe("active = ");
+            t_7151.appendBoolean(true);
+            SqlFragment t_7154 = t_7151.getAccumulated();
+            Query q__1021 = SrcGlobal.from(t_7150).where(t_7154);
+            boolean t_7159 = q__1021.countSql().toString().equals("SELECT COUNT(*) FROM users WHERE active = TRUE");
+            Supplier<String> fn__7149 = () -> "countSql with where";
+            test_108.assert_(t_7159, fn__7149);
         } finally {
             test_108.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void lists__1348() {
+    @org.junit.jupiter.api.Test public void countSqlWithJoin__1489() {
         Test test_109 = new Test();
         try {
-            SqlBuilder t_5726 = new SqlBuilder();
-            t_5726.appendSafe("v IN (");
-            t_5726.appendStringList(List.of("a", "b", "c'd"));
-            t_5726.appendSafe(")");
-            String actual_1349 = t_5726.getAccumulated().toString();
-            boolean t_5733 = actual_1349.equals("v IN ('a', 'b', 'c''d')");
-            Supplier<String> fn__5725 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, list(\"a\", \"b\", \"c'd\"), \")\").toString() == (" + "v IN ('a', 'b', 'c''d')" + ") not (" + actual_1349 + ")";
-            test_109.assert_(t_5733, fn__5725);
-            SqlBuilder t_5735 = new SqlBuilder();
-            t_5735.appendSafe("v IN (");
-            t_5735.appendInt32List(List.of(1, 2, 3));
-            t_5735.appendSafe(")");
-            String actual_1352 = t_5735.getAccumulated().toString();
-            boolean t_5742 = actual_1352.equals("v IN (1, 2, 3)");
-            Supplier<String> fn__5724 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, list(1, 2, 3), \")\").toString() == (" + "v IN (1, 2, 3)" + ") not (" + actual_1352 + ")";
-            test_109.assert_(t_5742, fn__5724);
-            SqlBuilder t_5744 = new SqlBuilder();
-            t_5744.appendSafe("v IN (");
-            t_5744.appendInt64List(List.of(1, 2));
-            t_5744.appendSafe(")");
-            String actual_1355 = t_5744.getAccumulated().toString();
-            boolean t_5751 = actual_1355.equals("v IN (1, 2)");
-            Supplier<String> fn__5723 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, list(1, 2), \")\").toString() == (" + "v IN (1, 2)" + ") not (" + actual_1355 + ")";
-            test_109.assert_(t_5751, fn__5723);
-            SqlBuilder t_5753 = new SqlBuilder();
-            t_5753.appendSafe("v IN (");
-            t_5753.appendFloat64List(List.of(1.0D, 2.0D));
-            t_5753.appendSafe(")");
-            String actual_1358 = t_5753.getAccumulated().toString();
-            boolean t_5760 = actual_1358.equals("v IN (1.0, 2.0)");
-            Supplier<String> fn__5722 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, list(1.0, 2.0), \")\").toString() == (" + "v IN (1.0, 2.0)" + ") not (" + actual_1358 + ")";
-            test_109.assert_(t_5760, fn__5722);
-            SqlBuilder t_5762 = new SqlBuilder();
-            t_5762.appendSafe("v IN (");
-            t_5762.appendBooleanList(List.of(true, false));
-            t_5762.appendSafe(")");
-            String actual_1361 = t_5762.getAccumulated().toString();
-            boolean t_5769 = actual_1361.equals("v IN (TRUE, FALSE)");
-            Supplier<String> fn__5721 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, list(true, false), \")\").toString() == (" + "v IN (TRUE, FALSE)" + ") not (" + actual_1361 + ")";
-            test_109.assert_(t_5769, fn__5721);
-            LocalDate t_2896;
-            t_2896 = LocalDate.of(2024, 1, 1);
-            LocalDate t_2897 = t_2896;
-            LocalDate t_2898;
-            t_2898 = LocalDate.of(2024, 12, 25);
-            LocalDate t_2899 = t_2898;
-            List<LocalDate> dates__1083 = List.of(t_2897, t_2899);
-            SqlBuilder t_5771 = new SqlBuilder();
-            t_5771.appendSafe("v IN (");
-            t_5771.appendDateList(dates__1083);
-            t_5771.appendSafe(")");
-            String actual_1364 = t_5771.getAccumulated().toString();
-            boolean t_5778 = actual_1364.equals("v IN ('2024-01-01', '2024-12-25')");
-            Supplier<String> fn__5720 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, dates, \")\").toString() == (" + "v IN ('2024-01-01', '2024-12-25')" + ") not (" + actual_1364 + ")";
-            test_109.assert_(t_5778, fn__5720);
+            SafeIdentifier t_7133 = SrcTest.sid__443("users");
+            SafeIdentifier t_7134 = SrcTest.sid__443("orders");
+            SqlBuilder t_7135 = new SqlBuilder();
+            t_7135.appendSafe("users.id = orders.user_id");
+            SqlFragment t_7137 = t_7135.getAccumulated();
+            Query t_7138 = SrcGlobal.from(t_7133).innerJoin(t_7134, t_7137);
+            SqlBuilder t_7139 = new SqlBuilder();
+            t_7139.appendSafe("orders.total > ");
+            t_7139.appendInt32(100);
+            Query q__1023 = t_7138.where(t_7139.getAccumulated());
+            boolean t_7147 = q__1023.countSql().toString().equals("SELECT COUNT(*) FROM users INNER JOIN orders ON users.id = orders.user_id WHERE orders.total > 100");
+            Supplier<String> fn__7132 = () -> "countSql with join";
+            test_109.assert_(t_7147, fn__7132);
         } finally {
             test_109.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void sqlFloat64_naNRendersAsNull__1367() {
+    @org.junit.jupiter.api.Test public void countSqlDropsOrderByLimitOffset__1492() {
         Test test_110 = new Test();
         try {
-            double nan__1085;
-            nan__1085 = 0.0D / 0.0D;
-            SqlBuilder t_5712 = new SqlBuilder();
-            t_5712.appendSafe("v = ");
-            t_5712.appendFloat64(nan__1085);
-            String actual_1368 = t_5712.getAccumulated().toString();
-            boolean t_5718 = actual_1368.equals("v = NULL");
-            Supplier<String> fn__5711 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, nan).toString() == (" + "v = NULL" + ") not (" + actual_1368 + ")";
-            test_110.assert_(t_5718, fn__5711);
+            SafeIdentifier t_7119 = SrcTest.sid__443("users");
+            SqlBuilder t_7120 = new SqlBuilder();
+            t_7120.appendSafe("active = ");
+            t_7120.appendBoolean(true);
+            SqlFragment t_7123 = t_7120.getAccumulated();
+            Query t_3568;
+            t_3568 = SrcGlobal.from(t_7119).where(t_7123).orderBy(SrcTest.sid__443("name"), true).limit(10);
+            Query t_3569;
+            t_3569 = t_3568.offset(20);
+            Query q__1025 = t_3569;
+            String s__1026 = q__1025.countSql().toString();
+            boolean t_7130 = s__1026.equals("SELECT COUNT(*) FROM users WHERE active = TRUE");
+            Supplier<String> fn__7118 = () -> "countSql drops extras: " + s__1026;
+            test_110.assert_(t_7130, fn__7118);
         } finally {
             test_110.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void sqlFloat64_infinityRendersAsNull__1371() {
+    @org.junit.jupiter.api.Test public void fullAggregationQuery__1494() {
         Test test_111 = new Test();
         try {
-            double inf__1087;
-            inf__1087 = 1.0D / 0.0D;
-            SqlBuilder t_5703 = new SqlBuilder();
-            t_5703.appendSafe("v = ");
-            t_5703.appendFloat64(inf__1087);
-            String actual_1372 = t_5703.getAccumulated().toString();
-            boolean t_5709 = actual_1372.equals("v = NULL");
-            Supplier<String> fn__5702 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, inf).toString() == (" + "v = NULL" + ") not (" + actual_1372 + ")";
-            test_111.assert_(t_5709, fn__5702);
+            SafeIdentifier t_7086 = SrcTest.sid__443("orders");
+            SqlFragment t_7089 = SrcGlobal.col(SrcTest.sid__443("orders"), SrcTest.sid__443("status"));
+            SqlFragment t_7090 = SrcGlobal.countAll();
+            SqlFragment t_7092 = SrcGlobal.sumCol(SrcTest.sid__443("total"));
+            Query t_7093 = SrcGlobal.from(t_7086).selectExpr(List.of(t_7089, t_7090, t_7092));
+            SafeIdentifier t_7094 = SrcTest.sid__443("users");
+            SqlBuilder t_7095 = new SqlBuilder();
+            t_7095.appendSafe("orders.user_id = users.id");
+            Query t_7098 = t_7093.innerJoin(t_7094, t_7095.getAccumulated());
+            SqlBuilder t_7099 = new SqlBuilder();
+            t_7099.appendSafe("users.active = ");
+            t_7099.appendBoolean(true);
+            Query t_7105 = t_7098.where(t_7099.getAccumulated()).groupBy(SrcTest.sid__443("status"));
+            SqlBuilder t_7106 = new SqlBuilder();
+            t_7106.appendSafe("COUNT(*) > ");
+            t_7106.appendInt32(3);
+            Query q__1028 = t_7105.having(t_7106.getAccumulated()).orderBy(SrcTest.sid__443("status"), true);
+            String expected__1029 = "SELECT orders.status, COUNT(*), SUM(total) FROM orders INNER JOIN users ON orders.user_id = users.id WHERE users.active = TRUE GROUP BY status HAVING COUNT(*) > 3 ORDER BY status ASC";
+            boolean t_7116 = q__1028.toSql().toString().equals("SELECT orders.status, COUNT(*), SUM(total) FROM orders INNER JOIN users ON orders.user_id = users.id WHERE users.active = TRUE GROUP BY status HAVING COUNT(*) > 3 ORDER BY status ASC");
+            Supplier<String> fn__7085 = () -> "full aggregation";
+            test_111.assert_(t_7116, fn__7085);
         } finally {
             test_111.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void sqlFloat64_negativeInfinityRendersAsNull__1375() {
-        Test test_112 = new Test();
+    @org.junit.jupiter.api.Test public void safeIdentifierAcceptsValidNames__1498() {
+        Test test_118 = new Test();
         try {
-            double ninf__1089;
-            ninf__1089 = -1.0D / 0.0D;
-            SqlBuilder t_5694 = new SqlBuilder();
-            t_5694.appendSafe("v = ");
-            t_5694.appendFloat64(ninf__1089);
-            String actual_1376 = t_5694.getAccumulated().toString();
-            boolean t_5700 = actual_1376.equals("v = NULL");
-            Supplier<String> fn__5693 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, ninf).toString() == (" + "v = NULL" + ") not (" + actual_1376 + ")";
-            test_112.assert_(t_5700, fn__5693);
+            SafeIdentifier t_3522;
+            t_3522 = SrcGlobal.safeIdentifier("user_name");
+            SafeIdentifier id__1067 = t_3522;
+            boolean t_7083 = id__1067.getSqlValue().equals("user_name");
+            Supplier<String> fn__7080 = () -> "value should round-trip";
+            test_118.assert_(t_7083, fn__7080);
         } finally {
-            test_112.softFailToHard();
+            test_118.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void sqlFloat64_normalValuesStillWork__1379() {
-        Test test_113 = new Test();
+    @org.junit.jupiter.api.Test public void safeIdentifierRejectsEmptyString__1499() {
+        Test test_119 = new Test();
         try {
-            SqlBuilder t_5669 = new SqlBuilder();
-            t_5669.appendSafe("v = ");
-            t_5669.appendFloat64(3.14D);
-            String actual_1380 = t_5669.getAccumulated().toString();
-            boolean t_5675 = actual_1380.equals("v = 3.14");
-            Supplier<String> fn__5668 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, 3.14).toString() == (" + "v = 3.14" + ") not (" + actual_1380 + ")";
-            test_113.assert_(t_5675, fn__5668);
-            SqlBuilder t_5677 = new SqlBuilder();
-            t_5677.appendSafe("v = ");
-            t_5677.appendFloat64(0.0D);
-            String actual_1383 = t_5677.getAccumulated().toString();
-            boolean t_5683 = actual_1383.equals("v = 0.0");
-            Supplier<String> fn__5667 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, 0.0).toString() == (" + "v = 0.0" + ") not (" + actual_1383 + ")";
-            test_113.assert_(t_5683, fn__5667);
-            SqlBuilder t_5685 = new SqlBuilder();
-            t_5685.appendSafe("v = ");
-            t_5685.appendFloat64(-42.5D);
-            String actual_1386 = t_5685.getAccumulated().toString();
-            boolean t_5691 = actual_1386.equals("v = -42.5");
-            Supplier<String> fn__5666 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, -42.5).toString() == (" + "v = -42.5" + ") not (" + actual_1386 + ")";
-            test_113.assert_(t_5691, fn__5666);
+            boolean didBubble__1069;
+            boolean didBubble_8848;
+            try {
+                SrcGlobal.safeIdentifier("");
+                didBubble_8848 = false;
+            } catch (RuntimeException ignored$11) {
+                didBubble_8848 = true;
+            }
+            didBubble__1069 = didBubble_8848;
+            Supplier<String> fn__7077 = () -> "empty string should bubble";
+            test_119.assert_(didBubble__1069, fn__7077);
         } finally {
-            test_113.softFailToHard();
+            test_119.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void sqlDateRendersWithQuotes__1389() {
-        Test test_114 = new Test();
+    @org.junit.jupiter.api.Test public void safeIdentifierRejectsLeadingDigit__1500() {
+        Test test_120 = new Test();
         try {
-            LocalDate t_2792;
-            t_2792 = LocalDate.of(2024, 6, 15);
-            LocalDate d__1092 = t_2792;
-            SqlBuilder t_5658 = new SqlBuilder();
-            t_5658.appendSafe("v = ");
-            t_5658.appendDate(d__1092);
-            String actual_1390 = t_5658.getAccumulated().toString();
-            boolean t_5664 = actual_1390.equals("v = '2024-06-15'");
-            Supplier<String> fn__5657 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, d).toString() == (" + "v = '2024-06-15'" + ") not (" + actual_1390 + ")";
-            test_114.assert_(t_5664, fn__5657);
+            boolean didBubble__1071;
+            boolean didBubble_8849;
+            try {
+                SrcGlobal.safeIdentifier("1col");
+                didBubble_8849 = false;
+            } catch (RuntimeException ignored$12) {
+                didBubble_8849 = true;
+            }
+            didBubble__1071 = didBubble_8849;
+            Supplier<String> fn__7074 = () -> "leading digit should bubble";
+            test_120.assert_(didBubble__1071, fn__7074);
         } finally {
-            test_114.softFailToHard();
+            test_120.softFailToHard();
         }
     }
-    @org.junit.jupiter.api.Test public void nesting__1393() {
-        Test test_115 = new Test();
+    @org.junit.jupiter.api.Test public void safeIdentifierRejectsSqlMetacharacters__1501() {
+        Test test_121 = new Test();
         try {
-            String name__1094 = "Someone";
-            SqlBuilder t_5626 = new SqlBuilder();
-            t_5626.appendSafe("where p.last_name = ");
-            t_5626.appendString("Someone");
-            SqlFragment condition__1095 = t_5626.getAccumulated();
-            SqlBuilder t_5630 = new SqlBuilder();
-            t_5630.appendSafe("select p.id from person p ");
-            t_5630.appendFragment(condition__1095);
-            String actual_1395 = t_5630.getAccumulated().toString();
-            boolean t_5636 = actual_1395.equals("select p.id from person p where p.last_name = 'Someone'");
-            Supplier<String> fn__5625 = () -> "expected stringExpr(`-work//src/`.sql, true, \"select p.id from person p \", \\interpolate, condition).toString() == (" + "select p.id from person p where p.last_name = 'Someone'" + ") not (" + actual_1395 + ")";
-            test_115.assert_(t_5636, fn__5625);
-            SqlBuilder t_5638 = new SqlBuilder();
-            t_5638.appendSafe("select p.id from person p ");
-            t_5638.appendPart(condition__1095.toSource());
-            String actual_1398 = t_5638.getAccumulated().toString();
-            boolean t_5645 = actual_1398.equals("select p.id from person p where p.last_name = 'Someone'");
-            Supplier<String> fn__5624 = () -> "expected stringExpr(`-work//src/`.sql, true, \"select p.id from person p \", \\interpolate, condition.toSource()).toString() == (" + "select p.id from person p where p.last_name = 'Someone'" + ") not (" + actual_1398 + ")";
-            test_115.assert_(t_5645, fn__5624);
-            List<SqlPart> parts__1096 = List.of(new SqlString("a'b"), new SqlInt32(3));
-            SqlBuilder t_5649 = new SqlBuilder();
-            t_5649.appendSafe("select ");
-            t_5649.appendPartList(parts__1096);
-            String actual_1401 = t_5649.getAccumulated().toString();
-            boolean t_5655 = actual_1401.equals("select 'a''b', 3");
-            Supplier<String> fn__5623 = () -> "expected stringExpr(`-work//src/`.sql, true, \"select \", \\interpolate, parts).toString() == (" + "select 'a''b', 3" + ") not (" + actual_1401 + ")";
-            test_115.assert_(t_5655, fn__5623);
+            List<String> cases__1073 = List.of("name); DROP TABLE", "col'", "a b", "a-b", "a.b", "a;b");
+            Consumer<String> fn__7071 = c__1074 -> {
+                boolean didBubble__1075;
+                boolean didBubble_8850;
+                try {
+                    SrcGlobal.safeIdentifier(c__1074);
+                    didBubble_8850 = false;
+                } catch (RuntimeException ignored$13) {
+                    didBubble_8850 = true;
+                }
+                didBubble__1075 = didBubble_8850;
+                Supplier<String> fn__7068 = () -> "should reject: " + c__1074;
+                test_121.assert_(didBubble__1075, fn__7068);
+            };
+            cases__1073.forEach(fn__7071);
         } finally {
-            test_115.softFailToHard();
+            test_121.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void tableDefFieldLookupFound__1502() {
+        Test test_122 = new Test();
+        try {
+            SafeIdentifier t_3499;
+            t_3499 = SrcGlobal.safeIdentifier("users");
+            SafeIdentifier t_3500 = t_3499;
+            SafeIdentifier t_3501;
+            t_3501 = SrcGlobal.safeIdentifier("name");
+            SafeIdentifier t_3502 = t_3501;
+            StringField t_7058 = new StringField();
+            FieldDef t_7059 = new FieldDef(t_3502, t_7058, false);
+            SafeIdentifier t_3505;
+            t_3505 = SrcGlobal.safeIdentifier("age");
+            SafeIdentifier t_3506 = t_3505;
+            IntField t_7060 = new IntField();
+            FieldDef t_7061 = new FieldDef(t_3506, t_7060, false);
+            TableDef td__1077 = new TableDef(t_3500, List.of(t_7059, t_7061));
+            FieldDef t_3510;
+            t_3510 = td__1077.field("age");
+            FieldDef f__1078 = t_3510;
+            boolean t_7066 = f__1078.getName().getSqlValue().equals("age");
+            Supplier<String> fn__7057 = () -> "should find age field";
+            test_122.assert_(t_7066, fn__7057);
+        } finally {
+            test_122.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void tableDefFieldLookupNotFoundBubbles__1503() {
+        Test test_123 = new Test();
+        try {
+            SafeIdentifier t_3490;
+            t_3490 = SrcGlobal.safeIdentifier("users");
+            SafeIdentifier t_3491 = t_3490;
+            SafeIdentifier t_3492;
+            t_3492 = SrcGlobal.safeIdentifier("name");
+            SafeIdentifier t_3493 = t_3492;
+            StringField t_7052 = new StringField();
+            FieldDef t_7053 = new FieldDef(t_3493, t_7052, false);
+            TableDef td__1080 = new TableDef(t_3491, List.of(t_7053));
+            boolean didBubble__1081;
+            boolean didBubble_8851;
+            try {
+                td__1080.field("nonexistent");
+                didBubble_8851 = false;
+            } catch (RuntimeException ignored$14) {
+                didBubble_8851 = true;
+            }
+            didBubble__1081 = didBubble_8851;
+            Supplier<String> fn__7051 = () -> "unknown field should bubble";
+            test_123.assert_(didBubble__1081, fn__7051);
+        } finally {
+            test_123.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void fieldDefNullableFlag__1504() {
+        Test test_124 = new Test();
+        try {
+            SafeIdentifier t_3478;
+            t_3478 = SrcGlobal.safeIdentifier("email");
+            SafeIdentifier t_3479 = t_3478;
+            StringField t_7040 = new StringField();
+            FieldDef required__1083 = new FieldDef(t_3479, t_7040, false);
+            SafeIdentifier t_3482;
+            t_3482 = SrcGlobal.safeIdentifier("bio");
+            SafeIdentifier t_3483 = t_3482;
+            StringField t_7042 = new StringField();
+            FieldDef optional__1084 = new FieldDef(t_3483, t_7042, true);
+            boolean t_7046 = !required__1083.isNullable();
+            Supplier<String> fn__7039 = () -> "required field should not be nullable";
+            test_124.assert_(t_7046, fn__7039);
+            boolean t_7048 = optional__1084.isNullable();
+            Supplier<String> fn__7038 = () -> "optional field should be nullable";
+            test_124.assert_(t_7048, fn__7038);
+        } finally {
+            test_124.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void stringEscaping__1505() {
+        Test test_128 = new Test();
+        try {
+            Function<String, String> build__1210 = name__1212 -> {
+                SqlBuilder t_7020 = new SqlBuilder();
+                t_7020.appendSafe("select * from hi where name = ");
+                t_7020.appendString(name__1212);
+                return t_7020.getAccumulated().toString();
+            };
+            Function<String, String> buildWrong__1211 = name__1214 -> "select * from hi where name = '" + name__1214 + "'";
+            String actual_1507 = build__1210.apply("world");
+            boolean t_7030 = actual_1507.equals("select * from hi where name = 'world'");
+            Supplier<String> fn__7027 = () -> "expected build(\"world\") == (" + "select * from hi where name = 'world'" + ") not (" + actual_1507 + ")";
+            test_128.assert_(t_7030, fn__7027);
+            String bobbyTables__1216 = "Robert'); drop table hi;--";
+            String actual_1509 = build__1210.apply("Robert'); drop table hi;--");
+            boolean t_7034 = actual_1509.equals("select * from hi where name = 'Robert''); drop table hi;--'");
+            Supplier<String> fn__7026 = () -> "expected build(bobbyTables) == (" + "select * from hi where name = 'Robert''); drop table hi;--'" + ") not (" + actual_1509 + ")";
+            test_128.assert_(t_7034, fn__7026);
+            Supplier<String> fn__7025 = () -> "expected buildWrong(bobbyTables) == (select * from hi where name = 'Robert'); drop table hi;--') not (select * from hi where name = 'Robert'); drop table hi;--')";
+            test_128.assert_(true, fn__7025);
+        } finally {
+            test_128.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void stringEdgeCases__1513() {
+        Test test_129 = new Test();
+        try {
+            SqlBuilder t_6988 = new SqlBuilder();
+            t_6988.appendSafe("v = ");
+            t_6988.appendString("");
+            String actual_1514 = t_6988.getAccumulated().toString();
+            boolean t_6994 = actual_1514.equals("v = ''");
+            Supplier<String> fn__6987 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, \"\").toString() == (" + "v = ''" + ") not (" + actual_1514 + ")";
+            test_129.assert_(t_6994, fn__6987);
+            SqlBuilder t_6996 = new SqlBuilder();
+            t_6996.appendSafe("v = ");
+            t_6996.appendString("a''b");
+            String actual_1517 = t_6996.getAccumulated().toString();
+            boolean t_7002 = actual_1517.equals("v = 'a''''b'");
+            Supplier<String> fn__6986 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, \"a''b\").toString() == (" + "v = 'a''''b'" + ") not (" + actual_1517 + ")";
+            test_129.assert_(t_7002, fn__6986);
+            SqlBuilder t_7004 = new SqlBuilder();
+            t_7004.appendSafe("v = ");
+            t_7004.appendString("Hello \u4e16\u754c");
+            String actual_1520 = t_7004.getAccumulated().toString();
+            boolean t_7010 = actual_1520.equals("v = 'Hello \u4e16\u754c'");
+            Supplier<String> fn__6985 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, \"Hello \u4e16\u754c\").toString() == (" + "v = 'Hello \u4e16\u754c'" + ") not (" + actual_1520 + ")";
+            test_129.assert_(t_7010, fn__6985);
+            SqlBuilder t_7012 = new SqlBuilder();
+            t_7012.appendSafe("v = ");
+            t_7012.appendString("Line1\nLine2");
+            String actual_1523 = t_7012.getAccumulated().toString();
+            boolean t_7018 = actual_1523.equals("v = 'Line1\nLine2'");
+            Supplier<String> fn__6984 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, \"Line1\\nLine2\").toString() == (" + "v = 'Line1\nLine2'" + ") not (" + actual_1523 + ")";
+            test_129.assert_(t_7018, fn__6984);
+        } finally {
+            test_129.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void numbersAndBooleans__1526() {
+        Test test_130 = new Test();
+        try {
+            SqlBuilder t_6959 = new SqlBuilder();
+            t_6959.appendSafe("select ");
+            t_6959.appendInt32(42);
+            t_6959.appendSafe(", ");
+            t_6959.appendInt64(43);
+            t_6959.appendSafe(", ");
+            t_6959.appendFloat64(19.99D);
+            t_6959.appendSafe(", ");
+            t_6959.appendBoolean(true);
+            t_6959.appendSafe(", ");
+            t_6959.appendBoolean(false);
+            String actual_1527 = t_6959.getAccumulated().toString();
+            boolean t_6973 = actual_1527.equals("select 42, 43, 19.99, TRUE, FALSE");
+            Supplier<String> fn__6958 = () -> "expected stringExpr(`-work//src/`.sql, true, \"select \", \\interpolate, 42, \", \", \\interpolate, 43, \", \", \\interpolate, 19.99, \", \", \\interpolate, true, \", \", \\interpolate, false).toString() == (" + "select 42, 43, 19.99, TRUE, FALSE" + ") not (" + actual_1527 + ")";
+            test_130.assert_(t_6973, fn__6958);
+            LocalDate t_3423;
+            t_3423 = LocalDate.of(2024, 12, 25);
+            LocalDate date__1219 = t_3423;
+            SqlBuilder t_6975 = new SqlBuilder();
+            t_6975.appendSafe("insert into t values (");
+            t_6975.appendDate(date__1219);
+            t_6975.appendSafe(")");
+            String actual_1530 = t_6975.getAccumulated().toString();
+            boolean t_6982 = actual_1530.equals("insert into t values ('2024-12-25')");
+            Supplier<String> fn__6957 = () -> "expected stringExpr(`-work//src/`.sql, true, \"insert into t values (\", \\interpolate, date, \")\").toString() == (" + "insert into t values ('2024-12-25')" + ") not (" + actual_1530 + ")";
+            test_130.assert_(t_6982, fn__6957);
+        } finally {
+            test_130.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void lists__1533() {
+        Test test_131 = new Test();
+        try {
+            SqlBuilder t_6903 = new SqlBuilder();
+            t_6903.appendSafe("v IN (");
+            t_6903.appendStringList(List.of("a", "b", "c'd"));
+            t_6903.appendSafe(")");
+            String actual_1534 = t_6903.getAccumulated().toString();
+            boolean t_6910 = actual_1534.equals("v IN ('a', 'b', 'c''d')");
+            Supplier<String> fn__6902 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, list(\"a\", \"b\", \"c'd\"), \")\").toString() == (" + "v IN ('a', 'b', 'c''d')" + ") not (" + actual_1534 + ")";
+            test_131.assert_(t_6910, fn__6902);
+            SqlBuilder t_6912 = new SqlBuilder();
+            t_6912.appendSafe("v IN (");
+            t_6912.appendInt32List(List.of(1, 2, 3));
+            t_6912.appendSafe(")");
+            String actual_1537 = t_6912.getAccumulated().toString();
+            boolean t_6919 = actual_1537.equals("v IN (1, 2, 3)");
+            Supplier<String> fn__6901 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, list(1, 2, 3), \")\").toString() == (" + "v IN (1, 2, 3)" + ") not (" + actual_1537 + ")";
+            test_131.assert_(t_6919, fn__6901);
+            SqlBuilder t_6921 = new SqlBuilder();
+            t_6921.appendSafe("v IN (");
+            t_6921.appendInt64List(List.of(1, 2));
+            t_6921.appendSafe(")");
+            String actual_1540 = t_6921.getAccumulated().toString();
+            boolean t_6928 = actual_1540.equals("v IN (1, 2)");
+            Supplier<String> fn__6900 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, list(1, 2), \")\").toString() == (" + "v IN (1, 2)" + ") not (" + actual_1540 + ")";
+            test_131.assert_(t_6928, fn__6900);
+            SqlBuilder t_6930 = new SqlBuilder();
+            t_6930.appendSafe("v IN (");
+            t_6930.appendFloat64List(List.of(1.0D, 2.0D));
+            t_6930.appendSafe(")");
+            String actual_1543 = t_6930.getAccumulated().toString();
+            boolean t_6937 = actual_1543.equals("v IN (1.0, 2.0)");
+            Supplier<String> fn__6899 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, list(1.0, 2.0), \")\").toString() == (" + "v IN (1.0, 2.0)" + ") not (" + actual_1543 + ")";
+            test_131.assert_(t_6937, fn__6899);
+            SqlBuilder t_6939 = new SqlBuilder();
+            t_6939.appendSafe("v IN (");
+            t_6939.appendBooleanList(List.of(true, false));
+            t_6939.appendSafe(")");
+            String actual_1546 = t_6939.getAccumulated().toString();
+            boolean t_6946 = actual_1546.equals("v IN (TRUE, FALSE)");
+            Supplier<String> fn__6898 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, list(true, false), \")\").toString() == (" + "v IN (TRUE, FALSE)" + ") not (" + actual_1546 + ")";
+            test_131.assert_(t_6946, fn__6898);
+            LocalDate t_3395;
+            t_3395 = LocalDate.of(2024, 1, 1);
+            LocalDate t_3396 = t_3395;
+            LocalDate t_3397;
+            t_3397 = LocalDate.of(2024, 12, 25);
+            LocalDate t_3398 = t_3397;
+            List<LocalDate> dates__1221 = List.of(t_3396, t_3398);
+            SqlBuilder t_6948 = new SqlBuilder();
+            t_6948.appendSafe("v IN (");
+            t_6948.appendDateList(dates__1221);
+            t_6948.appendSafe(")");
+            String actual_1549 = t_6948.getAccumulated().toString();
+            boolean t_6955 = actual_1549.equals("v IN ('2024-01-01', '2024-12-25')");
+            Supplier<String> fn__6897 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v IN (\", \\interpolate, dates, \")\").toString() == (" + "v IN ('2024-01-01', '2024-12-25')" + ") not (" + actual_1549 + ")";
+            test_131.assert_(t_6955, fn__6897);
+        } finally {
+            test_131.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void sqlFloat64_naNRendersAsNull__1552() {
+        Test test_132 = new Test();
+        try {
+            double nan__1223;
+            nan__1223 = 0.0D / 0.0D;
+            SqlBuilder t_6889 = new SqlBuilder();
+            t_6889.appendSafe("v = ");
+            t_6889.appendFloat64(nan__1223);
+            String actual_1553 = t_6889.getAccumulated().toString();
+            boolean t_6895 = actual_1553.equals("v = NULL");
+            Supplier<String> fn__6888 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, nan).toString() == (" + "v = NULL" + ") not (" + actual_1553 + ")";
+            test_132.assert_(t_6895, fn__6888);
+        } finally {
+            test_132.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void sqlFloat64_infinityRendersAsNull__1556() {
+        Test test_133 = new Test();
+        try {
+            double inf__1225;
+            inf__1225 = 1.0D / 0.0D;
+            SqlBuilder t_6880 = new SqlBuilder();
+            t_6880.appendSafe("v = ");
+            t_6880.appendFloat64(inf__1225);
+            String actual_1557 = t_6880.getAccumulated().toString();
+            boolean t_6886 = actual_1557.equals("v = NULL");
+            Supplier<String> fn__6879 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, inf).toString() == (" + "v = NULL" + ") not (" + actual_1557 + ")";
+            test_133.assert_(t_6886, fn__6879);
+        } finally {
+            test_133.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void sqlFloat64_negativeInfinityRendersAsNull__1560() {
+        Test test_134 = new Test();
+        try {
+            double ninf__1227;
+            ninf__1227 = -1.0D / 0.0D;
+            SqlBuilder t_6871 = new SqlBuilder();
+            t_6871.appendSafe("v = ");
+            t_6871.appendFloat64(ninf__1227);
+            String actual_1561 = t_6871.getAccumulated().toString();
+            boolean t_6877 = actual_1561.equals("v = NULL");
+            Supplier<String> fn__6870 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, ninf).toString() == (" + "v = NULL" + ") not (" + actual_1561 + ")";
+            test_134.assert_(t_6877, fn__6870);
+        } finally {
+            test_134.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void sqlFloat64_normalValuesStillWork__1564() {
+        Test test_135 = new Test();
+        try {
+            SqlBuilder t_6846 = new SqlBuilder();
+            t_6846.appendSafe("v = ");
+            t_6846.appendFloat64(3.14D);
+            String actual_1565 = t_6846.getAccumulated().toString();
+            boolean t_6852 = actual_1565.equals("v = 3.14");
+            Supplier<String> fn__6845 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, 3.14).toString() == (" + "v = 3.14" + ") not (" + actual_1565 + ")";
+            test_135.assert_(t_6852, fn__6845);
+            SqlBuilder t_6854 = new SqlBuilder();
+            t_6854.appendSafe("v = ");
+            t_6854.appendFloat64(0.0D);
+            String actual_1568 = t_6854.getAccumulated().toString();
+            boolean t_6860 = actual_1568.equals("v = 0.0");
+            Supplier<String> fn__6844 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, 0.0).toString() == (" + "v = 0.0" + ") not (" + actual_1568 + ")";
+            test_135.assert_(t_6860, fn__6844);
+            SqlBuilder t_6862 = new SqlBuilder();
+            t_6862.appendSafe("v = ");
+            t_6862.appendFloat64(-42.5D);
+            String actual_1571 = t_6862.getAccumulated().toString();
+            boolean t_6868 = actual_1571.equals("v = -42.5");
+            Supplier<String> fn__6843 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, -42.5).toString() == (" + "v = -42.5" + ") not (" + actual_1571 + ")";
+            test_135.assert_(t_6868, fn__6843);
+        } finally {
+            test_135.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void sqlDateRendersWithQuotes__1574() {
+        Test test_136 = new Test();
+        try {
+            LocalDate t_3291;
+            t_3291 = LocalDate.of(2024, 6, 15);
+            LocalDate d__1230 = t_3291;
+            SqlBuilder t_6835 = new SqlBuilder();
+            t_6835.appendSafe("v = ");
+            t_6835.appendDate(d__1230);
+            String actual_1575 = t_6835.getAccumulated().toString();
+            boolean t_6841 = actual_1575.equals("v = '2024-06-15'");
+            Supplier<String> fn__6834 = () -> "expected stringExpr(`-work//src/`.sql, true, \"v = \", \\interpolate, d).toString() == (" + "v = '2024-06-15'" + ") not (" + actual_1575 + ")";
+            test_136.assert_(t_6841, fn__6834);
+        } finally {
+            test_136.softFailToHard();
+        }
+    }
+    @org.junit.jupiter.api.Test public void nesting__1578() {
+        Test test_137 = new Test();
+        try {
+            String name__1232 = "Someone";
+            SqlBuilder t_6803 = new SqlBuilder();
+            t_6803.appendSafe("where p.last_name = ");
+            t_6803.appendString("Someone");
+            SqlFragment condition__1233 = t_6803.getAccumulated();
+            SqlBuilder t_6807 = new SqlBuilder();
+            t_6807.appendSafe("select p.id from person p ");
+            t_6807.appendFragment(condition__1233);
+            String actual_1580 = t_6807.getAccumulated().toString();
+            boolean t_6813 = actual_1580.equals("select p.id from person p where p.last_name = 'Someone'");
+            Supplier<String> fn__6802 = () -> "expected stringExpr(`-work//src/`.sql, true, \"select p.id from person p \", \\interpolate, condition).toString() == (" + "select p.id from person p where p.last_name = 'Someone'" + ") not (" + actual_1580 + ")";
+            test_137.assert_(t_6813, fn__6802);
+            SqlBuilder t_6815 = new SqlBuilder();
+            t_6815.appendSafe("select p.id from person p ");
+            t_6815.appendPart(condition__1233.toSource());
+            String actual_1583 = t_6815.getAccumulated().toString();
+            boolean t_6822 = actual_1583.equals("select p.id from person p where p.last_name = 'Someone'");
+            Supplier<String> fn__6801 = () -> "expected stringExpr(`-work//src/`.sql, true, \"select p.id from person p \", \\interpolate, condition.toSource()).toString() == (" + "select p.id from person p where p.last_name = 'Someone'" + ") not (" + actual_1583 + ")";
+            test_137.assert_(t_6822, fn__6801);
+            List<SqlPart> parts__1234 = List.of(new SqlString("a'b"), new SqlInt32(3));
+            SqlBuilder t_6826 = new SqlBuilder();
+            t_6826.appendSafe("select ");
+            t_6826.appendPartList(parts__1234);
+            String actual_1586 = t_6826.getAccumulated().toString();
+            boolean t_6832 = actual_1586.equals("select 'a''b', 3");
+            Supplier<String> fn__6800 = () -> "expected stringExpr(`-work//src/`.sql, true, \"select \", \\interpolate, parts).toString() == (" + "select 'a''b', 3" + ") not (" + actual_1586 + ")";
+            test_137.assert_(t_6832, fn__6800);
+        } finally {
+            test_137.softFailToHard();
         }
     }
 }

@@ -17,9 +17,9 @@ public final class ChangesetError {
             return new ChangesetError(field, message);
         }
     }
-    public ChangesetError(String field__408, String message__409) {
-        this.field = field__408;
-        this.message = message__409;
+    public ChangesetError(String field__451, String message__452) {
+        this.field = field__451;
+        this.message = message__452;
     }
     public String getField() {
         return this.field;

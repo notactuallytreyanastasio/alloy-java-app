@@ -7,7 +7,7 @@ public final class OrCondition implements WhereClause {
     public String keyword() {
         return "OR";
     }
-    public OrCondition(SqlFragment _condition__677) {
-        this._condition = _condition__677;
+    public OrCondition(SqlFragment _condition__720) {
+        this._condition = _condition__720;
     }
 }
